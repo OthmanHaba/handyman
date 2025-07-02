@@ -1,6 +1,41 @@
 <script setup lang="ts">
 import { ref, computed, onMounted, onUnmounted } from 'vue'
 
+// All categories data
+const allCategories = [
+  { id: 'assembly', name: 'Assembly', icon: 'material-symbols:construction' },
+  { id: 'mounting', name: 'Mounting', icon: 'material-symbols:tv-gen' },
+  { id: 'cleaning', name: 'Cleaning', icon: 'material-symbols:cleaning-services' },
+  { id: 'home-repair', name: 'Home Repair', icon: 'material-symbols:home-repair-service' },
+  { id: 'painting', name: 'Painting', icon: 'material-symbols:format-paint' },
+  { id: 'moving', name: 'Moving', icon: 'material-symbols:local-shipping' },
+  { id: 'outdoor', name: 'Outdoor', icon: 'material-symbols:yard' },
+  { id: 'rehab', name: 'Rehab', icon: 'material-symbols:medical-services' },
+  { id: 'plumbing', name: 'Plumbing', icon: 'material-symbols:plumbing' },
+  { id: 'electrical', name: 'Electrical', icon: 'material-symbols:electrical-services' },
+  { id: 'carpentry', name: 'Carpentry', icon: 'material-symbols:carpenter' },
+  { id: 'landscaping', name: 'Landscaping', icon: 'material-symbols:grass' }
+]
+
+// Category carousel state
+const categoryStartIndex = ref(0)
+const selectedCategory = ref('assembly')
+const categoryCarouselRef = ref<HTMLElement>()
+
+
+
+// Function to advance category carousel by one item
+const advanceCategories = () => {
+  categoryStartIndex.value = (categoryStartIndex.value + 1) % allCategories.length
+}
+
+// Function to go back one category
+const previousCategories = () => {
+  categoryStartIndex.value = categoryStartIndex.value <= 0 
+    ? allCategories.length - 1 
+    : categoryStartIndex.value - 1
+}
+
 // Mock data for handymen
 const handymen = ref([
   {
@@ -77,17 +112,54 @@ const handymen = ref([
   }
 ])
 
-const selectedCategory = ref('assembly')
-const selectedSubcategory = ref('')
+const selectedSubcategory = ref('table') // Default to table for assembly category
 const displayLocalCurrency = ref(false)
+
+// Subcategories data
+const subcategoriesData: Record<string, Array<{id: string, name: string}>> = {
+  assembly: [
+    { id: 'furniture', name: 'Furniture Assembly' },
+    { id: 'wardrobe', name: 'Wardrobe & Dresser Assembly' },
+    { id: 'table', name: 'Table & Chair Assembly' },
+    { id: 'bed', name: 'Bed Assembly' },
+    { id: 'disassemble', name: 'Disassemble Furniture' },
+    { id: 'general', name: 'General Furniture' }
+  ],
+  cleaning: [
+    { id: 'house', name: 'House Cleaning' },
+    { id: 'office', name: 'Office Cleaning' },
+    { id: 'deep', name: 'Deep Cleaning' },
+    { id: 'window', name: 'Window Cleaning' },
+    { id: 'carpet', name: 'Carpet Cleaning' }
+  ],
+  plumbing: [
+    { id: 'repair', name: 'Plumbing Repair' },
+    { id: 'installation', name: 'Installation' },
+    { id: 'drain', name: 'Drain Cleaning' },
+    { id: 'leak', name: 'Leak Detection' },
+    { id: 'emergency', name: 'Emergency Service' }
+  ],
+  // Add more categories as needed
+}
+
+// Get current subcategories
+const currentSubcategories = computed(() => {
+  return subcategoriesData[selectedCategory.value] || []
+})
 
 // Carousel refs
 const carouselRef = ref<HTMLElement>()
 const currentIndex = ref(0)
 const scrollProgress = ref(0)
 
-const handleCategoryChange = (category: string) => {
-  selectedCategory.value = category
+const handleCategoryChange = (categoryId: string) => {
+  selectedCategory.value = categoryId
+  // Reset subcategory when changing category
+  selectedSubcategory.value = ''
+  // Set default subcategory for assembly
+  if (categoryId === 'assembly') {
+    selectedSubcategory.value = 'table'
+  }
 }
 
 const handleSubcategoryChange = (subcategory: string) => {
@@ -97,10 +169,10 @@ const handleSubcategoryChange = (subcategory: string) => {
 // Carousel navigation
 const scrollToIndex = (index: number) => {
   if (!carouselRef.value) return
-
+  
   const cardWidth = 260 // Approximate card width including gap
   const scrollPosition = index * cardWidth
-
+  
   carouselRef.value.scrollTo({
     left: scrollPosition,
     behavior: 'smooth'
@@ -125,12 +197,12 @@ const handleNext = () => {
 // Update progress based on scroll
 const updateScrollProgress = () => {
   if (!carouselRef.value) return
-
+  
   const scrollLeft = carouselRef.value.scrollLeft
   const scrollWidth = carouselRef.value.scrollWidth
   const clientWidth = carouselRef.value.clientWidth
   const maxScroll = scrollWidth - clientWidth
-
+  
   if (maxScroll > 0) {
     scrollProgress.value = (scrollLeft / maxScroll) * 100
     // Update current index based on scroll position
@@ -162,83 +234,107 @@ onUnmounted(() => {
   <div class="min-h-screen bg-gray-50">
     <!-- Header -->
     <GuestHeader />
-
+    
     <!-- Promotional Section -->
     <GuestPromoSection />
-
+    
     <!-- Main Content -->
     <section class="container mx-auto px-4 py-8">
       <!-- Category Navigation with Currency Toggle -->
       <div class="mb-8">
         <!-- Category Icons -->
         <div class="flex items-center justify-between mb-6">
-          <div class="flex gap-4 overflow-x-auto scrollbar-hide">
-            <button v-for="category in [
-              { id: 'assembly', name: 'Assembly', icon: 'material-symbols:construction', active: true },
-              { id: 'mounting', name: 'Mounting', icon: 'material-symbols:tv-gen' },
-              { id: 'cleaning', name: 'Cleaning', icon: 'material-symbols:cleaning-services' },
-              { id: 'home-repair', name: 'Home Repair', icon: 'material-symbols:home-repair-service' },
-              { id: 'painting', name: 'Painting', icon: 'material-symbols:format-paint' },
-              { id: 'moving', name: 'Moving', icon: 'material-symbols:local-shipping' },
-              { id: 'outdoor', name: 'Outdoor', icon: 'material-symbols:yard' },
-              { id: 'rehab', name: 'Rehab', icon: 'material-symbols:medical-services' }
-            ]" :key="category.id" :class="[
-                'flex flex-col items-center min-w-[80px] p-2 rounded-lg transition-all',
-                category.active ? 'text-blue-600' : 'text-gray-600 hover:text-gray-800'
-              ]" @click="handleCategoryChange(category.id)">
-              <div :class="[
-                'w-16 h-16 rounded-full flex items-center justify-center mb-2',
-                category.active ? 'bg-blue-600' : 'bg-gray-100'
-              ]">
-                <Icon :name="category.icon" :class="[
-                  'w-8 h-8',
-                  category.active ? 'text-white' : 'text-gray-600'
-                ]" />
+          <div class="flex items-center gap-3 relative overflow-hidden">
+            <!-- Previous button -->
+            <button 
+              @click="previousCategories"
+              class="p-2 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors flex-shrink-0 z-10"
+            >
+              <Icon name="material-symbols:chevron-left" class="w-6 h-6 text-gray-600" />
+            </button>
+            
+            <!-- Category buttons container -->
+            <div class="relative overflow-hidden" style="width: 720px;">
+              <div 
+                ref="categoryCarouselRef"
+                class="flex gap-3 transition-transform duration-300 ease-in-out"
+                :style="`transform: translateX(-${categoryStartIndex * 90}px)`"
+              >
+                <button 
+                  v-for="category in allCategories" 
+                  :key="category.id" 
+                  :class="[
+                    'flex flex-col items-center min-w-[80px] p-2 rounded-lg transition-all flex-shrink-0',
+                    selectedCategory === category.id ? 'text-blue-600' : 'text-gray-600 hover:text-gray-800'
+                  ]" 
+                  @click="handleCategoryChange(category.id)"
+                >
+                  <div :class="[
+                    'w-16 h-16 rounded-full flex items-center justify-center mb-2 transition-colors',
+                    selectedCategory === category.id ? 'bg-blue-600' : 'bg-gray-100'
+                  ]">
+                    <Icon 
+                      :name="category.icon" 
+                      :class="[
+                        'w-8 h-8',
+                        selectedCategory === category.id ? 'text-white' : 'text-gray-600'
+                      ]" 
+                    />
+                  </div>
+                  <span class="text-xs font-medium">{{ category.name }}</span>
+                </button>
               </div>
-              <span class="text-xs font-medium">{{ category.name }}</span>
+            </div>
+            
+            <!-- Next button with arrow -->
+            <button 
+              @click="advanceCategories"
+              class="p-2 rounded-full bg-blue-600 hover:bg-blue-700 transition-colors flex-shrink-0 z-10"
+            >
+              <Icon name="material-symbols:chevron-right" class="w-6 h-6 text-white" />
             </button>
           </div>
-
-          <!-- List View Toggle -->
-          <button class="p-3 border border-gray-200 rounded-lg hover:bg-gray-50">
-            <Icon name="material-symbols:view-list" class="w-5 h-5 text-gray-600" />
-          </button>
-
-          <!-- Currency Toggle -->
-          <div class="hidden lg:flex items-center ml-4">
-            <span class="mr-3 text-sm text-gray-700">Display sarwisi currency</span>
-            <button @click="displayLocalCurrency = !displayLocalCurrency" :class="[
-              'relative inline-flex h-6 w-11 items-center rounded-full transition-colors',
-              displayLocalCurrency ? 'bg-blue-600' : 'bg-gray-300'
-            ]">
-              <span :class="[
-                'inline-block h-4 w-4 transform rounded-full bg-white transition-transform',
-                displayLocalCurrency ? 'translate-x-6' : 'translate-x-1'
-              ]" />
+          
+          <div class="flex items-center gap-3">
+            <!-- List View Toggle -->
+            <button class="p-3 border border-gray-200 rounded-lg hover:bg-gray-50">
+              <Icon name="material-symbols:view-list" class="w-5 h-5 text-gray-600" />
             </button>
+            
+            <!-- Currency Toggle -->
+            <div class="hidden lg:flex items-center ml-4">
+              <span class="mr-3 text-sm text-gray-700">Display sarwisi currency</span>
+              <button @click="displayLocalCurrency = !displayLocalCurrency" :class="[
+                'relative inline-flex h-6 w-11 items-center rounded-full transition-colors',
+                displayLocalCurrency ? 'bg-blue-600' : 'bg-gray-300'
+              ]">
+                <span :class="[
+                  'inline-block h-4 w-4 transform rounded-full bg-white transition-transform',
+                  displayLocalCurrency ? 'translate-x-6' : 'translate-x-1'
+                ]" />
+              </button>
+            </div>
           </div>
         </div>
-
+        
         <!-- Sub Categories -->
         <div class="flex gap-3 overflow-x-auto scrollbar-hide">
-          <button v-for="subCategory in [
-            { id: 'furniture', name: 'Furniture Assembly' },
-            { id: 'wardrobe', name: 'Wardrobe & Dresser Assembly' },
-            { id: 'table', name: 'Table & Chair Assembly', active: true },
-            { id: 'bed', name: 'Bed Assembly' },
-            { id: 'disassemble', name: 'Disassemble Furniture' },
-            { id: 'general', name: 'General Furniture' }
-          ]" :key="subCategory.id" @click="handleSubcategoryChange(subCategory.id)" :class="[
+          <button 
+            v-for="subCategory in currentSubcategories" 
+            :key="subCategory.id" 
+            @click="handleSubcategoryChange(subCategory.id)" 
+            :class="[
               'px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-all',
-              subCategory.active
+              selectedSubcategory === subCategory.id || (subCategory.id === 'table' && !selectedSubcategory)
                 ? 'bg-blue-600 text-white'
                 : 'bg-white text-gray-700 border border-gray-200 hover:border-blue-600 hover:text-blue-600'
-            ]">
+            ]"
+          >
             {{ subCategory.name }}
           </button>
         </div>
       </div>
-
+      
       <!-- Handymen Carousel -->
       <div class="relative">
         <div ref="carouselRef" class="flex gap-4 overflow-x-auto scrollbar-hide scroll-smooth mb-6"
@@ -249,7 +345,7 @@ onUnmounted(() => {
               :currency="displayLocalCurrency ? '€' : '$'" />
           </div>
         </div>
-
+        
         <!-- Carousel Progress and Navigation -->
         <div class="flex items-center justify-between">
           <!-- Progress Bar -->
@@ -259,7 +355,7 @@ onUnmounted(() => {
                 :style="`width: ${scrollProgress}%`"></div>
             </div>
           </div>
-
+          
           <!-- Navigation Buttons -->
           <div class="flex items-center gap-2">
             <button :class="[
