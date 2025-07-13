@@ -36,69 +36,69 @@ const stats = ref({
   completedThisMonth: 12,
   totalEarnings: 2840,
   avgRating: 4.9,
-  responseTime: '2 hours'
+  responseTime: 'ساعتان'
 })
 
 // Active service requests
 const serviceRequests = ref([
   {
     id: 1,
-    title: 'Kitchen Faucet Repair',
-    client: 'Sarah Wilson',
-    location: 'Brooklyn, NY',
-    budget: '$80-120',
+    title: 'إصلاح صنبور المطبخ',
+    client: 'سارة ويلسون',
+    location: 'بروكلين، نيويورك',
+    budget: '80-120 د.ك',
     priority: 'high',
-    postedTime: '2 hours ago',
-    description: 'Kitchen faucet is leaking and needs immediate repair. Water is dripping constantly.',
-    category: 'Plumbing',
+    postedTime: 'قبل ساعتين',
+    description: 'صنبور المطبخ يسرب ويحتاج إلى إصلاح فوري. الماء يتقطر باستمرار.',
+    category: 'السباكة',
     status: 'pending'
   },
   {
     id: 2,
-    title: 'Living Room Painting',
-    client: 'John Davis',
-    location: 'Manhattan, NY',
-    budget: '$300-500',
+    title: 'طلاء غرفة المعيشة',
+    client: 'جون ديفيس',
+    location: 'مانهاتن، نيويورك',
+    budget: '300-500 د.ك',
     priority: 'medium',
-    postedTime: '4 hours ago',
-    description: 'Need to paint living room walls. Room is approximately 15x12 feet.',
-    category: 'Painting',
+    postedTime: 'قبل 4 ساعات',
+    description: 'بحاجة إلى طلاء جدران غرفة المعيشة. الغرفة تقريباً 15×12 قدم.',
+    category: 'الطلاء',
     status: 'pending'
   },
   {
     id: 3,
-    title: 'Electrical Outlet Installation',
-    client: 'Mike Brown',
-    location: 'Queens, NY',
-    budget: '$100-150',
+    title: 'تركيب منفذ كهربائي',
+    client: 'مايك براون',
+    location: 'كوينز، نيويورك',
+    budget: '100-150 د.ك',
     priority: 'medium',
-    postedTime: '6 hours ago',
-    description: 'Need to install 3 new electrical outlets in home office.',
-    category: 'Electrical',
+    postedTime: 'قبل 6 ساعات',
+    description: 'بحاجة إلى تركيب 3 منافذ كهربائية جديدة في المكتب المنزلي.',
+    category: 'الكهرباء',
     status: 'pending'
   },
   {
     id: 4,
-    title: 'Fence Repair',
-    client: 'Lisa Johnson',
-    location: 'Bronx, NY',
-    budget: '$200-300',
+    title: 'إصلاح السياج',
+    client: 'ليزا جونسون',
+    location: 'برونكس، نيويورك',
+    budget: '200-300 د.ك',
     priority: 'low',
-    postedTime: '1 day ago',
-    description: 'Wooden fence damaged by storm. Need repair for about 10 feet section.',
-    category: 'Carpentry',
+    postedTime: 'قبل يوم واحد',
+    description: 'سياج خشبي تضرر من العاصفة. يحتاج إلى إصلاح حوالي 10 أقدام.',
+    category: 'النجارة',
     status: 'pending'
   },
   {
     id: 5,
-    title: 'Bathroom Tile Replacement',
-    client: 'Tom Wilson',
-    location: 'Staten Island, NY',
-    budget: '$400-600',
+    title: 'استبدال بلاط الحمام',
+    client: 'توم ويلسون',
+    location: 'ستاتن آيلاند، نيويورك',
+    budget: '400-600 د.ك',
     priority: 'high',
-    postedTime: '3 hours ago',
-    description: 'Several bathroom tiles are cracked and need replacement.',
-    category: 'Tiling',
+    postedTime: 'قبل 3 ساعات',
+    description: 'عدة بلاطات في الحمام متشققة وتحتاج إلى استبدال.',
+    category: 'تركيب البلاط',
     status: 'accepted'
   }
 ])
@@ -108,33 +108,33 @@ const recentActivity = ref([
   {
     id: 1,
     type: 'job_completed',
-    title: 'Completed: Kitchen Cabinet Installation',
-    client: 'Emma Davis',
-    time: '2 hours ago',
-    amount: '$450'
+    title: 'تم الإنجاز: تركيب خزائن المطبخ',
+    client: 'إيما ديفيس',
+    time: 'قبل ساعتين',
+    amount: '450 د.ك'
   },
   {
     id: 2,
     type: 'new_request',
-    title: 'New Request: Plumbing Repair',
-    client: 'Robert Smith',
-    time: '4 hours ago',
-    amount: '$120'
+    title: 'طلب جديد: إصلاح السباكة',
+    client: 'روبرت سميث',
+    time: 'قبل 4 ساعات',
+    amount: '120 د.ك'
   },
   {
     id: 3,
     type: 'payment_received',
-    title: 'Payment Received',
-    client: 'Alice Johnson',
-    time: '1 day ago',
-    amount: '$280'
+    title: 'تم استلام الدفعة',
+    client: 'أليس جونسون',
+    time: 'قبل يوم واحد',
+    amount: '280 د.ك'
   },
   {
     id: 4,
     type: 'review_received',
-    title: 'New 5-star Review',
-    client: 'David Wilson',
-    time: '2 days ago',
+    title: 'تقييم جديد 5 نجوم',
+    client: 'ديفيد ويلسون',
+    time: 'قبل يومين',
     rating: 5
   }
 ])

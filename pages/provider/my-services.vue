@@ -45,50 +45,50 @@ const serviceForm = ref({
   category: '',
   description: '',
   basePrice: '',
-  priceType: 'fixed', // 'fixed' or 'hourly'
+  priceType: 'fixed' as 'fixed' | 'hourly',
   duration: '',
-  location: 'client_location', // 'client_location', 'my_location', 'both'
-  availability: 'weekdays', // 'weekdays', 'weekends', 'both'
+  location: 'client_location' as 'client_location' | 'my_location' | 'both',
+  availability: 'weekdays' as 'weekdays' | 'weekends' | 'both',
   skills: [] as string[],
   images: [] as string[]
 })
 
 // Available categories
 const categories = ref([
-  'Plumbing',
-  'Electrical',
-  'Carpentry',
-  'Painting',
-  'Cleaning',
-  'Assembly',
-  'Moving',
-  'Landscaping',
-  'Repairs',
-  'Installation',
-  'Maintenance',
-  'Other'
+  'السباكة',
+  'الكهرباء',
+  'النجارة',
+  'الطلاء',
+  'التنظيف',
+  'التركيب',
+  'النقل',
+  'تنسيق الحدائق',
+  'الإصلاحات',
+  'التركيب',
+  'الصيانة',
+  'أخرى'
 ])
 
 // Available skills
 const availableSkills = ref([
-  'Plumbing', 'Electrical', 'Carpentry', 'Painting', 'Cleaning', 'Assembly',
-  'Moving', 'Landscaping', 'Repairs', 'Installation', 'Maintenance',
-  'Tile Work', 'Drywall', 'Flooring', 'Roofing', 'HVAC', 'Appliance Repair'
+  'السباكة', 'الكهرباء', 'النجارة', 'الطلاء', 'التنظيف', 'التركيب',
+  'النقل', 'تنسيق الحدائق', 'الإصلاحات', 'التركيب', 'الصيانة',
+  'تركيب البلاط', 'الجبس', 'الأرضيات', 'السقف', 'التكييف', 'إصلاح الأجهزة'
 ])
 
 // My services
-const myServices = ref([
+const myServices = ref<Service[]>([
   {
     id: 1,
-    title: 'Kitchen Faucet Repair & Installation',
-    category: 'Plumbing',
-    description: 'Professional kitchen faucet repair and installation services. I can fix leaks, replace old faucets, and install new ones.',
+    title: 'إصلاح وتركيب صنبور المطبخ',
+    category: 'السباكة',
+    description: 'خدمات احترافية لإصلاح وتركيب صنبور المطبخ. يمكنني إصلاح التسريبات واستبدال الصنابير القديمة وتركيب الجديدة.',
     basePrice: 85,
     priceType: 'fixed',
-    duration: '2-3 hours',
+    duration: '2-3 ساعات',
     location: 'client_location',
     availability: 'weekdays',
-    skills: ['Plumbing', 'Installation'],
+    skills: ['السباكة', 'التركيب'],
     images: ['https://images.unsplash.com/photo-1585704032915-c3400ca199e7?w=300&h=200&fit=crop'],
     isActive: true,
     completedJobs: 23,
@@ -96,15 +96,15 @@ const myServices = ref([
   },
   {
     id: 2,
-    title: 'Electrical Outlet Installation',
-    category: 'Electrical',
-    description: 'Safe and professional electrical outlet installation for homes and offices. Licensed electrician with 10+ years experience.',
+    title: 'تركيب المنافذ الكهربائية',
+    category: 'الكهرباء',
+    description: 'تركيب آمن واحترافي للمنافذ الكهربائية للمنازل والمكاتب. كهربائي مرخص مع خبرة أكثر من 10 سنوات.',
     basePrice: 45,
     priceType: 'hourly',
-    duration: '1-2 hours',
+    duration: '1-2 ساعات',
     location: 'client_location',
     availability: 'both',
-    skills: ['Electrical', 'Installation'],
+    skills: ['الكهرباء', 'التركيب'],
     images: ['https://images.unsplash.com/photo-1621905252507-b35492cc74b4?w=300&h=200&fit=crop'],
     isActive: true,
     completedJobs: 18,
@@ -112,15 +112,15 @@ const myServices = ref([
   },
   {
     id: 3,
-    title: 'Custom Carpentry & Woodwork',
-    category: 'Carpentry',
-    description: 'Custom carpentry services including shelving, cabinets, and furniture repair. Quality craftsmanship guaranteed.',
+    title: 'نجارة وأعمال خشبية مخصصة',
+    category: 'النجارة',
+    description: 'خدمات نجارة مخصصة تشمل الرفوف والخزائن وإصلاح الأثاث. جودة الحرفية مضمونة.',
     basePrice: 60,
     priceType: 'hourly',
-    duration: 'Varies',
+    duration: 'متغير',
     location: 'both',
     availability: 'weekdays',
-    skills: ['Carpentry', 'Woodwork', 'Installation'],
+    skills: ['النجارة', 'الأعمال الخشبية', 'التركيب'],
     images: ['https://images.unsplash.com/photo-1504148455328-c376907d081c?w=300&h=200&fit=crop'],
     isActive: true,
     completedJobs: 31,
@@ -128,15 +128,15 @@ const myServices = ref([
   },
   {
     id: 4,
-    title: 'Interior & Exterior Painting',
-    category: 'Painting',
-    description: 'Professional painting services for residential and commercial properties. High-quality paints and finishes.',
+    title: 'طلاء داخلي وخارجي',
+    category: 'الطلاء',
+    description: 'خدمات طلاء احترافية للعقارات السكنية والتجارية. دهانات وتشطيبات عالية الجودة.',
     basePrice: 300,
     priceType: 'fixed',
-    duration: '1-3 days',
+    duration: '1-3 أيام',
     location: 'client_location',
     availability: 'both',
-    skills: ['Painting', 'Surface Preparation'],
+    skills: ['الطلاء', 'تحضير الأسطح'],
     images: ['https://images.unsplash.com/photo-1562259949-e8e7689d7828?w=300&h=200&fit=crop'],
     isActive: false,
     completedJobs: 15,
@@ -148,67 +148,62 @@ const myServices = ref([
 const workHistory = ref([
   {
     id: 1,
-    title: 'Kitchen Faucet Repair',
-    client: 'Sarah Wilson',
+    title: 'إصلاح صنبور المطبخ',
+    client: 'سارة ويلسون',
     date: '2024-01-15',
     status: 'completed',
     amount: 85,
     rating: 5,
-    review: 'Excellent work! Fixed the leak quickly and professionally.',
-    category: 'Plumbing'
+    review: 'عمل ممتاز! أصلح التسريب بسرعة واحترافية.',
+    category: 'السباكة'
   },
   {
     id: 2,
-    title: 'Bathroom Tile Installation',
-    client: 'John Davis',
+    title: 'تركيب بلاط الحمام',
+    client: 'جون ديفيس',
     date: '2024-01-10',
     status: 'completed',
     amount: 450,
     rating: 4,
-    review: 'Great quality work, very satisfied with the results.',
-    category: 'Tiling'
+    review: 'عمل عالي الجودة، راضٍ جداً عن النتائج.',
+    category: 'تركيب البلاط'
   },
   {
     id: 3,
-    title: 'Electrical Outlet Installation',
-    client: 'Mike Brown',
+    title: 'تركيب منفذ كهربائي',
+    client: 'مايك براون',
     date: '2024-01-05',
     status: 'completed',
     amount: 120,
     rating: 5,
-    review: 'Professional and efficient service. Highly recommend!',
-    category: 'Electrical'
+    review: 'خدمة احترافية وفعالة. أوصي به بشدة!',
+    category: 'الكهرباء'
   },
   {
     id: 4,
-    title: 'Fence Repair',
-    client: 'Lisa Johnson',
+    title: 'إصلاح السياج',
+    client: 'ليزا جونسون',
     date: '2024-01-20',
     status: 'in_progress',
     amount: 200,
     rating: null,
     review: null,
-    category: 'Carpentry'
+    category: 'النجارة'
   },
   {
     id: 5,
-    title: 'Cabinet Installation',
-    client: 'Tom Wilson',
+    title: 'تركيب خزائن',
+    client: 'توم ويلسون',
     date: '2024-01-25',
     status: 'scheduled',
     amount: 380,
     rating: null,
     review: null,
-    category: 'Carpentry'
+    category: 'النجارة'
   }
 ])
 
 // Computed properties
-const userInitials = computed(() => {
-  if (!user.value) return ''
-  return user.value.name.split(' ').map(n => n[0]).join('').toUpperCase()
-})
-
 const activeServices = computed(() => {
   return myServices.value.filter(service => service.isActive)
 })
@@ -217,13 +212,31 @@ const inactiveServices = computed(() => {
   return myServices.value.filter(service => !service.isActive)
 })
 
+// Service interface
+interface Service {
+  id: number
+  title: string
+  category: string
+  description: string
+  basePrice: number
+  priceType: 'fixed' | 'hourly'
+  duration: string
+  location: 'client_location' | 'my_location' | 'both'
+  availability: 'weekdays' | 'weekends' | 'both'
+  skills: string[]
+  images: string[]
+  isActive: boolean
+  completedJobs: number
+  rating: number
+}
+
 // Form methods
 const startAddingService = () => {
   isAddingService.value = true
   resetForm()
 }
 
-const startEditingService = (service: any) => {
+const startEditingService = (service: Service) => {
   isEditingService.value = true
   editingServiceId.value = service.id
   serviceForm.value = {

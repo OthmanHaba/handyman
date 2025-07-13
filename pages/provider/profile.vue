@@ -71,10 +71,10 @@ const editForm = ref({
 
 // Available skills
 const availableSkills = ref([
-  'Plumbing', 'Electrical', 'Carpentry', 'Painting', 'Cleaning', 'Assembly',
-  'Moving', 'Landscaping', 'Repairs', 'Installation', 'Maintenance',
-  'Tile Work', 'Drywall', 'Flooring', 'Roofing', 'HVAC', 'Appliance Repair',
-  'Concrete Work', 'Masonry', 'Welding', 'Furniture Assembly', 'Home Security'
+  'السباكة', 'الكهرباء', 'النجارة', 'الطلاء', 'التنظيف', 'التركيب',
+  'النقل', 'تنسيق الحدائق', 'الإصلاحات', 'التركيب', 'الصيانة',
+  'تركيب البلاط', 'الجبس', 'الأرضيات', 'السقف', 'التكييف', 'إصلاح الأجهزة',
+  'أعمال الخرسانة', 'البناء', 'اللحام', 'تركيب الأثاث', 'الأمن المنزلي'
 ])
 
 // Initialize form data when user is loaded
@@ -171,43 +171,43 @@ const removeCertification = (cert: string) => {
 const reviews = ref([
   {
     id: 1,
-    client: 'Sarah Wilson',
+    client: 'سارة ويلسون',
     rating: 5,
     date: '2024-01-15',
-    comment: 'Excellent work! Mike fixed my kitchen faucet quickly and professionally. Very satisfied with the service.',
-    service: 'Kitchen Faucet Repair'
+    comment: 'عمل ممتاز! قام مايك بإصلاح صنبور المطبخ بسرعة واحترافية. راضية جداً عن الخدمة.',
+    service: 'إصلاح صنبور المطبخ'
   },
   {
     id: 2,
-    client: 'John Davis',
+    client: 'جون ديفيس',
     rating: 4,
     date: '2024-01-10',
-    comment: 'Great quality work on the bathroom tiles. Clean and efficient. Would hire again.',
-    service: 'Bathroom Tile Installation'
+    comment: 'عمل عالي الجودة في بلاط الحمام. نظيف وفعال. سأتعامل معه مرة أخرى.',
+    service: 'تركيب بلاط الحمام'
   },
   {
     id: 3,
-    client: 'Mike Brown',
+    client: 'مايك براون',
     rating: 5,
     date: '2024-01-05',
-    comment: 'Professional and efficient electrical work. Installed outlets exactly as requested. Highly recommend!',
-    service: 'Electrical Outlet Installation'
+    comment: 'عمل كهربائي احترافي وفعال. تم تركيب المنافذ بالضبط كما هو مطلوب. أوصي به بشدة!',
+    service: 'تركيب منافذ كهربائية'
   },
   {
     id: 4,
-    client: 'Lisa Johnson',
+    client: 'ليزا جونسون',
     rating: 5,
     date: '2024-01-01',
-    comment: 'Amazing carpentry skills. The custom shelving looks perfect and fits exactly what I needed.',
-    service: 'Custom Carpentry'
+    comment: 'مهارات نجارة مذهلة. الرفوف المخصصة تبدو مثالية وتناسب بالضبط ما كنت أحتاجه.',
+    service: 'نجارة مخصصة'
   },
   {
     id: 5,
-    client: 'Emma Davis',
+    client: 'إيما ديفيس',
     rating: 4,
     date: '2023-12-28',
-    comment: 'Good painting work. Completed on time and cleaned up nicely. Professional service.',
-    service: 'Interior Painting'
+    comment: 'عمل طلاء جيد. تم الانتهاء في الوقت المحدد والتنظيف بشكل جيد. خدمة احترافية.',
+    service: 'طلاء داخلي'
   }
 ])
 
@@ -224,19 +224,19 @@ const averageRating = computed(() => {
 })
 
 const ratingDistribution = computed(() => {
-  const distribution = { 5: 0, 4: 0, 3: 0, 2: 0, 1: 0 }
+  const distribution: Record<number, number> = { 5: 0, 4: 0, 3: 0, 2: 0, 1: 0 }
   reviews.value.forEach(review => {
-    distribution[review.rating as keyof typeof distribution]++
+    distribution[review.rating]++
   })
   return distribution
 })
 
 // Tab management
 const tabs = [
-  { id: 'profile', name: 'Profile Info', icon: 'material-symbols:person' },
-  { id: 'portfolio', name: 'Portfolio', icon: 'material-symbols:photo-library' },
-  { id: 'reviews', name: 'Reviews', icon: 'material-symbols:star' },
-  { id: 'settings', name: 'Settings', icon: 'material-symbols:settings' }
+  { id: 'profile', name: 'معلومات الملف الشخصي', icon: 'material-symbols:person' },
+  { id: 'portfolio', name: 'معرض الأعمال', icon: 'material-symbols:photo-library' },
+  { id: 'reviews', name: 'التقييمات', icon: 'material-symbols:star' },
+  { id: 'settings', name: 'الإعدادات', icon: 'material-symbols:settings' }
 ]
 
 // Handle logout
@@ -251,203 +251,230 @@ const handleLogout = () => {
 <template>
   <div class="min-h-screen bg-gray-50">
     <!-- Header -->
-    <div class="bg-white shadow-sm border-b">
-      <div class="container mx-auto px-4 py-6">
+    <header class="bg-white border-b border-gray-200">
+      <div class="container mx-auto px-4 py-4">
         <div class="flex items-center justify-between">
-          <div class="flex items-center space-x-4">
-            <NuxtLink to="/provider/dashboard" class="text-gray-600 hover:text-gray-900">
-              <Icon name="material-symbols:arrow-back" class="w-6 h-6" />
-            </NuxtLink>
-            <h1 class="text-2xl font-bold text-gray-900">My Profile</h1>
+          <!-- Logo -->
+          <div class="flex items-center">
+            <div class="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center ml-3">
+              <Icon name="material-symbols:handyman" class="w-6 h-6 text-white" />
+            </div>
+            <h1 class="text-2xl font-medium text-gray-900">HandyIT<span class="text-gray-500">.com</span></h1>
           </div>
-          <button
-            @click="handleLogout"
-            class="flex items-center px-4 py-2 text-sm text-gray-700 hover:text-red-600 transition-colors"
-          >
-            <Icon name="material-symbols:logout" class="w-4 h-4 mr-2" />
-            Logout
-          </button>
+          
+          <!-- User Menu -->
+          <div class="flex items-center gap-4">
+            <button
+              @click="handleLogout"
+              class="text-gray-600 hover:text-gray-900 transition-colors"
+            >
+              <Icon name="material-symbols:logout" class="w-6 h-6" />
+              <span class="sr-only">تسجيل الخروج</span>
+            </button>
+          </div>
         </div>
       </div>
-    </div>
+    </header>
 
-    <div class="container mx-auto px-4 py-8">
-      <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
-        <!-- Sidebar -->
-        <div class="lg:col-span-1">
-          <!-- Profile Card -->
-          <div class="bg-white rounded-2xl shadow-sm p-6 mb-6">
-            <div class="text-center">
-              <div class="relative inline-block">
-                <img 
-                  v-if="user?.avatar" 
-                  :src="user.avatar" 
-                  :alt="user.name"
-                  class="w-24 h-24 rounded-full object-cover mx-auto"
-                >
-                <div 
-                  v-else 
-                  class="w-24 h-24 bg-blue-600 rounded-full flex items-center justify-center mx-auto"
-                >
-                  <span class="text-white text-2xl font-medium">{{ userInitials }}</span>
-                </div>
-                <div class="absolute -bottom-2 -right-2 w-8 h-8 bg-green-500 rounded-full border-4 border-white"></div>
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8">
+      <div class="max-w-5xl mx-auto">
+        <!-- Profile Header -->
+        <div class="bg-white rounded-2xl shadow-sm overflow-hidden mb-8">
+          <div class="relative h-48 bg-gradient-to-r from-blue-500 to-blue-600">
+            <!-- Profile Image -->
+            <div class="absolute -bottom-12 right-8">
+              <div v-if="user?.avatar" class="w-24 h-24 rounded-full border-4 border-white overflow-hidden">
+                <img :src="user.avatar" :alt="user?.name" class="w-full h-full object-cover">
               </div>
-              <h2 class="text-xl font-semibold text-gray-900 mt-4">{{ user?.name }}</h2>
-              <p class="text-gray-600 text-sm">{{ user?.businessName }}</p>
-              <p class="text-gray-500 text-xs mt-1">{{ user?.experience }} experience</p>
-            </div>
-            
-            <!-- Stats -->
-            <div class="grid grid-cols-2 gap-4 mt-6 pt-6 border-t">
-              <div class="text-center">
-                <div class="text-2xl font-bold text-blue-600">{{ user?.completedJobs }}</div>
-                <div class="text-xs text-gray-500">Jobs Completed</div>
-              </div>
-              <div class="text-center">
-                <div class="text-2xl font-bold text-green-600">{{ user?.rating }}</div>
-                <div class="text-xs text-gray-500">Average Rating</div>
-              </div>
-            </div>
-            
-            <!-- Skills -->
-            <div class="mt-6 pt-6 border-t">
-              <h3 class="text-sm font-semibold text-gray-900 mb-3">Skills</h3>
-              <div class="flex flex-wrap gap-2">
-                <span
-                  v-for="skill in user?.skills"
-                  :key="skill"
-                  class="px-2 py-1 text-xs bg-blue-100 text-blue-800 rounded-full"
-                >
-                  {{ skill }}
-                </span>
+              <div v-else class="w-24 h-24 rounded-full border-4 border-white bg-blue-100 flex items-center justify-center">
+                <span class="text-2xl font-semibold text-blue-600">{{ userInitials }}</span>
               </div>
             </div>
           </div>
+          
+          <div class="p-8 pt-16">
+            <div class="flex items-start justify-between">
+              <div>
+                <h1 class="text-2xl font-bold text-gray-900">{{ user?.name }}</h1>
+                <p class="text-gray-600">{{ user?.businessName }}</p>
+                <div class="flex items-center gap-2 mt-2">
+                  <div class="flex items-center text-yellow-400">
+                    <Icon name="material-symbols:star" class="w-5 h-5" />
+                    <span class="text-gray-900 font-medium mr-1">{{ user?.rating }}</span>
+                  </div>
+                  <span class="text-gray-600">({{ user?.completedJobs }} مهمة مكتملة)</span>
+                </div>
+              </div>
+              
+              <button
+                v-if="!isEditing"
+                @click="startEditing"
+                class="px-4 py-2 bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition-colors"
+              >
+                تعديل الملف الشخصي
+              </button>
+            </div>
+          </div>
+        </div>
 
-          <!-- Navigation Tabs -->
-          <div class="bg-white rounded-2xl shadow-sm p-2">
-            <nav class="space-y-1">
+        <!-- Tabs -->
+        <div class="bg-white rounded-2xl shadow-sm overflow-hidden mb-8">
+          <div class="border-b border-gray-200">
+            <nav class="flex">
               <button
                 v-for="tab in tabs"
                 :key="tab.id"
                 @click="activeTab = tab.id"
                 :class="[
-                  'w-full flex items-center px-4 py-3 text-sm font-medium rounded-xl transition-colors',
+                  'flex items-center gap-2 px-6 py-4 text-sm font-medium border-b-2 transition-colors',
                   activeTab === tab.id
-                    ? 'bg-blue-50 text-blue-600'
-                    : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
+                    ? 'border-blue-600 text-blue-600'
+                    : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
                 ]"
               >
-                <Icon :name="tab.icon" class="w-5 h-5 mr-3" />
+                <Icon :name="tab.icon" class="w-5 h-5" />
                 {{ tab.name }}
               </button>
             </nav>
           </div>
-        </div>
 
-        <!-- Main Content -->
-        <div class="lg:col-span-3">
           <!-- Profile Info Tab -->
-          <div v-if="activeTab === 'profile'" class="bg-white rounded-2xl shadow-sm">
-            <div class="p-6 border-b">
-              <div class="flex items-center justify-between">
-                <h3 class="text-lg font-semibold text-gray-900">Profile Information</h3>
-                <button
-                  v-if="!isEditing"
-                  @click="startEditing"
-                  class="flex items-center px-4 py-2 text-sm text-blue-600 hover:text-blue-700 transition-colors"
-                >
-                  <Icon name="material-symbols:edit" class="w-4 h-4 mr-2" />
-                  Edit
-                </button>
-              </div>
-            </div>
-
-            <div class="p-6">
-              <form v-if="isEditing" @submit.prevent="saveProfile" class="space-y-6">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <!-- Name -->
-                  <div>
-                    <label class="block text-sm font-semibold text-gray-900 mb-2">Full Name</label>
-                    <input
-                      v-model="editForm.name"
-                      type="text"
-                      class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-colors"
-                      required
-                    >
-                  </div>
-
-                  <!-- Business Name -->
-                  <div>
-                    <label class="block text-sm font-semibold text-gray-900 mb-2">Business Name</label>
-                    <input
-                      v-model="editForm.businessName"
-                      type="text"
-                      class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-colors"
-                      required
-                    >
-                  </div>
-
-                  <!-- Email -->
-                  <div>
-                    <label class="block text-sm font-semibold text-gray-900 mb-2">Email Address</label>
-                    <input
-                      v-model="editForm.email"
-                      type="email"
-                      class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-colors"
-                      required
-                    >
-                  </div>
-
-                  <!-- Phone -->
-                  <div>
-                    <label class="block text-sm font-semibold text-gray-900 mb-2">Phone Number</label>
-                    <input
-                      v-model="editForm.phone"
-                      type="tel"
-                      class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-colors"
-                    >
-                  </div>
-
-                  <!-- Experience -->
-                  <div>
-                    <label class="block text-sm font-semibold text-gray-900 mb-2">Years of Experience</label>
-                    <input
-                      v-model="editForm.experience"
-                      type="text"
-                      class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-colors"
-                      placeholder="e.g., 10+ years"
-                    >
-                  </div>
-                </div>
-
-                <!-- Address -->
+          <div v-if="activeTab === 'profile'" class="p-8">
+            <div v-if="!isEditing">
+              <!-- View Mode -->
+              <div class="space-y-8">
+                <!-- Basic Info -->
                 <div>
-                  <label class="block text-sm font-semibold text-gray-900 mb-2">Service Area</label>
-                  <textarea
-                    v-model="editForm.address"
-                    rows="3"
-                    class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-colors resize-none"
-                    placeholder="Areas you provide services to..."
-                  ></textarea>
+                  <h3 class="text-lg font-semibold text-gray-900 mb-4">المعلومات الأساسية</h3>
+                  <dl class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                      <dt class="text-sm font-medium text-gray-500">البريد الإلكتروني</dt>
+                      <dd class="mt-1 text-sm text-gray-900">{{ user?.email }}</dd>
+                    </div>
+                    <div>
+                      <dt class="text-sm font-medium text-gray-500">رقم الهاتف</dt>
+                      <dd class="mt-1 text-sm text-gray-900">{{ user?.phone }}</dd>
+                    </div>
+                    <div>
+                      <dt class="text-sm font-medium text-gray-500">العنوان</dt>
+                      <dd class="mt-1 text-sm text-gray-900">{{ user?.address }}</dd>
+                    </div>
+                    <div>
+                      <dt class="text-sm font-medium text-gray-500">سنوات الخبرة</dt>
+                      <dd class="mt-1 text-sm text-gray-900">{{ user?.experience }}</dd>
+                    </div>
+                  </dl>
                 </div>
 
                 <!-- Bio -->
                 <div>
-                  <label class="block text-sm font-semibold text-gray-900 mb-2">Professional Bio</label>
+                  <h3 class="text-lg font-semibold text-gray-900 mb-4">نبذة عني</h3>
+                  <p class="text-sm text-gray-600">{{ user?.bio }}</p>
+                </div>
+
+                <!-- Skills -->
+                <div>
+                  <h3 class="text-lg font-semibold text-gray-900 mb-4">المهارات</h3>
+                  <div class="flex flex-wrap gap-2">
+                    <span
+                      v-for="skill in user?.skills"
+                      :key="skill"
+                      class="inline-flex items-center px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm"
+                    >
+                      {{ skill }}
+                    </span>
+                  </div>
+                </div>
+
+                <!-- Certifications -->
+                <div>
+                  <h3 class="text-lg font-semibold text-gray-900 mb-4">الشهادات</h3>
+                  <div class="flex flex-wrap gap-2">
+                    <span
+                      v-for="cert in user?.certifications"
+                      :key="cert"
+                      class="inline-flex items-center px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm"
+                    >
+                      {{ cert }}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <form v-else @submit.prevent="saveProfile" class="space-y-8">
+              <!-- Edit Mode -->
+              <div class="space-y-8">
+                <!-- Basic Info -->
+                <div>
+                  <h3 class="text-lg font-semibold text-gray-900 mb-4">المعلومات الأساسية</h3>
+                  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                      <label class="block text-sm font-medium text-gray-700 mb-2">الاسم الكامل</label>
+                      <input
+                        v-model="editForm.name"
+                        type="text"
+                        class="w-full px-4 py-2 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
+                      >
+                    </div>
+                    <div>
+                      <label class="block text-sm font-medium text-gray-700 mb-2">اسم العمل</label>
+                      <input
+                        v-model="editForm.businessName"
+                        type="text"
+                        class="w-full px-4 py-2 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
+                      >
+                    </div>
+                    <div>
+                      <label class="block text-sm font-medium text-gray-700 mb-2">البريد الإلكتروني</label>
+                      <input
+                        v-model="editForm.email"
+                        type="email"
+                        class="w-full px-4 py-2 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
+                      >
+                    </div>
+                    <div>
+                      <label class="block text-sm font-medium text-gray-700 mb-2">رقم الهاتف</label>
+                      <input
+                        v-model="editForm.phone"
+                        type="tel"
+                        class="w-full px-4 py-2 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
+                      >
+                    </div>
+                    <div>
+                      <label class="block text-sm font-medium text-gray-700 mb-2">العنوان</label>
+                      <input
+                        v-model="editForm.address"
+                        type="text"
+                        class="w-full px-4 py-2 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
+                      >
+                    </div>
+                    <div>
+                      <label class="block text-sm font-medium text-gray-700 mb-2">سنوات الخبرة</label>
+                      <input
+                        v-model="editForm.experience"
+                        type="text"
+                        class="w-full px-4 py-2 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
+                      >
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Bio -->
+                <div>
+                  <label class="block text-lg font-semibold text-gray-900 mb-4">نبذة عني</label>
                   <textarea
                     v-model="editForm.bio"
                     rows="4"
-                    class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-colors resize-none"
-                    placeholder="Tell clients about your experience and expertise..."
+                    class="w-full px-4 py-2 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none resize-none"
                   ></textarea>
                 </div>
 
                 <!-- Skills -->
                 <div>
-                  <label class="block text-sm font-semibold text-gray-900 mb-2">Skills & Expertise</label>
-                  <div class="mb-3">
+                  <label class="block text-lg font-semibold text-gray-900 mb-4">المهارات</label>
+                  <div class="mb-4">
                     <div class="flex flex-wrap gap-2">
                       <span
                         v-for="skill in editForm.skills"
@@ -458,7 +485,7 @@ const handleLogout = () => {
                         <button
                           type="button"
                           @click="removeSkill(skill)"
-                          class="ml-2 text-blue-600 hover:text-blue-800"
+                          class="mr-2 text-blue-600 hover:text-blue-800"
                         >
                           <Icon name="material-symbols:close" class="w-3 h-3" />
                         </button>
@@ -486,8 +513,8 @@ const handleLogout = () => {
 
                 <!-- Certifications -->
                 <div>
-                  <label class="block text-sm font-semibold text-gray-900 mb-2">Certifications</label>
-                  <div class="mb-3">
+                  <label class="block text-lg font-semibold text-gray-900 mb-4">الشهادات</label>
+                  <div class="mb-4">
                     <div class="flex flex-wrap gap-2">
                       <span
                         v-for="cert in editForm.certifications"
@@ -498,7 +525,7 @@ const handleLogout = () => {
                         <button
                           type="button"
                           @click="removeCertification(cert)"
-                          class="ml-2 text-green-600 hover:text-green-800"
+                          class="mr-2 text-green-600 hover:text-green-800"
                         >
                           <Icon name="material-symbols:close" class="w-3 h-3" />
                         </button>
@@ -510,256 +537,205 @@ const handleLogout = () => {
                     @click="addCertification"
                     class="flex items-center px-4 py-2 text-sm text-blue-600 hover:text-blue-700 transition-colors"
                   >
-                    <Icon name="material-symbols:add" class="w-4 h-4 mr-2" />
-                    Add Certification
+                    <Icon name="material-symbols:add" class="w-4 h-4 ml-2" />
+                    إضافة شهادة
                   </button>
                 </div>
 
-                <!-- Action Buttons -->
-                <div class="flex space-x-4">
+                <!-- Form Actions -->
+                <div class="flex items-center justify-end gap-4">
+                  <button
+                    type="button"
+                    @click="cancelEditing"
+                    class="px-6 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-xl hover:bg-gray-50 transition-colors"
+                  >
+                    إلغاء
+                  </button>
                   <button
                     type="submit"
                     :disabled="isSaving"
-                    class="flex items-center px-6 py-3 bg-blue-600 text-white rounded-xl hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                    class="px-6 py-2 text-sm font-medium text-white bg-blue-600 rounded-xl hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
                   >
                     <Icon 
                       v-if="isSaving" 
                       name="material-symbols:progress-activity" 
-                      class="animate-spin w-4 h-4 mr-2" 
+                      class="animate-spin -mr-1 ml-2 h-4 w-4" 
                     />
-                    {{ isSaving ? 'Saving...' : 'Save Changes' }}
+                    {{ isSaving ? 'جاري الحفظ...' : 'حفظ التغييرات' }}
                   </button>
-                  <button
-                    type="button"
-                    @click="cancelEditing"
-                    class="px-6 py-3 border border-gray-300 text-gray-700 rounded-xl hover:bg-gray-50 transition-colors"
-                  >
-                    Cancel
-                  </button>
-                </div>
-              </form>
-
-              <!-- Display Mode -->
-              <div v-else class="space-y-6">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div>
-                    <label class="block text-sm font-semibold text-gray-900 mb-2">Full Name</label>
-                    <p class="text-gray-700">{{ user?.name }}</p>
-                  </div>
-                  <div>
-                    <label class="block text-sm font-semibold text-gray-900 mb-2">Business Name</label>
-                    <p class="text-gray-700">{{ user?.businessName }}</p>
-                  </div>
-                  <div>
-                    <label class="block text-sm font-semibold text-gray-900 mb-2">Email Address</label>
-                    <p class="text-gray-700">{{ user?.email }}</p>
-                  </div>
-                  <div>
-                    <label class="block text-sm font-semibold text-gray-900 mb-2">Phone Number</label>
-                    <p class="text-gray-700">{{ user?.phone || 'Not provided' }}</p>
-                  </div>
-                  <div>
-                    <label class="block text-sm font-semibold text-gray-900 mb-2">Experience</label>
-                    <p class="text-gray-700">{{ user?.experience || 'Not provided' }}</p>
-                  </div>
-                </div>
-                <div>
-                  <label class="block text-sm font-semibold text-gray-900 mb-2">Service Area</label>
-                  <p class="text-gray-700">{{ user?.address || 'Not provided' }}</p>
-                </div>
-                <div>
-                  <label class="block text-sm font-semibold text-gray-900 mb-2">Professional Bio</label>
-                  <p class="text-gray-700">{{ user?.bio || 'Not provided' }}</p>
-                </div>
-                <div>
-                  <label class="block text-sm font-semibold text-gray-900 mb-2">Certifications</label>
-                  <div class="flex flex-wrap gap-2">
-                    <span
-                      v-for="cert in user?.certifications"
-                      :key="cert"
-                      class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm"
-                    >
-                      {{ cert }}
-                    </span>
-                  </div>
                 </div>
               </div>
-            </div>
+            </form>
           </div>
 
           <!-- Portfolio Tab -->
-          <div v-if="activeTab === 'portfolio'" class="bg-white rounded-2xl shadow-sm">
-            <div class="p-6 border-b">
-              <h3 class="text-lg font-semibold text-gray-900">Portfolio</h3>
-              <p class="text-gray-600 text-sm mt-1">Showcase your best work</p>
-            </div>
-
-            <div class="p-6">
-              <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div
-                  v-for="(image, index) in user?.portfolio"
-                  :key="index"
-                  class="relative aspect-square rounded-xl overflow-hidden group cursor-pointer"
-                >
-                  <img 
-                    :src="image" 
-                    :alt="`Portfolio ${index + 1}`"
-                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                  >
-                  <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-opacity duration-300 flex items-center justify-center">
-                    <Icon name="material-symbols:zoom-in" class="w-8 h-8 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                  </div>
+          <div v-if="activeTab === 'portfolio'" class="p-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div
+                v-for="(image, index) in user?.portfolio"
+                :key="index"
+                class="relative aspect-[4/3] rounded-xl overflow-hidden group"
+              >
+                <img :src="image" :alt="`صورة المشروع ${index + 1}`" class="w-full h-full object-cover">
+                <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-50 transition-opacity flex items-center justify-center">
+                  <button class="opacity-0 group-hover:opacity-100 transition-opacity px-4 py-2 bg-white rounded-xl text-sm font-medium text-gray-900">
+                    عرض التفاصيل
+                  </button>
                 </div>
               </div>
             </div>
           </div>
 
           <!-- Reviews Tab -->
-          <div v-if="activeTab === 'reviews'" class="bg-white rounded-2xl shadow-sm">
-            <div class="p-6 border-b">
-              <h3 class="text-lg font-semibold text-gray-900">Customer Reviews</h3>
-              <p class="text-gray-600 text-sm mt-1">What your clients say about your work</p>
-            </div>
-
-            <div class="p-6">
+          <div v-if="activeTab === 'reviews'" class="p-8">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
               <!-- Rating Summary -->
-              <div class="mb-8 p-6 bg-gray-50 rounded-xl">
-                <div class="flex items-center justify-between mb-4">
-                  <div class="text-center">
+              <div class="lg:col-span-1">
+                <div class="bg-gray-50 rounded-xl p-6">
+                  <h3 class="text-lg font-semibold text-gray-900 mb-4">ملخص التقييمات</h3>
+                  
+                  <!-- Average Rating -->
+                  <div class="text-center mb-6">
                     <div class="text-4xl font-bold text-gray-900">{{ averageRating }}</div>
-                    <div class="flex items-center justify-center mt-1">
-                      <Icon
-                        v-for="i in 5"
+                    <div class="flex items-center justify-center gap-1 text-yellow-400 my-2">
+                      <Icon 
+                        v-for="i in 5" 
                         :key="i"
-                        name="material-symbols:star"
-                        :class="[
-                          'w-5 h-5',
-                          i <= Math.floor(parseFloat(averageRating)) ? 'text-yellow-400 fill-current' : 'text-gray-300'
-                        ]"
+                        name="material-symbols:star" 
+                        class="w-5 h-5" 
                       />
                     </div>
-                    <div class="text-sm text-gray-500 mt-1">{{ reviews.length }} reviews</div>
+                    <div class="text-sm text-gray-600">من {{ reviews.length }} تقييم</div>
                   </div>
-                  <div class="flex-1 max-w-xs ml-8">
-                    <div
-                      v-for="(count, rating) in ratingDistribution"
-                      :key="rating"
-                      class="flex items-center mb-2"
+                  
+                  <!-- Rating Distribution -->
+                  <div class="space-y-2">
+                    <div 
+                      v-for="n in 5"
+                      :key="n"
+                      class="flex items-center gap-2"
                     >
-                      <span class="text-sm text-gray-600 w-6">{{ rating }}</span>
-                      <Icon name="material-symbols:star" class="w-4 h-4 text-yellow-400 fill-current mx-2" />
-                      <div class="flex-1 bg-gray-200 rounded-full h-2 mr-2">
+                      <div class="text-sm text-gray-600 w-8">{{ n }}</div>
+                      <div class="flex-1 h-2 bg-gray-200 rounded-full overflow-hidden">
                         <div
-                          class="bg-yellow-400 h-2 rounded-full"
-                          :style="{ width: `${(count / reviews.length) * 100}%` }"
+                          class="h-full bg-yellow-400 rounded-full"
+                          :style="`width: ${(ratingDistribution[n] / reviews.length) * 100}%`"
                         ></div>
                       </div>
-                      <span class="text-sm text-gray-500 w-8">{{ count }}</span>
+                      <div class="text-sm text-gray-600 w-8">{{ ratingDistribution[n] }}</div>
                     </div>
                   </div>
                 </div>
               </div>
 
               <!-- Reviews List -->
-              <div class="space-y-6">
-                <div
-                  v-for="review in reviews"
-                  :key="review.id"
-                  class="border border-gray-200 rounded-xl p-4"
-                >
-                  <div class="flex items-start justify-between mb-3">
-                    <div class="flex items-center space-x-3">
-                      <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
-                        <span class="text-blue-600 font-medium text-sm">{{ review.client.charAt(0) }}</span>
-                      </div>
+              <div class="lg:col-span-2">
+                <h3 class="text-lg font-semibold text-gray-900 mb-6">التقييمات</h3>
+                
+                <div class="space-y-6">
+                  <div
+                    v-for="review in reviews"
+                    :key="review.id"
+                    class="bg-gray-50 rounded-xl p-6"
+                  >
+                    <div class="flex items-start justify-between mb-4">
                       <div>
                         <h4 class="font-medium text-gray-900">{{ review.client }}</h4>
-                        <p class="text-sm text-gray-500">{{ review.date }}</p>
+                        <p class="text-sm text-gray-600">{{ review.service }}</p>
+                      </div>
+                      <div class="flex items-center gap-1 text-yellow-400">
+                        <Icon 
+                          v-for="i in review.rating" 
+                          :key="i"
+                          name="material-symbols:star" 
+                          class="w-4 h-4" 
+                        />
                       </div>
                     </div>
-                    <div class="flex items-center">
-                      <Icon
-                        v-for="i in 5"
-                        :key="i"
-                        name="material-symbols:star"
-                        :class="[
-                          'w-4 h-4',
-                          i <= review.rating ? 'text-yellow-400 fill-current' : 'text-gray-300'
-                        ]"
-                      />
-                    </div>
+                    <p class="text-gray-600 text-sm">{{ review.comment }}</p>
+                    <div class="mt-4 text-sm text-gray-500">{{ review.date }}</div>
                   </div>
-                  <p class="text-gray-700 mb-2">{{ review.comment }}</p>
-                  <p class="text-sm text-blue-600 font-medium">{{ review.service }}</p>
                 </div>
               </div>
             </div>
           </div>
 
           <!-- Settings Tab -->
-          <div v-if="activeTab === 'settings'" class="bg-white rounded-2xl shadow-sm">
-            <div class="p-6 border-b">
-              <h3 class="text-lg font-semibold text-gray-900">Account Settings</h3>
-              <p class="text-gray-600 text-sm mt-1">Manage your account preferences</p>
-            </div>
-
-            <div class="p-6 space-y-6">
-              <!-- Change Password -->
-              <div class="border border-gray-200 rounded-xl p-4">
-                <div class="flex items-center justify-between">
-                  <div>
-                    <h4 class="font-medium text-gray-900">Password</h4>
-                    <p class="text-sm text-gray-600">Last changed 3 months ago</p>
-                  </div>
-                  <button class="px-4 py-2 text-sm text-blue-600 hover:text-blue-700 transition-colors">
-                    Change Password
-                  </button>
-                </div>
-              </div>
-
+          <div v-if="activeTab === 'settings'" class="p-8">
+            <div class="max-w-2xl">
+              <h3 class="text-lg font-semibold text-gray-900 mb-6">إعدادات الحساب</h3>
+              
               <!-- Notification Settings -->
-              <div class="border border-gray-200 rounded-xl p-4">
-                <div class="flex items-center justify-between">
-                  <div>
-                    <h4 class="font-medium text-gray-900">Notifications</h4>
-                    <p class="text-sm text-gray-600">Manage your notification preferences</p>
+              <div class="space-y-6">
+                <div>
+                  <h4 class="text-base font-medium text-gray-900 mb-4">إعدادات الإشعارات</h4>
+                  <div class="space-y-4">
+                    <label class="flex items-start">
+                      <input type="checkbox" class="mt-1 h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded">
+                      <span class="mr-3">
+                        <span class="block text-sm font-medium text-gray-900">إشعارات الطلبات الجديدة</span>
+                        <span class="block text-sm text-gray-500">تلقي إشعارات عندما يقوم العملاء بإرسال طلبات جديدة</span>
+                      </span>
+                    </label>
+                    
+                    <label class="flex items-start">
+                      <input type="checkbox" class="mt-1 h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded">
+                      <span class="mr-3">
+                        <span class="block text-sm font-medium text-gray-900">إشعارات الرسائل</span>
+                        <span class="block text-sm text-gray-500">تلقي إشعارات عندما يرسل العملاء رسائل جديدة</span>
+                      </span>
+                    </label>
+                    
+                    <label class="flex items-start">
+                      <input type="checkbox" class="mt-1 h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded">
+                      <span class="mr-3">
+                        <span class="block text-sm font-medium text-gray-900">إشعارات التقييمات</span>
+                        <span class="block text-sm text-gray-500">تلقي إشعارات عندما يقوم العملاء بتقييم خدماتك</span>
+                      </span>
+                    </label>
                   </div>
-                  <button class="px-4 py-2 text-sm text-blue-600 hover:text-blue-700 transition-colors">
-                    Manage
-                  </button>
                 </div>
-              </div>
-
-              <!-- Availability -->
-              <div class="border border-gray-200 rounded-xl p-4">
-                <div class="flex items-center justify-between">
-                  <div>
-                    <h4 class="font-medium text-gray-900">Availability</h4>
-                    <p class="text-sm text-gray-600">Set your working hours and availability</p>
+                
+                <!-- Privacy Settings -->
+                <div>
+                  <h4 class="text-base font-medium text-gray-900 mb-4">إعدادات الخصوصية</h4>
+                  <div class="space-y-4">
+                    <label class="flex items-start">
+                      <input type="checkbox" class="mt-1 h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded">
+                      <span class="mr-3">
+                        <span class="block text-sm font-medium text-gray-900">عرض معلومات الاتصال</span>
+                        <span class="block text-sm text-gray-500">السماح للعملاء برؤية معلومات الاتصال الخاصة بك</span>
+                      </span>
+                    </label>
+                    
+                    <label class="flex items-start">
+                      <input type="checkbox" class="mt-1 h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded">
+                      <span class="mr-3">
+                        <span class="block text-sm font-medium text-gray-900">عرض التقييمات</span>
+                        <span class="block text-sm text-gray-500">السماح بعرض التقييمات على ملفك الشخصي</span>
+                      </span>
+                    </label>
                   </div>
-                  <button class="px-4 py-2 text-sm text-blue-600 hover:text-blue-700 transition-colors">
-                    Set Schedule
-                  </button>
                 </div>
-              </div>
-
-              <!-- Account Verification -->
-              <div class="border border-green-200 rounded-xl p-4">
-                <div class="flex items-center justify-between">
-                  <div>
-                    <h4 class="font-medium text-gray-900">Account Verification</h4>
-                    <p class="text-sm text-gray-600">Verify your identity to build trust</p>
+                
+                <!-- Account Actions -->
+                <div>
+                  <h4 class="text-base font-medium text-gray-900 mb-4">إجراءات الحساب</h4>
+                  <div class="space-y-4">
+                    <button class="text-sm text-red-600 hover:text-red-700 transition-colors">
+                      تعطيل الحساب مؤقتاً
+                    </button>
+                    <button class="text-sm text-red-600 hover:text-red-700 transition-colors">
+                      حذف الحساب
+                    </button>
                   </div>
-                  <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm">
-                    Verified
-                  </span>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </main>
   </div>
 </template>
 

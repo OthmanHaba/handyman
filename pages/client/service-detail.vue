@@ -3,9 +3,9 @@ import { ref, computed, onMounted } from 'vue'
 
 // Page metadata
 useHead({
-  title: 'Service Details | HandyIT.com',
+  title: 'تفاصيل الخدمة | HandyIT.com',
   meta: [
-    { name: 'description', content: 'View service details and book your handyman service.' }
+    { name: 'description', content: 'اعرض تفاصيل الخدمة واحجز خدمة الصيانة الخاصة بك.' }
   ]
 })
 
@@ -107,17 +107,17 @@ const timeSlots = ref([
 const mockServices = [
   {
     id: 1,
-    title: 'Furniture Assembly Service',
-    category: 'Assembly',
-    subcategory: 'Furniture',
-    description: 'Expert furniture assembly service for all types of furniture. Fast, efficient, and professional.',
-    fullDescription: 'Professional furniture assembly service for IKEA, Wayfair, Amazon, and other furniture brands. I have all the tools and experience to assemble your furniture quickly and correctly. Services include: bed assembly, wardrobe assembly, desk assembly, chair assembly, and disassembly services.',
+    title: 'خدمة تركيب الأثاث',
+    category: 'التركيب',
+    subcategory: 'الأثاث',
+    description: 'خدمة تركيب أثاث متخصصة لجميع أنواع الأثاث. سريعة وفعالة ومهنية.',
+    fullDescription: 'خدمة تركيب أثاث احترافية لعلامات IKEA و Wayfair و Amazon وغيرها من العلامات التجارية للأثاث. لدي جميع الأدوات والخبرة لتركيب أثاثك بسرعة وبشكل صحيح. الخدمات تشمل: تركيب الأسرة، تركيب الخزانات، تركيب المكاتب، تركيب الكراسي، وخدمات الفك.',
     basePrice: 70,
     priceType: 'hourly',
-    duration: '1-4 hours',
+    duration: '1-4 ساعات',
     location: 'client_location',
     availability: 'weekdays',
-    skills: ['Assembly', 'Furniture', 'Tools'],
+    skills: ['التركيب', 'الأثاث', 'الأدوات'],
     images: [
       'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=600&h=400&fit=crop',
       'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=600&h=400&fit=crop',
@@ -131,7 +131,7 @@ const mockServices = [
         id: 1,
         user: 'Sarah Wilson',
         rating: 5,
-        comment: 'Amazing work! Assembled my entire bedroom set perfectly. Very professional and efficient.',
+        comment: 'عمل رائع! ركب مجموعة غرفة نومي بالكامل بشكل مثالي. مهني جداً وفعال.',
         date: '2024-01-15',
         avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop'
       },
@@ -139,32 +139,32 @@ const mockServices = [
         id: 2,
         user: 'John Davis',
         rating: 5,
-        comment: 'Great service! All furniture assembled correctly and quickly. Highly recommend!',
+        comment: 'خدمة رائعة! جميع الأثاث مُركب بشكل صحيح وسريع. أنصح بشدة!',
         date: '2024-01-10',
         avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop'
       }
     ],
     features: [
-      'All tools provided',
-      'Warranty on assembly',
-      'Same-day service available',
-      'Experienced assembler',
-      'Clean-up included'
+      'جميع الأدوات متوفرة',
+      'ضمان على التركيب',
+      'خدمة نفس اليوم متاحة',
+      'مُركب ذو خبرة',
+      'التنظيف مشمول'
     ]
   },
   {
     id: 2,
-    title: 'Plumbing Repair Service',
-    category: 'Plumbing',
-    subcategory: 'Repair',
-    description: 'Professional plumbing repair services for all your home plumbing needs.',
-    fullDescription: 'Comprehensive plumbing repair services including leak detection, pipe repair, faucet installation, toilet repair, and drain cleaning. Licensed plumber with 10+ years experience. Available for emergency repairs.',
+    title: 'خدمة إصلاح السباكة',
+    category: 'السباكة',
+    subcategory: 'الإصلاح',
+    description: 'خدمات إصلاح السباكة المهنية لجميع احتياجات السباكة المنزلية.',
+    fullDescription: 'خدمات إصلاح السباكة الشاملة تشمل كشف التسريبات، إصلاح الأنابيب، تركيب الصنابير، إصلاح المراحيض، وتنظيف المجاري. سباك مرخص بخبرة أكثر من 10 سنوات. متاح لإصلاحات الطوارئ.',
     basePrice: 40,
     priceType: 'hourly',
-    duration: '1-3 hours',
+    duration: '1-3 ساعات',
     location: 'client_location',
     availability: 'both',
-    skills: ['Plumbing', 'Repair', 'Installation'],
+    skills: ['السباكة', 'الإصلاح', 'التركيب'],
     images: [
       'https://images.unsplash.com/photo-1585704032915-c3400ca199e7?w=600&h=400&fit=crop',
       'https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=600&h=400&fit=crop',
@@ -654,8 +654,8 @@ const nextMonth = () => {
 }
 
 const monthNames = [
-  'January', 'February', 'March', 'April', 'May', 'June',
-  'July', 'August', 'September', 'October', 'November', 'December'
+  'يناير', 'فبراير', 'مارس', 'أبريل', 'مايو', 'يونيو',
+  'يوليو', 'أغسطس', 'سبتمبر', 'أكتوبر', 'نوفمبر', 'ديسمبر'
 ]
 
 // Booking calculations
@@ -762,7 +762,7 @@ const formatTime = (time: string) => {
     <div v-if="isLoading" class="container mx-auto px-4 py-16">
       <div class="text-center">
         <Icon name="material-symbols:progress-activity" class="w-12 h-12 text-blue-600 animate-spin mx-auto mb-4" />
-        <p class="text-gray-600">Loading service details...</p>
+        <p class="text-gray-600">جاري تحميل تفاصيل الخدمة...</p>
       </div>
     </div>
 
@@ -770,10 +770,10 @@ const formatTime = (time: string) => {
     <div v-else-if="!service" class="container mx-auto px-4 py-16">
       <div class="text-center">
         <Icon name="material-symbols:error" class="w-16 h-16 text-gray-400 mx-auto mb-4" />
-        <h2 class="text-2xl font-bold text-gray-900 mb-2">Service Not Found</h2>
-        <p class="text-gray-600 mb-6">The service you're looking for doesn't exist or has been removed.</p>
+        <h2 class="text-2xl font-bold text-gray-900 mb-2">الخدمة غير موجودة</h2>
+        <p class="text-gray-600 mb-6">الخدمة التي تبحث عنها غير موجودة أو تم حذفها.</p>
         <NuxtLink to="/" class="bg-blue-600 text-white px-6 py-3 rounded-xl font-medium hover:bg-blue-700 transition-colors">
-          Back to Home
+          العودة للرئيسية
         </NuxtLink>
       </div>
     </div>
@@ -783,7 +783,7 @@ const formatTime = (time: string) => {
       <!-- Breadcrumb -->
       <nav class="mb-6">
         <ol class="flex items-center space-x-2 text-sm text-gray-600">
-          <li><NuxtLink to="/" class="hover:text-blue-600">Home</NuxtLink></li>
+          <li><NuxtLink to="/" class="hover:text-blue-600">الرئيسية</NuxtLink></li>
           <li><Icon name="material-symbols:chevron-right" class="w-4 h-4" /></li>
           <li><span class="text-gray-900">{{ service.title }}</span></li>
         </ol>
@@ -826,14 +826,14 @@ const formatTime = (time: string) => {
                   </span>
                   <span class="flex items-center gap-1">
                     <Icon name="material-symbols:star" class="w-4 h-4 text-yellow-400 fill-current" />
-                    {{ service.rating }} ({{ service.completedJobs }} jobs)
+                    {{ service.rating }} ({{ service.completedJobs }} وظيفة)
                   </span>
                 </div>
               </div>
               <div class="text-right">
                 <div class="text-3xl font-bold text-gray-900">
                   ${{ service.basePrice }}
-                  <span v-if="service.priceType === 'hourly'" class="text-lg font-normal text-gray-600">/hour</span>
+                  <span v-if="service.priceType === 'hourly'" class="text-lg font-normal text-gray-600">/ساعة</span>
                 </div>
                 <p class="text-sm text-gray-600">{{ service.duration }}</p>
               </div>
@@ -845,7 +845,7 @@ const formatTime = (time: string) => {
 
             <!-- Features -->
             <div class="mb-6">
-              <h3 class="text-lg font-semibold text-gray-900 mb-3">What's included</h3>
+              <h3 class="text-lg font-semibold text-gray-900 mb-3">ما هو مشمول</h3>
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
                 <div v-for="feature in service.features" :key="feature" class="flex items-center gap-2">
                   <Icon name="material-symbols:check-circle" class="w-5 h-5 text-green-600" />
@@ -856,7 +856,7 @@ const formatTime = (time: string) => {
 
             <!-- Skills -->
             <div>
-              <h3 class="text-lg font-semibold text-gray-900 mb-3">Skills required</h3>
+              <h3 class="text-lg font-semibold text-gray-900 mb-3">المهارات المطلوبة</h3>
               <div class="flex flex-wrap gap-2">
                 <span
                   v-for="skill in service.skills"
@@ -871,7 +871,7 @@ const formatTime = (time: string) => {
 
           <!-- Reviews -->
           <div class="bg-white rounded-2xl shadow-sm p-6">
-            <h3 class="text-xl font-semibold text-gray-900 mb-4">Reviews</h3>
+            <h3 class="text-xl font-semibold text-gray-900 mb-4">التقييمات</h3>
             <div class="space-y-4">
               <div v-for="review in service.reviews" :key="review.id" class="border-b border-gray-200 pb-4 last:border-b-0">
                 <div class="flex items-start gap-3">
@@ -910,33 +910,33 @@ const formatTime = (time: string) => {
                 <h3 class="text-xl font-semibold text-gray-900">{{ provider.name }}</h3>
                 <div class="flex items-center gap-1">
                   <Icon name="material-symbols:star" class="w-4 h-4 text-yellow-400 fill-current" />
-                  <span class="text-sm text-gray-600">{{ provider.rating }} ({{ provider.reviewCount }} reviews)</span>
+                  <span class="text-sm text-gray-600">{{ provider.rating }} ({{ provider.reviewCount }} تقييم)</span>
                 </div>
               </div>
             </div>
 
             <div class="space-y-3 mb-4">
               <div class="flex items-center justify-between text-sm">
-                <span class="text-gray-600">Location:</span>
+                <span class="text-gray-600">الموقع:</span>
                 <span class="font-medium">{{ provider.location }}</span>
               </div>
               <div class="flex items-center justify-between text-sm">
-                <span class="text-gray-600">Response time:</span>
+                <span class="text-gray-600">وقت الاستجابة:</span>
                 <span class="font-medium">{{ provider.responseTime }}</span>
               </div>
               <div class="flex items-center justify-between text-sm">
-                <span class="text-gray-600">Jobs completed:</span>
+                <span class="text-gray-600">الوظائف المكتملة:</span>
                 <span class="font-medium">{{ provider.completedJobs }}</span>
               </div>
               <div class="flex items-center justify-between text-sm">
-                <span class="text-gray-600">Member since:</span>
+                <span class="text-gray-600">عضو منذ:</span>
                 <span class="font-medium">{{ provider.memberSince }}</span>
               </div>
             </div>
 
             <div class="flex items-center gap-2 mb-4">
               <Icon name="material-symbols:verified" class="w-5 h-5 text-green-600" />
-              <span class="text-sm text-green-600 font-medium">Verified Provider</span>
+              <span class="text-sm text-green-600 font-medium">مقدم خدمة موثق</span>
             </div>
 
             <p class="text-gray-700 text-sm mb-4">{{ provider.bio }}</p>
@@ -945,30 +945,30 @@ const formatTime = (time: string) => {
 
           <!-- Book Service -->
           <div class="bg-white rounded-2xl shadow-sm p-6 sticky top-6">
-            <h3 class="text-xl font-semibold text-gray-900 mb-4">Book this service</h3>
+            <h3 class="text-xl font-semibold text-gray-900 mb-4">احجز هذه الخدمة</h3>
             
             <div class="space-y-4 mb-6">
               <div class="flex items-center justify-between">
-                <span class="text-gray-600">Base price:</span>
-                <span class="font-semibold">${{ service.basePrice }}{{ service.priceType === 'hourly' ? '/hour' : '' }}</span>
+                <span class="text-gray-600">السعر الأساسي:</span>
+                <span class="font-semibold">${{ service.basePrice }}{{ service.priceType === 'hourly' ? '/ساعة' : '' }}</span>
               </div>
               <div class="flex items-center justify-between">
-                <span class="text-gray-600">Duration:</span>
+                <span class="text-gray-600">المدة:</span>
                 <span class="font-semibold">{{ service.duration }}</span>
               </div>
             </div>
 
-            <button 
-              @click="openBookingModal"
-              class="w-full bg-blue-600 text-white py-4 px-6 rounded-xl font-semibold hover:bg-blue-700 transition-colors flex items-center justify-center"
-            >
-              <Icon name="material-symbols:calendar-month" class="w-5 h-5 mr-2" />
-              Book Now
-            </button>
+                          <button 
+                @click="openBookingModal"
+                class="w-full bg-blue-600 text-white py-4 px-6 rounded-xl font-semibold hover:bg-blue-700 transition-colors flex items-center justify-center"
+              >
+                <Icon name="material-symbols:calendar-month" class="w-5 h-5 mr-2" />
+                احجز الآن
+              </button>
 
-            <p class="text-xs text-gray-500 text-center mt-3">
-              Free cancellation up to 24 hours before scheduled time
-            </p>
+              <p class="text-xs text-gray-500 text-center mt-3">
+                إلغاء مجاني حتى 24 ساعة قبل الموعد المحدد
+              </p>
           </div>
         </div>
       </div>
@@ -979,7 +979,7 @@ const formatTime = (time: string) => {
       <div class="bg-white rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
         <div class="p-6 border-b border-gray-200">
           <div class="flex items-center justify-between">
-            <h2 class="text-2xl font-bold text-gray-900">Book Service</h2>
+            <h2 class="text-2xl font-bold text-gray-900">حجز الخدمة</h2>
             <button @click="closeBookingModal" class="p-2 hover:bg-gray-100 rounded-lg">
               <Icon name="material-symbols:close" class="w-6 h-6" />
             </button>
@@ -990,7 +990,7 @@ const formatTime = (time: string) => {
           <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
             <!-- Date Selection -->
             <div>
-              <h3 class="text-lg font-semibold text-gray-900 mb-4">Select Date</h3>
+              <h3 class="text-lg font-semibold text-gray-900 mb-4">اختر التاريخ</h3>
               
               <!-- Calendar -->
               <div class="bg-gray-50 rounded-xl p-4">
@@ -1034,8 +1034,8 @@ const formatTime = (time: string) => {
               </div>
 
               <!-- Time Selection -->
-              <div v-if="selectedDate" class="mt-6">
-                <h3 class="text-lg font-semibold text-gray-900 mb-4">Select Time</h3>
+                              <div v-if="selectedDate" class="mt-6">
+                  <h3 class="text-lg font-semibold text-gray-900 mb-4">اختر الوقت</h3>
                 <div class="grid grid-cols-3 gap-2">
                   <button
                     v-for="slot in timeSlots"
@@ -1057,64 +1057,64 @@ const formatTime = (time: string) => {
 
             <!-- Booking Details -->
             <div>
-              <h3 class="text-lg font-semibold text-gray-900 mb-4">Booking Details</h3>
+              <h3 class="text-lg font-semibold text-gray-900 mb-4">تفاصيل الحجز</h3>
               
               <div class="space-y-4">
                 <!-- Duration -->
                 <div v-if="service.priceType === 'hourly'">
-                  <label class="block text-sm font-medium text-gray-700 mb-2">Duration (hours)</label>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">المدة (ساعات)</label>
                   <select v-model="selectedDuration" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
-                    <option value="1">1 hour</option>
-                    <option value="2">2 hours</option>
-                    <option value="3">3 hours</option>
-                    <option value="4">4 hours</option>
-                    <option value="6">6 hours</option>
-                    <option value="8">8 hours</option>
+                    <option value="1">ساعة واحدة</option>
+                    <option value="2">ساعتان</option>
+                    <option value="3">3 ساعات</option>
+                    <option value="4">4 ساعات</option>
+                    <option value="6">6 ساعات</option>
+                    <option value="8">8 ساعات</option>
                   </select>
                 </div>
 
                 <!-- Notes -->
                 <div>
-                  <label class="block text-sm font-medium text-gray-700 mb-2">Additional Notes</label>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">ملاحظات إضافية</label>
                   <textarea 
                     v-model="bookingNotes"
                     rows="3"
                     class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 resize-none"
-                    placeholder="Any specific instructions or requirements..."
+                    placeholder="أي تعليمات أو متطلبات محددة..."
                   ></textarea>
                 </div>
 
                 <!-- Summary -->
                 <div class="bg-gray-50 rounded-xl p-4">
-                  <h4 class="font-semibold text-gray-900 mb-3">Booking Summary</h4>
+                  <h4 class="font-semibold text-gray-900 mb-3">ملخص الحجز</h4>
                   <div class="space-y-2 text-sm">
                     <div class="flex justify-between">
-                      <span>Service:</span>
+                      <span>الخدمة:</span>
                       <span class="font-medium">{{ service.title }}</span>
                     </div>
                     <div v-if="selectedDate" class="flex justify-between">
-                      <span>Date:</span>
+                      <span>التاريخ:</span>
                       <span class="font-medium">{{ formatDate(selectedDate) }}</span>
                     </div>
                     <div v-if="selectedTime" class="flex justify-between">
-                      <span>Time:</span>
+                      <span>الوقت:</span>
                       <span class="font-medium">{{ formatTime(selectedTime) }}</span>
                     </div>
                     <div v-if="service.priceType === 'hourly'" class="flex justify-between">
-                      <span>Duration:</span>
-                      <span class="font-medium">{{ selectedDuration }} hours</span>
+                      <span>المدة:</span>
+                      <span class="font-medium">{{ selectedDuration }} ساعات</span>
                     </div>
                     <div class="border-t pt-2 mt-2">
                       <div class="flex justify-between">
-                        <span>Service fee:</span>
+                        <span>رسوم الخدمة:</span>
                         <span class="font-medium">${{ totalPrice }}</span>
                       </div>
                       <div class="flex justify-between">
-                        <span>Platform fee:</span>
+                        <span>رسوم المنصة:</span>
                         <span class="font-medium">${{ serviceFee }}</span>
                       </div>
                       <div class="flex justify-between font-semibold text-lg pt-2 border-t">
-                        <span>Total:</span>
+                        <span>الإجمالي:</span>
                         <span>${{ totalAmount }}</span>
                       </div>
                     </div>
@@ -1126,14 +1126,14 @@ const formatTime = (time: string) => {
 
           <div class="flex justify-end gap-3 mt-8 pt-6 border-t">
             <button @click="closeBookingModal" class="px-6 py-3 border border-gray-300 rounded-xl font-medium hover:bg-gray-50 transition-colors">
-              Cancel
+              إلغاء
             </button>
             <button 
               @click="proceedToCheckout"
               :disabled="!selectedDate || !selectedTime"
               class="px-6 py-3 bg-blue-600 text-white rounded-xl font-medium hover:bg-blue-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              Proceed to Checkout
+              المتابعة للدفع
             </button>
           </div>
         </div>
@@ -1145,7 +1145,7 @@ const formatTime = (time: string) => {
       <div class="bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
         <div class="p-6 border-b border-gray-200">
           <div class="flex items-center justify-between">
-            <h2 class="text-2xl font-bold text-gray-900">Confirm Booking</h2>
+            <h2 class="text-2xl font-bold text-gray-900">تأكيد الحجز</h2>
             <button @click="isCheckoutModalOpen = false" class="p-2 hover:bg-gray-100 rounded-lg">
               <Icon name="material-symbols:close" class="w-6 h-6" />
             </button>
@@ -1155,30 +1155,30 @@ const formatTime = (time: string) => {
         <div class="p-6">
           <!-- Booking Summary -->
           <div class="bg-gray-50 rounded-xl p-6 mb-6">
-            <h3 class="text-lg font-semibold text-gray-900 mb-4">Booking Summary</h3>
+            <h3 class="text-lg font-semibold text-gray-900 mb-4">ملخص الحجز</h3>
             <div class="space-y-3">
               <div class="flex justify-between">
-                <span class="text-gray-600">Service:</span>
+                <span class="text-gray-600">الخدمة:</span>
                 <span class="font-medium">{{ service.title }}</span>
               </div>
               <div class="flex justify-between">
-                <span class="text-gray-600">Provider:</span>
+                <span class="text-gray-600">مقدم الخدمة:</span>
                 <span class="font-medium">{{ provider.name }}</span>
               </div>
               <div class="flex justify-between">
-                <span class="text-gray-600">Date:</span>
+                <span class="text-gray-600">التاريخ:</span>
                 <span class="font-medium">{{ formatDate(selectedDate) }}</span>
               </div>
               <div class="flex justify-between">
-                <span class="text-gray-600">Time:</span>
+                <span class="text-gray-600">الوقت:</span>
                 <span class="font-medium">{{ formatTime(selectedTime) }}</span>
               </div>
               <div v-if="service.priceType === 'hourly'" class="flex justify-between">
-                <span class="text-gray-600">Duration:</span>
-                <span class="font-medium">{{ selectedDuration }} hours</span>
+                <span class="text-gray-600">المدة:</span>
+                <span class="font-medium">{{ selectedDuration }} ساعات</span>
               </div>
               <div v-if="bookingNotes" class="flex justify-between">
-                <span class="text-gray-600">Notes:</span>
+                <span class="text-gray-600">الملاحظات:</span>
                 <span class="font-medium">{{ bookingNotes }}</span>
               </div>
             </div>
@@ -1186,19 +1186,19 @@ const formatTime = (time: string) => {
 
           <!-- Payment Summary -->
           <div class="bg-gray-50 rounded-xl p-6 mb-6">
-            <h3 class="text-lg font-semibold text-gray-900 mb-4">Payment Summary</h3>
+            <h3 class="text-lg font-semibold text-gray-900 mb-4">ملخص الدفع</h3>
             <div class="space-y-2">
               <div class="flex justify-between">
-                <span>Service fee:</span>
+                <span>رسوم الخدمة:</span>
                 <span>${{ totalPrice }}</span>
               </div>
               <div class="flex justify-between">
-                <span>Platform fee:</span>
+                <span>رسوم المنصة:</span>
                 <span>${{ serviceFee }}</span>
               </div>
               <div class="border-t pt-2 mt-2">
                 <div class="flex justify-between font-semibold text-lg">
-                  <span>Total Amount:</span>
+                  <span>المبلغ الإجمالي:</span>
                   <span>${{ totalAmount }}</span>
                 </div>
               </div>
@@ -1207,12 +1207,12 @@ const formatTime = (time: string) => {
 
           <!-- Payment Method -->
           <div class="mb-6">
-            <h3 class="text-lg font-semibold text-gray-900 mb-4">Payment Method</h3>
+            <h3 class="text-lg font-semibold text-gray-900 mb-4">طريقة الدفع</h3>
             <div class="space-y-3">
               <label class="flex items-center gap-3 p-3 border border-gray-200 rounded-xl cursor-pointer hover:bg-gray-50">
                 <input type="radio" name="payment" value="card" checked class="text-blue-600">
                 <Icon name="material-symbols:credit-card" class="w-5 h-5 text-gray-600" />
-                <span>Credit/Debit Card</span>
+                <span>بطاقة ائتمان/خصم</span>
               </label>
               <label class="flex items-center gap-3 p-3 border border-gray-200 rounded-xl cursor-pointer hover:bg-gray-50">
                 <input type="radio" name="payment" value="paypal" class="text-blue-600">
@@ -1227,15 +1227,15 @@ const formatTime = (time: string) => {
             <label class="flex items-start gap-3 cursor-pointer">
               <input type="checkbox" class="mt-1 text-blue-600" required>
               <span class="text-sm text-gray-600">
-                I agree to the <a href="#" class="text-blue-600 hover:underline">Terms of Service</a> and 
-                <a href="#" class="text-blue-600 hover:underline">Privacy Policy</a>
+                أوافق على <a href="#" class="text-blue-600 hover:underline">شروط الخدمة</a> و 
+                <a href="#" class="text-blue-600 hover:underline">سياسة الخصوصية</a>
               </span>
             </label>
           </div>
 
           <div class="flex justify-end gap-3">
             <button @click="isCheckoutModalOpen = false" class="px-6 py-3 border border-gray-300 rounded-xl font-medium hover:bg-gray-50 transition-colors">
-              Back
+              رجوع
             </button>
             <button 
               @click="confirmBooking"
@@ -1243,7 +1243,7 @@ const formatTime = (time: string) => {
               class="px-6 py-3 bg-blue-600 text-white rounded-xl font-medium hover:bg-blue-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center"
             >
               <Icon v-if="isProcessingBooking" name="material-symbols:progress-activity" class="w-5 h-5 mr-2 animate-spin" />
-              {{ isProcessingBooking ? 'Processing...' : 'Confirm Booking' }}
+              {{ isProcessingBooking ? 'جاري المعالجة...' : 'تأكيد الحجز' }}
             </button>
           </div>
         </div>

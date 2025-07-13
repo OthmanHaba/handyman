@@ -3,9 +3,9 @@ import { ref } from 'vue'
 
 // Page metadata
 useHead({
-  title: 'Register | HandyIT.com',
+  title: 'تسجيل | HandyIT.com',
   meta: [
-    { name: 'description', content: 'Join HandyIT.com as a user or service provider. Create your account to get started.' }
+    { name: 'description', content: 'انضم إلى HandyIT.com كمستخدم أو مقدم خدمة. أنشئ حسابك للبدء.' }
   ]
 })
 
@@ -65,9 +65,9 @@ const errorMessage = ref('')
 
 // Available skills for providers
 const availableSkills = ref([
-  'Plumbing', 'Electrical', 'Carpentry', 'Painting', 'Cleaning', 'Assembly',
-  'Moving', 'Landscaping', 'Repairs', 'Installation', 'Maintenance',
-  'Tile Work', 'Drywall', 'Flooring', 'Roofing', 'HVAC', 'Appliance Repair'
+  'السباكة', 'الكهرباء', 'النجارة', 'الطلاء', 'التنظيف', 'التركيب',
+  'النقل', 'تنسيق الحدائق', 'الإصلاحات', 'التركيب', 'الصيانة',
+  'تركيب البلاط', 'الجبس', 'الأرضيات', 'السقف', 'التكييف', 'إصلاح الأجهزة'
 ])
 
 // Switch registration type
@@ -116,46 +116,46 @@ const validateUserForm = () => {
 
   // Name validation
   if (!userForm.value.name.trim()) {
-    userErrors.value.name = 'Full name is required'
+    userErrors.value.name = 'الاسم الكامل مطلوب'
     isValid = false
   }
 
   // Email validation
   if (!userForm.value.email.trim()) {
-    userErrors.value.email = 'Email is required'
+    userErrors.value.email = 'البريد الإلكتروني مطلوب'
     isValid = false
   } else if (!validateEmail(userForm.value.email)) {
-    userErrors.value.email = 'Please enter a valid email address'
+    userErrors.value.email = 'يرجى إدخال بريد إلكتروني صحيح'
     isValid = false
   }
 
   // Password validation
   if (!userForm.value.password) {
-    userErrors.value.password = 'Password is required'
+    userErrors.value.password = 'كلمة المرور مطلوبة'
     isValid = false
   } else if (!validatePassword(userForm.value.password)) {
-    userErrors.value.password = 'Password must be at least 8 characters long'
+    userErrors.value.password = 'يجب أن تتكون كلمة المرور من 8 أحرف على الأقل'
     isValid = false
   }
 
   // Confirm password validation
   if (!userForm.value.confirmPassword) {
-    userErrors.value.confirmPassword = 'Please confirm your password'
+    userErrors.value.confirmPassword = 'يرجى تأكيد كلمة المرور'
     isValid = false
   } else if (userForm.value.password !== userForm.value.confirmPassword) {
-    userErrors.value.confirmPassword = 'Passwords do not match'
+    userErrors.value.confirmPassword = 'كلمات المرور غير متطابقة'
     isValid = false
   }
 
   // Phone validation
   if (!userForm.value.phone.trim()) {
-    userErrors.value.phone = 'Phone number is required'
+    userErrors.value.phone = 'رقم الهاتف مطلوب'
     isValid = false
   }
 
   // Terms validation
   if (!userForm.value.agreeToTerms) {
-    userErrors.value.agreeToTerms = 'You must agree to the terms and conditions'
+    userErrors.value.agreeToTerms = 'يجب الموافقة على الشروط والأحكام'
     isValid = false
   }
 
@@ -168,58 +168,58 @@ const validateProviderForm = () => {
 
   // Name validation
   if (!providerForm.value.name.trim()) {
-    providerErrors.value.name = 'Full name is required'
+    providerErrors.value.name = 'الاسم الكامل مطلوب'
     isValid = false
   }
 
   // Email validation
   if (!providerForm.value.email.trim()) {
-    providerErrors.value.email = 'Email is required'
+    providerErrors.value.email = 'البريد الإلكتروني مطلوب'
     isValid = false
   } else if (!validateEmail(providerForm.value.email)) {
-    providerErrors.value.email = 'Please enter a valid email address'
+    providerErrors.value.email = 'يرجى إدخال بريد إلكتروني صحيح'
     isValid = false
   }
 
   // Password validation
   if (!providerForm.value.password) {
-    providerErrors.value.password = 'Password is required'
+    providerErrors.value.password = 'كلمة المرور مطلوبة'
     isValid = false
   } else if (!validatePassword(providerForm.value.password)) {
-    providerErrors.value.password = 'Password must be at least 8 characters long'
+    providerErrors.value.password = 'يجب أن تتكون كلمة المرور من 8 أحرف على الأقل'
     isValid = false
   }
 
   // Confirm password validation
   if (!providerForm.value.confirmPassword) {
-    providerErrors.value.confirmPassword = 'Please confirm your password'
+    providerErrors.value.confirmPassword = 'يرجى تأكيد كلمة المرور'
     isValid = false
   } else if (providerForm.value.password !== providerForm.value.confirmPassword) {
-    providerErrors.value.confirmPassword = 'Passwords do not match'
+    providerErrors.value.confirmPassword = 'كلمات المرور غير متطابقة'
     isValid = false
   }
 
   // Phone validation
   if (!providerForm.value.phone.trim()) {
-    providerErrors.value.phone = 'Phone number is required'
+    providerErrors.value.phone = 'رقم الهاتف مطلوب'
     isValid = false
   }
 
   // Business name validation
   if (!providerForm.value.businessName.trim()) {
-    providerErrors.value.businessName = 'Business name is required'
+    providerErrors.value.businessName = 'اسم العمل مطلوب'
     isValid = false
   }
 
   // Bio validation
   if (!providerForm.value.bio.trim()) {
-    providerErrors.value.bio = 'Professional bio is required'
+    providerErrors.value.bio = 'السيرة المهنية مطلوبة'
     isValid = false
   }
 
   // Terms validation
   if (!providerForm.value.agreeToTerms) {
-    providerErrors.value.agreeToTerms = 'You must agree to the terms and conditions'
+    providerErrors.value.agreeToTerms = 'يجب الموافقة على الشروط والأحكام'
     isValid = false
   }
 
@@ -329,19 +329,19 @@ const handleFacebookRegister = () => {
     <div class="sm:mx-auto sm:w-full sm:max-w-md">
       <div class="flex justify-center">
         <div class="flex items-center">
-          <div class="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center mr-3">
+          <div class="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center ml-3">
             <Icon name="material-symbols:handyman" class="w-6 h-6 text-white" />
           </div>
           <h1 class="text-2xl font-medium text-gray-900">HandyIT<span class="text-gray-500">.com</span></h1>
         </div>
       </div>
       <h2 class="mt-6 text-center text-3xl font-bold text-gray-900">
-        Create your account
+        إنشاء حساب جديد
       </h2>
       <p class="mt-2 text-center text-sm text-gray-600">
-        Or
+        أو
         <NuxtLink to="/client/auth/login" class="font-medium text-blue-600 hover:text-blue-500 transition-colors">
-          sign in to your existing account
+          تسجيل الدخول إلى حسابك الحالي
         </NuxtLink>
       </p>
     </div>
@@ -361,8 +361,8 @@ const handleFacebookRegister = () => {
                   : 'text-gray-600 hover:text-gray-900'
               ]"
             >
-              <Icon name="material-symbols:person" class="w-4 h-4 mr-2 inline" />
-              Join as User
+              <Icon name="material-symbols:person" class="w-4 h-4 ml-2 inline" />
+              انضم كمستخدم
             </button>
             <button
               @click="switchRegistrationType('provider')"
@@ -373,8 +373,8 @@ const handleFacebookRegister = () => {
                   : 'text-gray-600 hover:text-gray-900'
               ]"
             >
-              <Icon name="material-symbols:handyman" class="w-4 h-4 mr-2 inline" />
-              Join as Provider
+              <Icon name="material-symbols:handyman" class="w-4 h-4 ml-2 inline" />
+              انضم كمقدم خدمة
             </button>
           </div>
         </div>
@@ -389,7 +389,7 @@ const handleFacebookRegister = () => {
           <!-- Full Name -->
           <div>
             <label for="user-name" class="block text-sm font-semibold text-gray-900 mb-2">
-              Full Name
+              الاسم الكامل
             </label>
             <input
               id="user-name"
@@ -399,7 +399,7 @@ const handleFacebookRegister = () => {
                 'w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-blue-500 outline-none transition-colors',
                 userErrors.name ? 'border-red-300 focus:border-red-500' : 'border-gray-300 focus:border-blue-500'
               ]"
-              placeholder="Enter your full name"
+              placeholder="أدخل اسمك الكامل"
             >
             <p v-if="userErrors.name" class="mt-1 text-sm text-red-600">{{ userErrors.name }}</p>
           </div>
@@ -407,7 +407,7 @@ const handleFacebookRegister = () => {
           <!-- Email -->
           <div>
             <label for="user-email" class="block text-sm font-semibold text-gray-900 mb-2">
-              Email Address
+              البريد الإلكتروني
             </label>
             <input
               id="user-email"
@@ -417,7 +417,7 @@ const handleFacebookRegister = () => {
                 'w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-blue-500 outline-none transition-colors',
                 userErrors.email ? 'border-red-300 focus:border-red-500' : 'border-gray-300 focus:border-blue-500'
               ]"
-              placeholder="Enter your email address"
+              placeholder="أدخل بريدك الإلكتروني"
             >
             <p v-if="userErrors.email" class="mt-1 text-sm text-red-600">{{ userErrors.email }}</p>
           </div>
@@ -425,7 +425,7 @@ const handleFacebookRegister = () => {
           <!-- Phone -->
           <div>
             <label for="user-phone" class="block text-sm font-semibold text-gray-900 mb-2">
-              Phone Number
+              رقم الهاتف
             </label>
             <input
               id="user-phone"
@@ -435,7 +435,7 @@ const handleFacebookRegister = () => {
                 'w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-blue-500 outline-none transition-colors',
                 userErrors.phone ? 'border-red-300 focus:border-red-500' : 'border-gray-300 focus:border-blue-500'
               ]"
-              placeholder="Enter your phone number"
+              placeholder="أدخل رقم هاتفك"
             >
             <p v-if="userErrors.phone" class="mt-1 text-sm text-red-600">{{ userErrors.phone }}</p>
           </div>
@@ -443,21 +443,21 @@ const handleFacebookRegister = () => {
           <!-- Address -->
           <div>
             <label for="user-address" class="block text-sm font-semibold text-gray-900 mb-2">
-              Address (Optional)
+              العنوان (اختياري)
             </label>
             <textarea
               id="user-address"
               v-model="userForm.address"
               rows="3"
               class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-colors resize-none"
-              placeholder="Enter your address"
+              placeholder="أدخل عنوانك"
             ></textarea>
           </div>
 
           <!-- Password -->
           <div>
             <label for="user-password" class="block text-sm font-semibold text-gray-900 mb-2">
-              Password
+              كلمة المرور
             </label>
             <input
               id="user-password"
@@ -467,7 +467,7 @@ const handleFacebookRegister = () => {
                 'w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-blue-500 outline-none transition-colors',
                 userErrors.password ? 'border-red-300 focus:border-red-500' : 'border-gray-300 focus:border-blue-500'
               ]"
-              placeholder="Create a strong password"
+              placeholder="أنشئ كلمة مرور قوية"
             >
             <p v-if="userErrors.password" class="mt-1 text-sm text-red-600">{{ userErrors.password }}</p>
           </div>
@@ -475,7 +475,7 @@ const handleFacebookRegister = () => {
           <!-- Confirm Password -->
           <div>
             <label for="user-confirm-password" class="block text-sm font-semibold text-gray-900 mb-2">
-              Confirm Password
+              تأكيد كلمة المرور
             </label>
             <input
               id="user-confirm-password"
@@ -485,7 +485,7 @@ const handleFacebookRegister = () => {
                 'w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-blue-500 outline-none transition-colors',
                 userErrors.confirmPassword ? 'border-red-300 focus:border-red-500' : 'border-gray-300 focus:border-blue-500'
               ]"
-              placeholder="Confirm your password"
+              placeholder="أكد كلمة المرور"
             >
             <p v-if="userErrors.confirmPassword" class="mt-1 text-sm text-red-600">{{ userErrors.confirmPassword }}</p>
           </div>
@@ -502,11 +502,11 @@ const handleFacebookRegister = () => {
                   userErrors.agreeToTerms ? 'border-red-300' : ''
                 ]"
               >
-              <label for="user-terms" class="ml-2 block text-sm text-gray-700">
-                I agree to the 
-                <a href="#" class="text-blue-600 hover:text-blue-500">Terms of Service</a> 
-                and 
-                <a href="#" class="text-blue-600 hover:text-blue-500">Privacy Policy</a>
+              <label for="user-terms" class="mr-2 block text-sm text-gray-700">
+                أوافق على 
+                <a href="#" class="text-blue-600 hover:text-blue-500">شروط الخدمة</a> 
+                و 
+                <a href="#" class="text-blue-600 hover:text-blue-500">سياسة الخصوصية</a>
               </label>
             </div>
             <p v-if="userErrors.agreeToTerms" class="mt-1 text-sm text-red-600">{{ userErrors.agreeToTerms }}</p>
@@ -522,9 +522,9 @@ const handleFacebookRegister = () => {
               <Icon 
                 v-if="isLoading" 
                 name="material-symbols:progress-activity" 
-                class="animate-spin -ml-1 mr-2 h-4 w-4" 
+                class="animate-spin -mr-1 ml-2 h-4 w-4" 
               />
-              {{ isLoading ? 'Creating Account...' : 'Create User Account' }}
+              {{ isLoading ? 'جاري إنشاء الحساب...' : 'إنشاء حساب مستخدم' }}
             </button>
           </div>
         </form>
@@ -535,7 +535,7 @@ const handleFacebookRegister = () => {
             <!-- Full Name -->
             <div>
               <label for="provider-name" class="block text-sm font-semibold text-gray-900 mb-2">
-                Full Name
+                الاسم الكامل
               </label>
               <input
                 id="provider-name"
@@ -545,7 +545,7 @@ const handleFacebookRegister = () => {
                   'w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-blue-500 outline-none transition-colors',
                   providerErrors.name ? 'border-red-300 focus:border-red-500' : 'border-gray-300 focus:border-blue-500'
                 ]"
-                placeholder="Enter your full name"
+                placeholder="أدخل اسمك الكامل"
               >
               <p v-if="providerErrors.name" class="mt-1 text-sm text-red-600">{{ providerErrors.name }}</p>
             </div>
@@ -553,7 +553,7 @@ const handleFacebookRegister = () => {
             <!-- Business Name -->
             <div>
               <label for="provider-business" class="block text-sm font-semibold text-gray-900 mb-2">
-                Business Name
+                اسم العمل
               </label>
               <input
                 id="provider-business"
@@ -563,7 +563,7 @@ const handleFacebookRegister = () => {
                   'w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-blue-500 outline-none transition-colors',
                   providerErrors.businessName ? 'border-red-300 focus:border-red-500' : 'border-gray-300 focus:border-blue-500'
                 ]"
-                placeholder="Enter your business name"
+                placeholder="أدخل اسم عملك"
               >
               <p v-if="providerErrors.businessName" class="mt-1 text-sm text-red-600">{{ providerErrors.businessName }}</p>
             </div>
@@ -573,7 +573,7 @@ const handleFacebookRegister = () => {
             <!-- Email -->
             <div>
               <label for="provider-email" class="block text-sm font-semibold text-gray-900 mb-2">
-                Email Address
+                البريد الإلكتروني
               </label>
               <input
                 id="provider-email"
@@ -583,7 +583,7 @@ const handleFacebookRegister = () => {
                   'w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-blue-500 outline-none transition-colors',
                   providerErrors.email ? 'border-red-300 focus:border-red-500' : 'border-gray-300 focus:border-blue-500'
                 ]"
-                placeholder="Enter your email address"
+                placeholder="أدخل بريدك الإلكتروني"
               >
               <p v-if="providerErrors.email" class="mt-1 text-sm text-red-600">{{ providerErrors.email }}</p>
             </div>
@@ -591,7 +591,7 @@ const handleFacebookRegister = () => {
             <!-- Phone -->
             <div>
               <label for="provider-phone" class="block text-sm font-semibold text-gray-900 mb-2">
-                Phone Number
+                رقم الهاتف
               </label>
               <input
                 id="provider-phone"
@@ -601,7 +601,7 @@ const handleFacebookRegister = () => {
                   'w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-blue-500 outline-none transition-colors',
                   providerErrors.phone ? 'border-red-300 focus:border-red-500' : 'border-gray-300 focus:border-blue-500'
                 ]"
-                placeholder="Enter your phone number"
+                placeholder="أدخل رقم هاتفك"
               >
               <p v-if="providerErrors.phone" class="mt-1 text-sm text-red-600">{{ providerErrors.phone }}</p>
             </div>
@@ -610,21 +610,21 @@ const handleFacebookRegister = () => {
           <!-- Service Area -->
           <div>
             <label for="provider-address" class="block text-sm font-semibold text-gray-900 mb-2">
-              Service Area
+              منطقة الخدمة
             </label>
             <textarea
               id="provider-address"
               v-model="providerForm.address"
               rows="3"
               class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-colors resize-none"
-              placeholder="Areas where you provide services..."
+              placeholder="المناطق التي تقدم فيها خدماتك..."
             ></textarea>
           </div>
 
           <!-- Professional Bio -->
           <div>
             <label for="provider-bio" class="block text-sm font-semibold text-gray-900 mb-2">
-              Professional Bio
+              السيرة المهنية
             </label>
             <textarea
               id="provider-bio"
@@ -634,7 +634,7 @@ const handleFacebookRegister = () => {
                 'w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-blue-500 outline-none transition-colors resize-none',
                 providerErrors.bio ? 'border-red-300 focus:border-red-500' : 'border-gray-300 focus:border-blue-500'
               ]"
-              placeholder="Tell clients about your experience and expertise..."
+              placeholder="أخبر العملاء عن خبرتك وتخصصك..."
             ></textarea>
             <p v-if="providerErrors.bio" class="mt-1 text-sm text-red-600">{{ providerErrors.bio }}</p>
           </div>
@@ -642,20 +642,20 @@ const handleFacebookRegister = () => {
           <!-- Experience -->
           <div>
             <label for="provider-experience" class="block text-sm font-semibold text-gray-900 mb-2">
-              Years of Experience
+              سنوات الخبرة
             </label>
             <input
               id="provider-experience"
               v-model="providerForm.experience"
               type="text"
               class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-colors"
-              placeholder="e.g., 5+ years, 10+ years"
+              placeholder="مثال: 5+ سنوات، 10+ سنوات"
             >
           </div>
 
           <!-- Skills -->
           <div>
-            <label class="block text-sm font-semibold text-gray-900 mb-2">Skills & Expertise</label>
+            <label class="block text-sm font-semibold text-gray-900 mb-2">المهارات والخبرات</label>
             <div class="mb-3">
               <div class="flex flex-wrap gap-2">
                 <span
@@ -667,7 +667,7 @@ const handleFacebookRegister = () => {
                   <button
                     type="button"
                     @click="removeSkill(skill)"
-                    class="ml-2 text-blue-600 hover:text-blue-800"
+                    class="mr-2 text-blue-600 hover:text-blue-800"
                   >
                     <Icon name="material-symbols:close" class="w-3 h-3" />
                   </button>
@@ -695,7 +695,7 @@ const handleFacebookRegister = () => {
 
           <!-- Certifications -->
           <div>
-            <label class="block text-sm font-semibold text-gray-900 mb-2">Certifications (Optional)</label>
+            <label class="block text-sm font-semibold text-gray-900 mb-2">الشهادات (اختياري)</label>
             <div class="mb-3">
               <div class="flex flex-wrap gap-2">
                 <span
@@ -707,7 +707,7 @@ const handleFacebookRegister = () => {
                   <button
                     type="button"
                     @click="removeCertification(cert)"
-                    class="ml-2 text-green-600 hover:text-green-800"
+                    class="mr-2 text-green-600 hover:text-green-800"
                   >
                     <Icon name="material-symbols:close" class="w-3 h-3" />
                   </button>
@@ -719,8 +719,8 @@ const handleFacebookRegister = () => {
               @click="addCertification"
               class="flex items-center px-4 py-2 text-sm text-blue-600 hover:text-blue-700 transition-colors"
             >
-              <Icon name="material-symbols:add" class="w-4 h-4 mr-2" />
-              Add Certification
+              <Icon name="material-symbols:add" class="w-4 h-4 ml-2" />
+              إضافة شهادة
             </button>
           </div>
 
@@ -728,7 +728,7 @@ const handleFacebookRegister = () => {
             <!-- Password -->
             <div>
               <label for="provider-password" class="block text-sm font-semibold text-gray-900 mb-2">
-                Password
+                كلمة المرور
               </label>
               <input
                 id="provider-password"
@@ -738,7 +738,7 @@ const handleFacebookRegister = () => {
                   'w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-blue-500 outline-none transition-colors',
                   providerErrors.password ? 'border-red-300 focus:border-red-500' : 'border-gray-300 focus:border-blue-500'
                 ]"
-                placeholder="Create a strong password"
+                placeholder="أنشئ كلمة مرور قوية"
               >
               <p v-if="providerErrors.password" class="mt-1 text-sm text-red-600">{{ providerErrors.password }}</p>
             </div>
@@ -746,7 +746,7 @@ const handleFacebookRegister = () => {
             <!-- Confirm Password -->
             <div>
               <label for="provider-confirm-password" class="block text-sm font-semibold text-gray-900 mb-2">
-                Confirm Password
+                تأكيد كلمة المرور
               </label>
               <input
                 id="provider-confirm-password"
@@ -756,7 +756,7 @@ const handleFacebookRegister = () => {
                   'w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-blue-500 outline-none transition-colors',
                   providerErrors.confirmPassword ? 'border-red-300 focus:border-red-500' : 'border-gray-300 focus:border-blue-500'
                 ]"
-                placeholder="Confirm your password"
+                placeholder="أكد كلمة المرور"
               >
               <p v-if="providerErrors.confirmPassword" class="mt-1 text-sm text-red-600">{{ providerErrors.confirmPassword }}</p>
             </div>
@@ -774,12 +774,12 @@ const handleFacebookRegister = () => {
                   providerErrors.agreeToTerms ? 'border-red-300' : ''
                 ]"
               >
-              <label for="provider-terms" class="ml-2 block text-sm text-gray-700">
-                I agree to the 
-                <a href="#" class="text-blue-600 hover:text-blue-500">Terms of Service</a>, 
-                <a href="#" class="text-blue-600 hover:text-blue-500">Privacy Policy</a>, 
-                and 
-                <a href="#" class="text-blue-600 hover:text-blue-500">Service Provider Agreement</a>
+              <label for="provider-terms" class="mr-2 block text-sm text-gray-700">
+                أوافق على 
+                <a href="#" class="text-blue-600 hover:text-blue-500">شروط الخدمة</a>، 
+                <a href="#" class="text-blue-600 hover:text-blue-500">سياسة الخصوصية</a>، 
+                و 
+                <a href="#" class="text-blue-600 hover:text-blue-500">اتفاقية مقدم الخدمة</a>
               </label>
             </div>
             <p v-if="providerErrors.agreeToTerms" class="mt-1 text-sm text-red-600">{{ providerErrors.agreeToTerms }}</p>
@@ -795,9 +795,9 @@ const handleFacebookRegister = () => {
               <Icon 
                 v-if="isLoading" 
                 name="material-symbols:progress-activity" 
-                class="animate-spin -ml-1 mr-2 h-4 w-4" 
+                class="animate-spin -mr-1 ml-2 h-4 w-4" 
               />
-              {{ isLoading ? 'Creating Account...' : 'Create Provider Account' }}
+              {{ isLoading ? 'جاري إنشاء الحساب...' : 'إنشاء حساب مقدم خدمة' }}
             </button>
           </div>
         </form>
@@ -809,7 +809,7 @@ const handleFacebookRegister = () => {
               <div class="w-full border-t border-gray-300" />
             </div>
             <div class="relative flex justify-center text-sm">
-              <span class="px-2 bg-white text-gray-500">Or continue with</span>
+              <span class="px-2 bg-white text-gray-500">أو تابع باستخدام</span>
             </div>
           </div>
 
@@ -818,16 +818,16 @@ const handleFacebookRegister = () => {
               @click="handleGoogleRegister"
               class="w-full inline-flex justify-center items-center py-3 px-4 border border-gray-300 rounded-xl shadow-sm bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors"
             >
-              <Icon name="material-symbols:google" class="w-5 h-5 mr-2" />
-              Google
+              <Icon name="material-symbols:google" class="w-5 h-5 ml-2" />
+              جوجل
             </button>
 
             <button
               @click="handleFacebookRegister"
               class="w-full inline-flex justify-center items-center py-3 px-4 border border-gray-300 rounded-xl shadow-sm bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors"
             >
-              <Icon name="material-symbols:facebook" class="w-5 h-5 mr-2" />
-              Facebook
+              <Icon name="material-symbols:facebook" class="w-5 h-5 ml-2" />
+              فيسبوك
             </button>
           </div>
         </div>

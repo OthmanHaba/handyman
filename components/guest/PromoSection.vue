@@ -2,33 +2,33 @@
 const promoCards = [
   {
     id: 1,
-    title: 'A world of talent right at your fingertips.',
-    subtitle: 'Get help now.',
+    title: 'عالم من المواهب في متناول يديك.',
+    subtitle: 'احصل على المساعدة الآن.',
     type: 'main',
     bgImage: 'https://images.unsplash.com/photo-1556761175-b413da4baf72?w=800&h=600&fit=crop',
-    tags: ['Service', 'Helpplatform']
+    tags: ['خدمة', 'منصة مساعدة']
   },
   {
     id: 2,
-    title: 'Handyman Services',
+    title: 'خدمات الصيانة',
     type: 'service',
     bgImage: 'https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=600&h=400&fit=crop',
-    tag: 'Wood'
+    tag: 'أعمال خشبية'
   },
   {
     id: 3,
-    title: 'Office work',
-    subtitle: 'Efficiency Starts Here: Elevate Your Office Work',
+    title: 'أعمال مكتبية',
+    subtitle: 'الكفاءة تبدأ هنا: ارتقِ بعملك المكتبي',
     type: 'service',
     bgImage: 'https://images.unsplash.com/photo-1556761175-4b46a572b786?w=600&h=400&fit=crop',
-    tag: 'Administration'
+    tag: 'إدارة'
   },
   {
     id: 4,
-    title: 'Shipping + Freight',
+    title: 'الشحن والنقل',
     type: 'service',
     bgImage: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=600&h=400&fit=crop',
-    tag: 'Shipping'
+    tag: 'شحن'
   }
 ]
 
@@ -42,7 +42,7 @@ const taskerProfiles = [
 <template>
   <section class="container mx-auto px-4 py-8">
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-      <!-- Main Hero Card -->
+      <!-- البطاقة الرئيسية -->
       <div class="lg:col-span-2 relative rounded-2xl overflow-hidden h-[300px] group">
         <img 
           :src="promoCards[0].bgImage" 
@@ -65,12 +65,12 @@ const taskerProfiles = [
           </h2>
           <p class="text-lg text-white mb-4">{{ promoCards[0].subtitle }}</p>
           <button class="self-start px-5 py-2.5 bg-white text-gray-900 rounded-full text-sm font-medium hover:bg-gray-100 transition-colors">
-            Get help now
+            احصل على المساعدة الآن
           </button>
         </div>
       </div>
       
-      <!-- Handyman Services Card -->
+      <!-- بطاقة خدمات الصيانة -->
       <div class="relative rounded-2xl overflow-hidden h-[300px] group cursor-pointer">
         <img 
           :src="promoCards[1].bgImage" 
@@ -90,9 +90,9 @@ const taskerProfiles = [
         />
       </div>
 
-      <!-- Right Column with stacked cards -->
+      <!-- العمود الأيمن مع البطاقات المكدسة -->
       <div class="flex flex-col gap-4">
-        <!-- Office Work Card -->
+        <!-- بطاقة العمل المكتبي -->
         <div class="relative rounded-2xl overflow-hidden h-[143px] group cursor-pointer">
           <img 
             :src="promoCards[2].bgImage" 
@@ -113,23 +113,23 @@ const taskerProfiles = [
           />
         </div>
 
-        <!-- Hire Top Tasker Card -->
+        <!-- بطاقة توظيف أفضل المنجزين -->
         <div class="bg-white rounded-2xl p-4 border border-gray-100 h-[143px] relative overflow-hidden">
           <div class="flex gap-1.5 mb-2">
             <span class="px-2 py-0.5 bg-purple-100 text-purple-700 rounded-full text-xs">
-              Marry
+              مريم
             </span>
             <span class="px-2 py-0.5 bg-purple-100 text-purple-700 rounded-full text-xs">
-              Preston
+              أحمد
             </span>
           </div>
           
           <h3 class="text-lg font-bold text-gray-900 mb-1">
-            Hire top tasker
+            وظف أفضل المنجزين
           </h3>
           <p class="text-xs text-gray-600 mb-2">
-            // Hire the Best Taskers<br>
-            for Your Needs.
+            // وظف أفضل المنجزين<br>
+            لاحتياجاتك.
           </p>
           
           <div class="flex -space-x-2">
@@ -137,7 +137,7 @@ const taskerProfiles = [
               v-for="profile in taskerProfiles"
               :key="profile.id"
               :src="profile.image" 
-              alt="Tasker"
+              alt="منجز"
               class="w-8 h-8 rounded-full border-2 border-white"
             >
             <div class="w-8 h-8 rounded-full border-2 border-white bg-gray-100 flex items-center justify-center">
@@ -145,20 +145,20 @@ const taskerProfiles = [
             </div>
           </div>
 
-          <!-- Decorative elements -->
+          <!-- عناصر تزيينية -->
           <span class="absolute top-3 right-3 px-2 py-0.5 bg-blue-100 text-blue-700 rounded-full text-xs">
-            John
+            محمد
           </span>
           <span class="absolute bottom-3 right-3 px-2 py-0.5 bg-gray-100 text-gray-700 rounded-full text-xs">
-            Sandy
+            سارة
           </span>
         </div>
       </div>
     </div>
     
-    <!-- Bottom Row -->
+    <!-- الصف السفلي -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
-      <!-- Shipping Card -->
+      <!-- بطاقة الشحن -->
       <div class="relative rounded-2xl overflow-hidden h-[180px] group cursor-pointer">
         <img 
           :src="promoCards[3].bgImage" 
@@ -178,7 +178,7 @@ const taskerProfiles = [
         />
       </div>
       
-      <!-- Join as Tasker Card -->
+      <!-- بطاقة الانضمام كمنجز -->
       <div class="bg-blue-600 rounded-2xl p-6 flex flex-col justify-between h-[180px] relative overflow-hidden">
         <div class="absolute -right-6 -top-6 w-24 h-24 bg-blue-500 rounded-full opacity-50"></div>
         <div class="relative">
@@ -186,11 +186,11 @@ const taskerProfiles = [
             <Icon name="material-symbols:handshake" class="w-5 h-5 text-white" />
           </div>
           <h3 class="text-lg font-bold text-white mb-1">
-            Ready to turn your skills<br>into income?
+            هل أنت مستعد لتحويل مهاراتك<br>إلى دخل؟
           </h3>
         </div>
         <button class="self-start px-4 py-2 bg-white text-blue-600 rounded-lg text-sm font-medium hover:bg-gray-100 transition-colors">
-          Join us
+          انضم إلينا
         </button>
         <Icon 
           name="material-symbols:arrow-outward" 
@@ -198,10 +198,10 @@ const taskerProfiles = [
         />
       </div>
       
-      <!-- Empty space for layout -->
+      <!-- مساحة فارغة للتخطيط -->
       <div class="hidden lg:block"></div>
     </div>
   </section>
 </template>
 
-<style scoped></style> 
+<style scoped></style>

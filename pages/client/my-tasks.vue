@@ -3,9 +3,9 @@ import { ref, computed, onMounted } from 'vue'
 
 // Page metadata
 useHead({
-  title: 'My Tasks | HandyIT.com',
+  title: 'مهامي | HandyIT.com',
   meta: [
-    { name: 'description', content: 'Manage your tasks and track requests from service providers.' }
+    { name: 'description', content: 'إدارة مهامك وتتبع الطلبات من مقدمي الخدمات.' }
   ]
 })
 
@@ -28,29 +28,29 @@ const searchQuery = ref('')
 
 // Task statuses
 const taskStatuses = [
-  { id: 'all', name: 'All Tasks', count: 0 },
-  { id: 'pending', name: 'Pending', count: 0 },
-  { id: 'accepted', name: 'Accepted', count: 0 },
-  { id: 'in-progress', name: 'In Progress', count: 0 },
-  { id: 'completed', name: 'Completed', count: 0 },
-  { id: 'cancelled', name: 'Cancelled', count: 0 }
+  { id: 'all', name: 'جميع المهام', count: 0 },
+  { id: 'pending', name: 'قيد الانتظار', count: 0 },
+  { id: 'accepted', name: 'مقبولة', count: 0 },
+  { id: 'in-progress', name: 'قيد التنفيذ', count: 0 },
+  { id: 'completed', name: 'مكتملة', count: 0 },
+  { id: 'cancelled', name: 'ملغاة', count: 0 }
 ]
 
 // Mock tasks data
 const allTasks = ref([
   {
     id: 1,
-    title: 'Furniture Assembly - IKEA Wardrobe',
-    description: 'Need help assembling a large IKEA wardrobe in the bedroom. All tools will be provided.',
-    category: 'Assembly',
-    subcategory: 'Wardrobe Assembly',
+    title: 'تركيب أثاث - خزانة ملابس IKEA',
+    description: 'بحاجة إلى مساعدة في تركيب خزانة ملابس IKEA كبيرة في غرفة النوم. سيتم توفير جميع الأدوات.',
+    category: 'التركيب',
+    subcategory: 'تركيب خزانة الملابس',
     status: 'in-progress',
     priority: 'medium',
     budget: 120,
-    location: 'New York, NY',
+    location: 'نيويورك، نيويورك',
     createdAt: '2024-01-15T10:30:00Z',
     scheduledDate: '2024-01-20T14:00:00Z',
-    estimatedDuration: '3 hours',
+    estimatedDuration: '3 ساعات',
     provider: {
       id: 1,
       name: 'Courtney Henry',
@@ -66,17 +66,17 @@ const allTasks = ref([
   },
   {
     id: 2,
-    title: 'Bathroom Plumbing Repair',
-    description: 'Leaky faucet in the main bathroom needs repair. Water pressure is also low.',
-    category: 'Plumbing',
-    subcategory: 'Repair',
+    title: 'إصلاح سباكة الحمام',
+    description: 'صنبور مسرب في الحمام الرئيسي يحتاج إلى إصلاح. ضغط الماء منخفض أيضاً.',
+    category: 'السباكة',
+    subcategory: 'إصلاح',
     status: 'pending',
     priority: 'high',
     budget: 200,
-    location: 'New York, NY',
+    location: 'نيويورك، نيويورك',
     createdAt: '2024-01-18T16:45:00Z',
     scheduledDate: null,
-    estimatedDuration: '2 hours',
+    estimatedDuration: 'ساعتان',
     provider: null,
     images: [
       'https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=400&h=300&fit=crop'
@@ -86,17 +86,17 @@ const allTasks = ref([
   },
   {
     id: 3,
-    title: 'House Deep Cleaning',
-    description: 'Complete deep cleaning of 3-bedroom house including kitchen, bathrooms, and living areas.',
-    category: 'Cleaning',
-    subcategory: 'Deep Cleaning',
+    title: 'تنظيف عميق للمنزل',
+    description: 'تنظيف عميق كامل لمنزل من 3 غرف نوم يشمل المطبخ والحمامات ومناطق المعيشة.',
+    category: 'التنظيف',
+    subcategory: 'تنظيف عميق',
     status: 'completed',
     priority: 'low',
     budget: 300,
-    location: 'New York, NY',
+    location: 'نيويورك، نيويورك',
     createdAt: '2024-01-10T11:20:00Z',
     scheduledDate: '2024-01-15T09:00:00Z',
-    estimatedDuration: '6 hours',
+    estimatedDuration: '6 ساعات',
     provider: {
       id: 3,
       name: 'Arlene McCoy',
@@ -110,17 +110,17 @@ const allTasks = ref([
   },
   {
     id: 4,
-    title: 'Electrical Outlet Installation',
-    description: 'Install 3 new electrical outlets in the home office. All materials provided.',
-    category: 'Electrical',
-    subcategory: 'Installation',
+    title: 'تركيب مقابس كهربائية',
+    description: 'تركيب 3 مقابس كهربائية جديدة في المكتب المنزلي. جميع المواد متوفرة.',
+    category: 'الكهرباء',
+    subcategory: 'تركيب',
     status: 'accepted',
     priority: 'medium',
     budget: 180,
-    location: 'New York, NY',
+    location: 'نيويورك، نيويورك',
     createdAt: '2024-01-19T14:15:00Z',
     scheduledDate: '2024-01-25T10:00:00Z',
-    estimatedDuration: '2 hours',
+    estimatedDuration: 'ساعتان',
     provider: {
       id: 4,
       name: 'Jerome Bell',
@@ -136,17 +136,17 @@ const allTasks = ref([
   },
   {
     id: 5,
-    title: 'Interior Wall Painting',
-    description: 'Paint living room and dining room walls. Need color consultation and professional finish.',
-    category: 'Painting',
-    subcategory: 'Interior',
+    title: 'طلاء الجدران الداخلية',
+    description: 'طلاء جدران غرفة المعيشة وغرفة الطعام. بحاجة إلى استشارة في اختيار الألوان وتشطيب احترافي.',
+    category: 'الطلاء',
+    subcategory: 'داخلي',
     status: 'cancelled',
     priority: 'low',
     budget: 450,
-    location: 'New York, NY',
+    location: 'نيويورك، نيويورك',
     createdAt: '2024-01-12T13:30:00Z',
     scheduledDate: null,
-    estimatedDuration: '2 days',
+    estimatedDuration: 'يومان',
     provider: null,
     images: [],
     messages: 1,
@@ -243,7 +243,7 @@ const getPriorityColor = (priority: string) => {
 }
 
 const formatDate = (dateString: string) => {
-  return new Date(dateString).toLocaleDateString('en-US', {
+  return new Date(dateString).toLocaleDateString('ar-SA', {
     year: 'numeric',
     month: 'short',
     day: 'numeric'
@@ -251,7 +251,7 @@ const formatDate = (dateString: string) => {
 }
 
 const formatDateTime = (dateString: string) => {
-  return new Date(dateString).toLocaleDateString('en-US', {
+  return new Date(dateString).toLocaleDateString('ar-SA', {
     year: 'numeric',
     month: 'short',
     day: 'numeric',
@@ -271,65 +271,65 @@ const formatDateTime = (dateString: string) => {
 
 <template>
   <div class="min-h-screen bg-gray-50">
-    <!-- Loading State -->
-    <div v-if="isLoading" class="min-h-screen flex items-center justify-center">
-      <div class="text-center">
-        <Icon name="material-symbols:progress-activity" class="w-12 h-12 text-blue-600 animate-spin mx-auto mb-4" />
-        <p class="text-gray-600">Loading...</p>
+          <!-- Loading State -->
+      <div v-if="isLoading" class="min-h-screen flex items-center justify-center">
+        <div class="text-center">
+          <Icon name="material-symbols:progress-activity" class="w-12 h-12 text-blue-600 animate-spin mx-auto mb-4" />
+          <p class="text-gray-600">جارٍ التحميل...</p>
+        </div>
       </div>
-    </div>
 
-    <!-- Authenticated Content -->
-    <div v-else-if="isLoggedIn">
-      <!-- Header -->
-      <GuestHeader />
+      <!-- Authenticated Content -->
+      <div v-else-if="isLoggedIn">
+        <!-- Header -->
+        <GuestHeader />
 
-      <!-- Page Header -->
-      <section class="bg-white border-b border-gray-200">
-        <div class="container mx-auto px-4 py-8">
-          <div class="flex items-center justify-between">
-            <div>
-              <h1 class="text-3xl font-bold text-gray-900">My Tasks</h1>
-              <p class="text-lg text-gray-600 mt-2">Manage and track your service requests</p>
+        <!-- Page Header -->
+        <section class="bg-white border-b border-gray-200">
+          <div class="container mx-auto px-4 py-8">
+            <div class="flex items-center justify-between">
+              <div>
+                <h1 class="text-3xl font-bold text-gray-900">مهامي</h1>
+                <p class="text-lg text-gray-600 mt-2">إدارة وتتبع طلبات الخدمة الخاصة بك</p>
+              </div>
+              
             </div>
-            
           </div>
-        </div>
-      </section>
+        </section>
 
-      <!-- Filters and Search -->
-      <section class="container mx-auto px-4 py-6">
-        <div class="flex flex-col md:flex-row gap-4 items-center justify-between">
-          <!-- Status Filter Tabs -->
-          <div class="flex flex-wrap gap-2">
-            <button
-              v-for="status in taskStatuses"
-              :key="status.id"
-              @click="selectedStatus = status.id"
-              :class="[
-                'flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium transition-colors',
-                selectedStatus === status.id
-                  ? 'bg-blue-600 text-white'
-                  : 'bg-white text-gray-700 hover:bg-gray-50 border border-gray-200'
-              ]"
-            >
-              <span>{{ status.name }}</span>
-              <span class="bg-white/20 text-xs px-2 py-1 rounded-full">{{ status.count }}</span>
-            </button>
-          </div>
+        <!-- Filters and Search -->
+        <section class="container mx-auto px-4 py-6">
+          <div class="flex flex-col md:flex-row gap-4 items-center justify-between">
+            <!-- Status Filter Tabs -->
+            <div class="flex flex-wrap gap-2">
+              <button
+                v-for="status in taskStatuses"
+                :key="status.id"
+                @click="selectedStatus = status.id"
+                :class="[
+                  'flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium transition-colors',
+                  selectedStatus === status.id
+                    ? 'bg-blue-600 text-white'
+                    : 'bg-white text-gray-700 hover:bg-gray-50 border border-gray-200'
+                ]"
+              >
+                <span>{{ status.name }}</span>
+                <span class="bg-white/20 text-xs px-2 py-1 rounded-full">{{ status.count }}</span>
+              </button>
+            </div>
 
-          <!-- Search -->
-          <div class="relative">
-            <Icon name="material-symbols:search" class="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
-            <input
-              v-model="searchQuery"
-              type="text"
-              placeholder="Search tasks..."
-              class="pl-10 pr-4 py-2 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
-            >
+            <!-- Search -->
+            <div class="relative">
+              <Icon name="material-symbols:search" class="absolute right-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
+              <input
+                v-model="searchQuery"
+                type="text"
+                placeholder="البحث في المهام..."
+                class="pr-10 pl-4 py-2 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
+              >
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
       <!-- Tasks List -->
       <section class="container mx-auto px-4 pb-8">
@@ -368,7 +368,11 @@ const formatDateTime = (dateString: string) => {
                     </div>
                     <div class="flex items-center gap-1">
                       <Icon name="material-symbols:priority-high" :class="['w-4 h-4', getPriorityColor(task.priority)]" />
-                      <span :class="getPriorityColor(task.priority)">{{ task.priority }} priority</span>
+                      <span :class="getPriorityColor(task.priority)">
+                        {{ task.priority === 'high' ? 'أولوية عالية' :
+                           task.priority === 'medium' ? 'أولوية متوسطة' :
+                           task.priority === 'low' ? 'أولوية منخفضة' : '' }}
+                      </span>
                     </div>
                   </div>
                 </div>
@@ -376,7 +380,7 @@ const formatDateTime = (dateString: string) => {
                 <!-- Budget -->
                 <div class="text-right">
                   <p class="text-2xl font-bold text-gray-900">${{ task.budget }}</p>
-                  <p class="text-sm text-gray-600">Budget</p>
+                  <p class="text-sm text-gray-600">الميزانية</p>
                 </div>
               </div>
 
@@ -413,7 +417,7 @@ const formatDateTime = (dateString: string) => {
                     v-for="(image, index) in task.images"
                     :key="index"
                     :src="image"
-                    :alt="`Task image ${index + 1}`"
+                    :alt="`صورة المهمة ${index + 1}`"
                     class="w-24 h-24 object-cover rounded-lg flex-shrink-0"
                   >
                 </div>
@@ -424,15 +428,15 @@ const formatDateTime = (dateString: string) => {
                 <div class="flex items-center gap-4 text-sm text-gray-600">
                   <div class="flex items-center gap-1">
                     <Icon name="material-symbols:calendar-today" class="w-4 h-4" />
-                    <span>Created {{ formatDate(task.createdAt) }}</span>
+                    <span>تم الإنشاء {{ formatDate(task.createdAt) }}</span>
                   </div>
                   <div v-if="task.scheduledDate" class="flex items-center gap-1">
                     <Icon name="material-symbols:event" class="w-4 h-4" />
-                    <span>Scheduled {{ formatDateTime(task.scheduledDate) }}</span>
+                    <span>مجدول {{ formatDateTime(task.scheduledDate) }}</span>
                   </div>
                   <div v-if="task.messages > 0" class="flex items-center gap-1">
                     <Icon name="material-symbols:message" class="w-4 h-4" />
-                    <span>{{ task.messages }} messages</span>
+                    <span>{{ task.messages }} رسائل</span>
                   </div>
                 </div>
                 
@@ -442,10 +446,10 @@ const formatDateTime = (dateString: string) => {
                     :to="`/client/service-detail?id=${task.id}&provider=${task.provider?.id || 1}`"
                     class="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
                   >
-                    View Details
+                    عرض التفاصيل
                   </NuxtLink>
                   <button v-if="task.status === 'pending'" class="px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition-colors">
-                    Edit Task
+                    تعديل المهمة
                   </button>
                 </div>
               </div>
@@ -456,12 +460,12 @@ const formatDateTime = (dateString: string) => {
         <!-- Empty State -->
         <div v-if="filteredTasks.length === 0" class="text-center py-12">
           <Icon name="material-symbols:task-alt" class="w-16 h-16 text-gray-300 mx-auto mb-4" />
-          <h3 class="text-lg font-semibold text-gray-900 mb-2">No tasks found</h3>
+          <h3 class="text-lg font-semibold text-gray-900 mb-2">لم يتم العثور على مهام</h3>
           <p class="text-gray-600 mb-6">
-            {{ selectedStatus === 'all' ? 'You haven\'t created any tasks yet.' : `No ${selectedStatus} tasks found.` }}
+            {{ selectedStatus === 'all' ? 'لم تقم بإنشاء أي مهام حتى الآن.' : `لا توجد مهام ${selectedStatus}` }}
           </p>
           <button class="px-6 py-3 bg-blue-600 text-white rounded-xl font-medium hover:bg-blue-700 transition-colors">
-            Create New Task
+            إنشاء مهمة جديدة
           </button>
         </div>
       </section>

@@ -136,37 +136,11 @@ const saveProfile = async () => {
   }
 }
 
-// Save preferences
-const savePreferences = async () => {
-  isSaving.value = true
-  
-  try {
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 1000))
-    
-    // Update user preferences
-    if (user.value) {
-      user.value.preferences = { ...preferencesForm.value }
-      
-      // Update localStorage
-      localStorage.setItem('user', JSON.stringify(user.value))
-    }
-    
-    // Show success message
-    alert('Preferences updated successfully!')
-    
-  } catch {
-    alert('Error updating preferences. Please try again.')
-  } finally {
-    isSaving.value = false
-  }
-}
-
 // Mock task history data
 const taskHistory = ref([
   {
     id: 1,
-    title: 'Kitchen Faucet Repair',
+    title: 'إصلاح صنبور المطبخ',
     provider: 'Mike Johnson',
     date: '2024-01-15',
     status: 'completed',
@@ -175,7 +149,7 @@ const taskHistory = ref([
   },
   {
     id: 2,
-    title: 'Bathroom Tile Installation',
+    title: 'تركيب بلاط الحمام',
     provider: 'Sarah Wilson',
     date: '2024-01-10',
     status: 'completed',
@@ -184,7 +158,7 @@ const taskHistory = ref([
   },
   {
     id: 3,
-    title: 'Electrical Outlet Installation',
+    title: 'تركيب مقبس كهربائي',
     provider: 'David Brown',
     date: '2024-01-05',
     status: 'completed',
@@ -193,7 +167,7 @@ const taskHistory = ref([
   },
   {
     id: 4,
-    title: 'Fence Repair',
+    title: 'إصلاح السياج',
     provider: 'Tom Davis',
     date: '2024-01-20',
     status: 'in_progress',
@@ -202,7 +176,7 @@ const taskHistory = ref([
   },
   {
     id: 5,
-    title: 'Gutter Cleaning',
+    title: 'تنظيف المزاريب',
     provider: 'Alex Martinez',
     date: '2024-01-25',
     status: 'pending',
@@ -224,8 +198,8 @@ const userInitials = computed(() => {
 
 // Tab management
 const tabs = [
-  { id: 'personal', name: 'Personal Info', icon: 'material-symbols:person' },
-  { id: 'history', name: 'Task History', icon: 'material-symbols:history' },
+  { id: 'personal', name: 'المعلومات الشخصية', icon: 'material-symbols:person' },
+  { id: 'history', name: 'سجل المهام', icon: 'material-symbols:history' },
 ]
 
 // Status badge styles
@@ -237,11 +211,6 @@ const getStatusBadge = (status: string) => {
     cancelled: 'bg-red-100 text-red-800'
   }
   return badges[status as keyof typeof badges] || 'bg-gray-100 text-gray-800'
-}
-
-// Format status text
-const formatStatus = (status: string) => {
-  return status.replace('_', ' ').replace(/\b\w/g, l => l.toUpperCase())
 }
 
 // Handle logout
@@ -262,14 +231,14 @@ const handleLogout = () => {
             <NuxtLink to="/client/my-tasks" class="text-gray-600 hover:text-gray-900">
               <Icon name="material-symbols:arrow-back" class="w-6 h-6" />
             </NuxtLink>
-            <h1 class="text-2xl font-bold text-gray-900">My Profile</h1>
+            <h1 class="text-2xl font-bold text-gray-900">ملفي الشخصي</h1>
           </div>
           <button
             @click="handleLogout"
             class="flex items-center px-4 py-2 text-sm text-gray-700 hover:text-red-600 transition-colors"
           >
-            <Icon name="material-symbols:logout" class="w-4 h-4 mr-2" />
-            Logout
+            <Icon name="material-symbols:logout" class="w-4 h-4 ml-2" />
+            تسجيل الخروج
           </button>
         </div>
       </div>
@@ -306,11 +275,11 @@ const handleLogout = () => {
             <div class="grid grid-cols-2 gap-4 mt-6 pt-6 border-t">
               <div class="text-center">
                 <div class="text-2xl font-bold text-blue-600">{{ user?.totalTasks }}</div>
-                <div class="text-xs text-gray-500">Total Tasks</div>
+                <div class="text-xs text-gray-500">إجمالي المهام</div>
               </div>
               <div class="text-center">
                 <div class="text-2xl font-bold text-green-600">{{ completionRate }}%</div>
-                <div class="text-xs text-gray-500">Completion Rate</div>
+                <div class="text-xs text-gray-500">معدل الإنجاز</div>
               </div>
             </div>
             
@@ -321,7 +290,7 @@ const handleLogout = () => {
                   <Icon name="material-symbols:star" class="w-5 h-5 text-yellow-400 fill-current" />
                   <span class="text-lg font-semibold text-gray-900 ml-1">{{ user?.rating }}</span>
                 </div>
-                <span class="text-gray-500 text-sm">Customer Rating</span>
+                <span class="text-gray-500 text-sm">تقييم العميل</span>
               </div>
             </div>
           </div>
@@ -353,14 +322,14 @@ const handleLogout = () => {
           <div v-if="activeTab === 'personal'" class="bg-white rounded-2xl shadow-sm">
             <div class="p-6 border-b">
               <div class="flex items-center justify-between">
-                <h3 class="text-lg font-semibold text-gray-900">Personal Information</h3>
+                <h3 class="text-lg font-semibold text-gray-900">المعلومات الشخصية</h3>
                 <button
                   v-if="!isEditing"
                   @click="startEditing"
                   class="flex items-center px-4 py-2 text-sm text-blue-600 hover:text-blue-700 transition-colors"
                 >
-                  <Icon name="material-symbols:edit" class="w-4 h-4 mr-2" />
-                  Edit
+                  <Icon name="material-symbols:edit" class="w-4 h-4 ml-2" />
+                  تعديل
                 </button>
               </div>
             </div>
@@ -369,7 +338,7 @@ const handleLogout = () => {
               <form v-if="isEditing" @submit.prevent="saveProfile" class="space-y-6">
                 <!-- Name -->
                 <div>
-                  <label class="block text-sm font-semibold text-gray-900 mb-2">Full Name</label>
+                  <label class="block text-sm font-semibold text-gray-900 mb-2">الاسم الكامل</label>
                   <input
                     v-model="editForm.name"
                     type="text"
@@ -380,7 +349,7 @@ const handleLogout = () => {
 
                 <!-- Email -->
                 <div>
-                  <label class="block text-sm font-semibold text-gray-900 mb-2">Email Address</label>
+                  <label class="block text-sm font-semibold text-gray-900 mb-2">البريد الإلكتروني</label>
                   <input
                     v-model="editForm.email"
                     type="email"
@@ -391,7 +360,7 @@ const handleLogout = () => {
 
                 <!-- Phone -->
                 <div>
-                  <label class="block text-sm font-semibold text-gray-900 mb-2">Phone Number</label>
+                  <label class="block text-sm font-semibold text-gray-900 mb-2">رقم الهاتف</label>
                   <input
                     v-model="editForm.phone"
                     type="tel"
@@ -401,7 +370,7 @@ const handleLogout = () => {
 
                 <!-- Address -->
                 <div>
-                  <label class="block text-sm font-semibold text-gray-900 mb-2">Address</label>
+                  <label class="block text-sm font-semibold text-gray-900 mb-2">العنوان</label>
                   <textarea
                     v-model="editForm.address"
                     rows="3"
@@ -419,16 +388,16 @@ const handleLogout = () => {
                     <Icon 
                       v-if="isSaving" 
                       name="material-symbols:progress-activity" 
-                      class="animate-spin w-4 h-4 mr-2" 
+                      class="animate-spin w-4 h-4 ml-2" 
                     />
-                    {{ isSaving ? 'Saving...' : 'Save Changes' }}
+                    {{ isSaving ? 'جارٍ الحفظ...' : 'حفظ التغييرات' }}
                   </button>
                   <button
                     type="button"
                     @click="cancelEditing"
                     class="px-6 py-3 border border-gray-300 text-gray-700 rounded-xl hover:bg-gray-50 transition-colors"
                   >
-                    Cancel
+                    إلغاء
                   </button>
                 </div>
               </form>
@@ -437,25 +406,25 @@ const handleLogout = () => {
               <div v-else class="space-y-6">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
-                    <label class="block text-sm font-semibold text-gray-900 mb-2">Full Name</label>
+                    <label class="block text-sm font-semibold text-gray-900 mb-2">الاسم الكامل</label>
                     <p class="text-gray-700">{{ user?.name }}</p>
                   </div>
                   <div>
-                    <label class="block text-sm font-semibold text-gray-900 mb-2">Email Address</label>
+                    <label class="block text-sm font-semibold text-gray-900 mb-2">البريد الإلكتروني</label>
                     <p class="text-gray-700">{{ user?.email }}</p>
                   </div>
                   <div>
-                    <label class="block text-sm font-semibold text-gray-900 mb-2">Phone Number</label>
-                    <p class="text-gray-700">{{ user?.phone || 'Not provided' }}</p>
+                    <label class="block text-sm font-semibold text-gray-900 mb-2">رقم الهاتف</label>
+                    <p class="text-gray-700">{{ user?.phone || 'غير متوفر' }}</p>
                   </div>
                   <div>
-                    <label class="block text-sm font-semibold text-gray-900 mb-2">Member Since</label>
+                    <label class="block text-sm font-semibold text-gray-900 mb-2">عضو منذ</label>
                     <p class="text-gray-700">{{ user?.memberSince }}</p>
                   </div>
                 </div>
                 <div>
-                  <label class="block text-sm font-semibold text-gray-900 mb-2">Address</label>
-                  <p class="text-gray-700">{{ user?.address || 'Not provided' }}</p>
+                  <label class="block text-sm font-semibold text-gray-900 mb-2">العنوان</label>
+                  <p class="text-gray-700">{{ user?.address || 'غير متوفر' }}</p>
                 </div>
               </div>
             </div>
@@ -465,8 +434,8 @@ const handleLogout = () => {
           <!-- Task History Tab -->
           <div v-if="activeTab === 'history'" class="bg-white rounded-2xl shadow-sm">
             <div class="p-6 border-b">
-              <h3 class="text-lg font-semibold text-gray-900">Task History</h3>
-              <p class="text-gray-600 text-sm mt-1">View all your completed and ongoing tasks</p>
+              <h3 class="text-lg font-semibold text-gray-900">سجل المهام</h3>
+              <p class="text-gray-600 text-sm mt-1">عرض جميع المهام المكتملة والجارية</p>
             </div>
 
             <div class="p-6">
@@ -484,10 +453,13 @@ const handleLogout = () => {
                           'px-2 py-1 text-xs font-medium rounded-full',
                           getStatusBadge(task.status)
                         ]">
-                          {{ formatStatus(task.status) }}
+                          {{ task.status === 'completed' ? 'مكتمل' : 
+                             task.status === 'in_progress' ? 'قيد التنفيذ' :
+                             task.status === 'pending' ? 'قيد الانتظار' :
+                             task.status === 'cancelled' ? 'ملغي' : '' }}
                         </span>
                       </div>
-                      <p class="text-sm text-gray-600 mb-1">Provider: {{ task.provider }}</p>
+                      <p class="text-sm text-gray-600 mb-1">مقدم الخدمة: {{ task.provider }}</p>
                       <p class="text-sm text-gray-500">{{ task.date }}</p>
                     </div>
                     <div class="text-right">

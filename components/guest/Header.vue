@@ -4,7 +4,7 @@ import { ref, computed, onMounted } from 'vue'
 const isMenuOpen = ref(false)
 const isLoginModalOpen = ref(false)
 
-// Authentication state
+// حالة المصادقة
 const isLoggedIn = ref(false)
 const user = ref<{
   id: number
@@ -13,7 +13,7 @@ const user = ref<{
   avatar: string
 } | null>(null)
 
-// Login form state
+// حالة نموذج تسجيل الدخول
 const email = ref('')
 const password = ref('')
 const rememberMe = ref(false)
@@ -21,16 +21,16 @@ const isLoading = ref(false)
 const showPassword = ref(false)
 const errorMessage = ref('')
 
-// Form validation
+// التحقق من صحة النموذج
 const emailError = ref('')
 const passwordError = ref('')
 
-// Check authentication status on mount
+// التحقق من حالة المصادقة عند التحميل
 onMounted(() => {
   checkAuthStatus()
 })
 
-// Check if user is authenticated
+// التحقق مما إذا كان المستخدم مصادقًا
 const checkAuthStatus = () => {
   const loggedIn = localStorage.getItem('isLoggedIn')
   const userType = localStorage.getItem('userType')
@@ -40,7 +40,7 @@ const checkAuthStatus = () => {
     isLoggedIn.value = true
     user.value = JSON.parse(userData)
 
-    // Redirect providers away from client pages
+    // إعادة توجيه مقدمي الخدمات بعيدًا عن صفحات العملاء
     const route = useRoute()
     if (userType === 'provider' && route.path.startsWith('/client/')) {
       navigateTo('/provider/dashboard')
@@ -48,14 +48,14 @@ const checkAuthStatus = () => {
   }
 }
 
-// Validate email
+// التحقق من صحة البريد الإلكتروني
 const validateEmail = () => {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
   if (!email.value) {
-    emailError.value = 'Email is required'
+    emailError.value = 'البريد الإلكتروني مطلوب'
     return false
   } else if (!emailRegex.test(email.value)) {
-    emailError.value = 'Please enter a valid email address'
+    emailError.value = 'يرجى إدخال عنوان بريد إلكتروني صالح'
     return false
   } else {
     emailError.value = ''
@@ -63,13 +63,13 @@ const validateEmail = () => {
   }
 }
 
-// Validate password
+// التحقق من صحة كلمة المرور
 const validatePassword = () => {
   if (!password.value) {
-    passwordError.value = 'Password is required'
+    passwordError.value = 'كلمة المرور مطلوبة'
     return false
   } else if (password.value.length < 6) {
-    passwordError.value = 'Password must be at least 6 characters'
+    passwordError.value = 'يجب أن تتكون كلمة المرور من 6 أحرف على الأقل'
     return false
   } else {
     passwordError.value = ''
@@ -77,9 +77,9 @@ const validatePassword = () => {
   }
 }
 
-// Handle form submission
+// معالجة تقديم النموذج
 const handleLogin = async () => {
-  // Validate form
+  // التحقق من صحة النموذج
   const isEmailValid = validateEmail()
   const isPasswordValid = validatePassword()
 
@@ -91,39 +91,39 @@ const handleLogin = async () => {
   errorMessage.value = ''
 
   try {
-    // Simulate API call
+    // محاكاة استدعاء API
     await new Promise(resolve => setTimeout(resolve, 1500))
 
-    // Mock authentication - in real app, this would be an API call
+    // محاكاة المصادقة - في التطبيق الحقيقي، سيكون هذا استدعاء API
     if (email.value === 'demo@handyit.com' && password.value === 'password') {
-      // Store user session (in real app, use proper authentication)
+      // تخزين جلسة المستخدم (في التطبيق الحقيقي، استخدم المصادقة المناسبة)
       localStorage.setItem('isLoggedIn', 'true')
       const userData = {
         id: 1,
-        name: 'John Doe',
+        name: 'جون دو',
         email: email.value,
         avatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop'
       }
       localStorage.setItem('user', JSON.stringify(userData))
 
-      // Update reactive state
+      // تحديث الحالة التفاعلية
       isLoggedIn.value = true
       user.value = userData
 
-      // Close modal and reset form
+      // إغلاق النافذة المنبثقة وإعادة تعيين النموذج
       isLoginModalOpen.value = false
       resetForm()
     } else {
-      errorMessage.value = 'Invalid email or password. Try demo@handyit.com / password'
+      errorMessage.value = 'بريد إلكتروني أو كلمة مرور غير صالحة. جرب demo@handyit.com / password'
     }
   } catch {
-    errorMessage.value = 'An error occurred. Please try again.'
+    errorMessage.value = 'حدث خطأ. يرجى المحاولة مرة أخرى.'
   } finally {
     isLoading.value = false
   }
 }
 
-// Handle logout
+// معالجة تسجيل الخروج
 const handleLogout = () => {
   localStorage.removeItem('isLoggedIn')
   localStorage.removeItem('userType')
@@ -131,7 +131,7 @@ const handleLogout = () => {
   isLoggedIn.value = false
   user.value = null
 
-  // Redirect to home if on protected page
+  // إعادة التوجيه إلى الصفحة الرئيسية إذا كان في صفحة محمية
   const router = useRouter()
   const route = useRoute()
   if (route.path.startsWith('/client/') || route.path.startsWith('/provider/')) {
@@ -139,7 +139,7 @@ const handleLogout = () => {
   }
 }
 
-// Reset form
+// إعادة تعيين النموذج
 const resetForm = () => {
   email.value = ''
   password.value = ''
@@ -150,57 +150,57 @@ const resetForm = () => {
   showPassword.value = false
 }
 
-// Toggle password visibility
+// تبديل رؤية كلمة المرور
 const togglePasswordVisibility = () => {
   showPassword.value = !showPassword.value
 }
 
-// Open login modal
+// فتح نافذة تسجيل الدخول
 const openLoginModal = () => {
   isLoginModalOpen.value = true
   resetForm()
 }
 
-// Close login modal
+// إغلاق نافذة تسجيل الدخول
 const closeLoginModal = () => {
   isLoginModalOpen.value = false
   resetForm()
 }
 
-// Social login handlers
+// معالجات تسجيل الدخول الاجتماعي
 const handleGoogleLogin = () => {
-  // Implement Google OAuth
-  console.log('Google login')
+  // تنفيذ مصادقة Google
+  console.log('تسجيل الدخول عبر Google')
 }
 
 const handleFacebookLogin = () => {
-  // Implement Facebook OAuth
-  console.log('Facebook login')
+  // تنفيذ مصادقة Facebook
+  console.log('تسجيل الدخول عبر Facebook')
 }
 
-// Dynamic navigation links based on user type
+// روابط التنقل الديناميكية بناءً على نوع المستخدم
 const navigationLinks = computed(() => {
   const userType = localStorage.getItem('userType')
 
   if (userType === 'provider') {
     return [
       {
-        name: 'Home',
+        name: 'الرئيسية',
         path: '/',
         active: false
       },
       {
-        name: 'Dashboard',
+        name: 'لوحة التحكم',
         path: '/provider/dashboard',
         active: false
       },
       {
-        name: 'My Services',
+        name: 'خدماتي',
         path: '/provider/my-services',
         active: false
       },
       {
-        name: 'My Profile',
+        name: 'ملفي الشخصي',
         path: '/provider/profile',
         active: false
       }
@@ -208,22 +208,22 @@ const navigationLinks = computed(() => {
   } else {
     return [
       {
-        name: 'Home',
+        name: 'الرئيسية',
         path: '/',
         active: false
       },
       {
-        name: 'Service providers',
+        name: 'مقدمو الخدمات',
         path: '/client/service-providers',
         active: false
       },
       {
-        name: 'My Tasks',
+        name: 'مهامي',
         path: '/client/my-tasks',
         active: false
       },
       {
-        name: 'My Profile',
+        name: 'ملفي الشخصي',
         path: '/client/profile',
         active: false
       }
@@ -231,12 +231,12 @@ const navigationLinks = computed(() => {
   }
 })
 
-// Check if link is active
+// التحقق مما إذا كان الرابط نشطًا
 const isLinkActive = (_path: string) => {
   return useRoute().path === _path
 }
 
-// User initials for avatar fallback
+// الأحرف الأولى للمستخدم للصورة الاحتياطية
 const userInitials = computed(() => {
   if (!user.value) return ''
   return user.value.name.split(' ').map(n => n[0]).join('').toUpperCase()
@@ -247,15 +247,15 @@ const userInitials = computed(() => {
   <header class="w-full bg-white shadow-sm">
     <div class="container mx-auto px-4">
       <div class="flex items-center justify-between py-4">
-        <!-- Logo -->
+        <!-- الشعار -->
         <div class="flex items-center">
           <div class="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center mr-2">
             <Icon name="material-symbols:handyman" class="w-5 h-5 text-white" />
           </div>
-          <h1 class="text-xl font-medium text-gray-900">HandyIT</h1>
+          <h1 class="text-xl font-medium text-gray-900">هاندي آي تي</h1>
         </div>
 
-        <!-- Desktop Navigation -->
+        <!-- التنقل في سطح المكتب -->
         <nav class="hidden lg:flex items-center space-x-8">
           <NuxtLink v-for="link in navigationLinks" :key="link.path" :to="link.path" :class="[
             'transition-colors',
@@ -265,16 +265,16 @@ const userInitials = computed(() => {
           </NuxtLink>
         </nav>
 
-        <!-- Right side items -->
+        <!-- العناصر في الجانب الأيمن -->
         <div class="flex items-center space-x-4">
           <button class="hidden md:flex items-center text-gray-700 hover:text-gray-900">
-            EN
-            <Icon name="material-symbols:language" class="w-5 h-5 ml-1" />
+            العربية
+            <Icon name="material-symbols:language" class="w-5 h-5 mr-1" />
           </button>
 
-          <!-- Authentication Section -->
+          <!-- قسم المصادقة -->
           <div v-if="isLoggedIn && user" class="hidden md:flex items-center space-x-3">
-            <!-- User Info -->
+            <!-- معلومات المستخدم -->
             <div class="flex items-center space-x-2">
               <div class="text-right">
                 <p class="text-sm font-medium text-gray-900">{{ user.name }}</p>
@@ -288,47 +288,47 @@ const userInitials = computed(() => {
               </div>
             </div>
 
-            <!-- Logout Button -->
+            <!-- زر تسجيل الخروج -->
             <button @click="handleLogout"
               class="flex items-center px-3 py-2 text-sm text-gray-700 hover:text-red-600 transition-colors">
-              <Icon name="material-symbols:logout" class="w-4 h-4 mr-1" />
-              Logout
+              <Icon name="material-symbols:logout" class="w-4 h-4 ml-1" />
+              تسجيل الخروج
             </button>
           </div>
 
-          <!-- Login Button (when not authenticated) -->
+          <!-- زر تسجيل الدخول (عندما لا يكون مصادقًا) -->
           <NuxtLink
             v-else
             to="/client/auth/login"
             class="hidden md:inline-flex items-center px-4 py-2 text-gray-700 hover:text-gray-900 transition-colors font-medium"
             @click="openLoginModal">
-            Login
-            <div class="ml-2 w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center">
+            تسجيل الدخول
+            <div class="mr-2 w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center">
               <Icon name="material-symbols:person" class="w-5 h-5 text-white" />
             </div>
           </NuxtLink>
 
-          <!-- Mobile menu button -->
+          <!-- زر القائمة المتنقلة -->
           <button @click="isMenuOpen = !isMenuOpen" class="lg:hidden p-2 rounded-md text-gray-700">
             <Icon name="material-symbols:menu" class="w-6 h-6" />
           </button>
         </div>
       </div>
 
-      <!-- Search Bar Section -->
+      <!-- قسم شريط البحث -->
     </div>
 
-    <!-- Mobile Menu -->
+    <!-- القائمة المتنقلة -->
     <div v-if="isMenuOpen" class="lg:hidden fixed inset-0 z-50 bg-white">
       <div class="p-4">
         <div class="flex justify-between items-center mb-8">
-          <h2 class="text-xl font-bold">Menu</h2>
+          <h2 class="text-xl font-bold">القائمة</h2>
           <button @click="isMenuOpen = false">
             <Icon name="material-symbols:close" class="w-6 h-6" />
           </button>
         </div>
 
-        <!-- User info in mobile menu -->
+        <!-- معلومات المستخدم في القائمة المتنقلة -->
         <div v-if="isLoggedIn && user" class="mb-6 p-4 bg-gray-50 rounded-xl">
           <div class="flex items-center space-x-3">
             <img v-if="user.avatar" :src="user.avatar" :alt="user.name" class="w-12 h-12 rounded-full object-cover">
@@ -351,88 +351,88 @@ const userInitials = computed(() => {
           </NuxtLink>
           <hr class="my-4">
 
-          <!-- Mobile auth actions -->
+          <!-- إجراءات المصادقة المتنقلة -->
           <button v-if="isLoggedIn" @click="handleLogout(); isMenuOpen = false"
-            class="block w-full text-left py-2 text-red-600 font-medium">
-            <Icon name="material-symbols:logout" class="w-4 h-4 mr-2 inline" />
-            Logout
+            class="block w-full text-right py-2 text-red-600 font-medium">
+            <Icon name="material-symbols:logout" class="w-4 h-4 ml-2 inline" />
+            تسجيل الخروج
           </button>
           <button v-else @click="openLoginModal(); isMenuOpen = false"
-            class="block w-full text-left py-2 text-blue-600 font-medium">
-            Login
+            class="block w-full text-right py-2 text-blue-600 font-medium">
+            تسجيل الدخول
           </button>
         </nav>
       </div>
     </div>
 
-    <!-- Login Modal -->
+    <!-- نافذة تسجيل الدخول -->
     <div v-if="isLoginModalOpen" class="fixed inset-0 z-50 overflow-y-auto" @click.self="closeLoginModal">
       <div class="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
-        <!-- Background overlay -->
+        <!-- خلفية التراكب -->
         <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
 
-        <!-- Modal content -->
+        <!-- محتوى النافذة -->
         <div
-          class="inline-block align-bottom bg-white rounded-2xl text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-md sm:w-full">
+          class="inline-block align-bottom bg-white rounded-2xl text-right overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-md sm:w-full">
           <div class="bg-white px-6 pt-6 pb-4">
-            <!-- Modal Header -->
+            <!-- رأس النافذة -->
             <div class="flex justify-between items-center mb-6">
               <div class="flex items-center">
-                <div class="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center mr-3">
+                <div class="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center ml-3">
                   <Icon name="material-symbols:handyman" class="w-5 h-5 text-white" />
                 </div>
-                <h3 class="text-lg font-medium text-gray-900">Sign in to HandyIT</h3>
+                <h3 class="text-lg font-medium text-gray-900">تسجيل الدخول إلى هاندي آي تي</h3>
               </div>
               <button @click="closeLoginModal" class="text-gray-400 hover:text-gray-600">
                 <Icon name="material-symbols:close" class="w-6 h-6" />
               </button>
             </div>
 
-            <!-- Demo Credentials -->
+            <!-- بيانات اعتماد العرض التجريبي -->
             <div class="mb-6 p-4 bg-blue-50 rounded-xl border border-blue-200">
-              <h4 class="text-sm font-semibold text-blue-900 mb-2">Demo Credentials</h4>
+              <h4 class="text-sm font-semibold text-blue-900 mb-2">بيانات اعتماد العرض التجريبي</h4>
               <p class="text-sm text-blue-700">
-                <strong>Email:</strong> demo@handyit.com<br>
-                <strong>Password:</strong> password
+                <strong>البريد الإلكتروني:</strong> demo@handyit.com<br>
+                <strong>كلمة المرور:</strong> password
               </p>
             </div>
 
-            <!-- Error Message -->
+            <!-- رسالة الخطأ -->
             <div v-if="errorMessage" class="mb-6 p-4 bg-red-50 rounded-xl border border-red-200">
               <p class="text-sm text-red-700">{{ errorMessage }}</p>
             </div>
 
-            <!-- Login Form -->
+            <!-- نموذج تسجيل الدخول -->
             <form @submit.prevent="handleLogin" class="space-y-6">
-              <!-- Email Field -->
+              <!-- حقل البريد الإلكتروني -->
               <div>
                 <label for="modal-email" class="block text-sm font-semibold text-gray-900 mb-2">
-                  Email address
+                  عنوان البريد الإلكتروني
                 </label>
                 <div class="relative">
                   <input id="modal-email" v-model="email" type="email" autocomplete="email" :class="[
                     'w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-blue-500 outline-none transition-colors',
                     emailError ? 'border-red-300 focus:border-red-500' : 'border-gray-300 focus:border-blue-500'
-                  ]" placeholder="Enter your email" @blur="validateEmail" @input="emailError = ''">
+                  ]" placeholder="أدخل بريدك الإلكتروني" @blur="validateEmail" @input="emailError = ''">
                   <Icon name="material-symbols:email"
-                    class="absolute right-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
+                    class="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
                 </div>
                 <p v-if="emailError" class="mt-1 text-sm text-red-600">{{ emailError }}</p>
               </div>
 
-              <!-- Password Field -->
+              <!-- حقل كلمة المرور -->
               <div>
                 <label for="modal-password" class="block text-sm font-semibold text-gray-900 mb-2">
-                  Password
+                  كلمة المرور
                 </label>
                 <div class="relative">
                   <input id="modal-password" v-model="password" :type="showPassword ? 'text' : 'password'"
                     autocomplete="current-password" :class="[
-                      'w-full px-4 py-3 pr-12 border rounded-xl focus:ring-2 focus:ring-blue-500 outline-none transition-colors',
+                      'w-full px-4 py-3 pl-12 border rounded-xl focus:ring-2 focus:ring-blue-500 outline-none transition-colors',
                       passwordError ? 'border-red-300 focus:border-red-500' : 'border-gray-300 focus:border-blue-500'
-                    ]" placeholder="Enter your password" @blur="validatePassword" @input="passwordError = ''">
+                    ]" placeholder="أدخل كلمة المرور" @blur="validatePassword" @input="passwordError = ''">
                   <button type="button" @click="togglePasswordVisibility"
-                    class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors">
+                    class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors">
                     <Icon :name="showPassword ? 'material-symbols:visibility-off' : 'material-symbols:visibility'"
                       class="w-5 h-5" />
                   </button>
@@ -440,67 +440,67 @@ const userInitials = computed(() => {
                 <p v-if="passwordError" class="mt-1 text-sm text-red-600">{{ passwordError }}</p>
               </div>
 
-              <!-- Remember Me & Forgot Password -->
+              <!-- تذكرني ونسيت كلمة المرور -->
               <div class="flex items-center justify-between">
                 <div class="flex items-center">
                   <input id="modal-remember-me" v-model="rememberMe" type="checkbox"
                     class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded">
-                  <label for="modal-remember-me" class="ml-2 block text-sm text-gray-700">
-                    Remember me
+                  <label for="modal-remember-me" class="mr-2 block text-sm text-gray-700">
+                    تذكرني
                   </label>
                 </div>
 
                 <div class="text-sm">
                   <a href="#" class="font-medium text-blue-600 hover:text-blue-500 transition-colors">
-                    Forgot password?
+                    نسيت كلمة المرور؟
                   </a>
                 </div>
               </div>
 
-              <!-- Login Button -->
+              <!-- زر تسجيل الدخول -->
               <div>
                 <button type="submit" :disabled="isLoading"
                   class="w-full flex justify-center items-center py-3 px-4 border border-transparent rounded-xl shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed transition-colors">
                   <Icon v-if="isLoading" name="material-symbols:progress-activity"
-                    class="animate-spin -ml-1 mr-2 h-4 w-4" />
-                  {{ isLoading ? 'Signing in...' : 'Sign in' }}
+                    class="animate-spin -mr-1 ml-2 h-4 w-4" />
+                  {{ isLoading ? 'جاري تسجيل الدخول...' : 'تسجيل الدخول' }}
                 </button>
               </div>
             </form>
 
-            <!-- Social Login -->
+            <!-- تسجيل الدخول الاجتماعي -->
             <div class="mt-6">
               <div class="relative">
                 <div class="absolute inset-0 flex items-center">
                   <div class="w-full border-t border-gray-300" />
                 </div>
                 <div class="relative flex justify-center text-sm">
-                  <span class="px-2 bg-white text-gray-500">Or continue with</span>
+                  <span class="px-2 bg-white text-gray-500">أو المتابعة باستخدام</span>
                 </div>
               </div>
 
               <div class="mt-6 grid grid-cols-2 gap-3">
                 <button @click="handleGoogleLogin"
                   class="w-full inline-flex justify-center items-center py-3 px-4 border border-gray-300 rounded-xl shadow-sm bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors">
-                  <Icon name="material-symbols:google" class="w-5 h-5 mr-2" />
-                  Google
+                  <Icon name="material-symbols:google" class="w-5 h-5 ml-2" />
+                  جوجل
                 </button>
 
                 <button @click="handleFacebookLogin"
                   class="w-full inline-flex justify-center items-center py-3 px-4 border border-gray-300 rounded-xl shadow-sm bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors">
-                  <Icon name="material-symbols:facebook" class="w-5 h-5 mr-2" />
-                  Facebook
+                  <Icon name="material-symbols:facebook" class="w-5 h-5 ml-2" />
+                  فيسبوك
                 </button>
               </div>
             </div>
 
-            <!-- Register Link -->
+            <!-- رابط التسجيل -->
             <div class="mt-6 text-center">
               <p class="text-sm text-gray-600">
-                Don't have an account?
+                ليس لديك حساب؟
                 <NuxtLink to="/client/auth/register"
                   class="font-medium text-blue-600 hover:text-blue-500 transition-colors" @click="closeLoginModal">
-                  Sign up
+                  إنشاء حساب
                 </NuxtLink>
               </p>
             </div>
