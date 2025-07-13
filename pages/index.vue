@@ -236,15 +236,13 @@ const isMenuOpen = ref(false)
 
 <template>
   <div class="min-h-screen bg-gray-50">
-    <!-- الرأس -->
     <GuestHeader />
     <div class="py-4 sm:py-6 lg:py-8 border-t border-gray-100">
         <div class="max-w-4xl mx-auto px-4">
-          <!-- شريط البحث الرئيسي -->
-          <div class="bg-white rounded-full shadow-lg border border-gray-200 hover:shadow-xl transition-shadow duration-300">
-            <!-- تخطيط سطح المكتب -->
+          <div class="bg-white shadow-lg border border-gray-200 hover:shadow-xl transition-shadow duration-300 transition-all duration-300 ease-in-out"
+          :class="{'rounded-none': isMenuOpen, 'rounded-full': !isMenuOpen}"
+          >
             <div class="hidden lg:flex">
-              <!-- موقعك -->
               <div class="flex-1 px-6 py-3 border-r border-gray-200">
                 <div class="cursor-pointer">
                   <div class="text-xs font-semibold text-gray-900 mb-1">موقعك</div>
@@ -257,7 +255,6 @@ const isMenuOpen = ref(false)
                 </div>
               </div>
               
-              <!-- التاريخ المطلوب -->
               <div class="flex-1 px-6 py-3 border-r border-gray-200">
                 <div class="cursor-pointer">
                   <div class="text-xs font-semibold text-gray-900 mb-1">التاريخ المطلوب</div>
@@ -270,7 +267,6 @@ const isMenuOpen = ref(false)
                 </div>
               </div>
               
-              <!-- الفئة -->
               <div class="flex-1 px-6 py-3">
                 <div class="cursor-pointer">
                   <div class="text-xs font-semibold text-gray-900 mb-1">الفئة</div>
@@ -291,7 +287,6 @@ const isMenuOpen = ref(false)
                 </div>
               </div>
               
-              <!-- زر البحث -->
               <div class="flex items-center justify-center pr-2">
                 <button class="bg-blue-600 hover:bg-blue-700 text-white p-4 rounded-full transition-colors duration-200 shadow-md hover:shadow-lg">
                   <Icon name="material-symbols:search"/>
@@ -299,9 +294,7 @@ const isMenuOpen = ref(false)
               </div>
             </div>
 
-            <!-- تخطيط الجوال/التابلت -->
             <div class="lg:hidden">
-              <!-- شريط البحث المطوي -->
               <div class="flex items-center justify-between p-4" @click="isMenuOpen = !isMenuOpen">
                 <div class="flex-1">
                   <div class="text-sm font-semibold text-gray-900">هل تحتاج مساعدة في شيء ما؟</div>
@@ -325,9 +318,7 @@ const isMenuOpen = ref(false)
                 </div>
               </div>
 
-              <!-- البحث الموسع للجوال -->
               <div v-if="isMenuOpen" class="border-t border-gray-200 p-4 space-y-4">
-                <!-- موقعك -->
                 <div>
                   <label class="block text-sm font-semibold text-gray-900 mb-2">موقعك</label>
                   <input 
@@ -338,7 +329,6 @@ const isMenuOpen = ref(false)
                   >
                 </div>
                 
-                <!-- التاريخ المطلوب -->
                 <div>
                   <label class="block text-sm font-semibold text-gray-900 mb-2">التاريخ المطلوب</label>
                   <input 
@@ -348,7 +338,6 @@ const isMenuOpen = ref(false)
                   >
                 </div>
                 
-                <!-- الفئة -->
                 <div>
                   <label class="block text-sm font-semibold text-gray-900 mb-2">الفئة</label>
                   <select 
@@ -367,7 +356,6 @@ const isMenuOpen = ref(false)
                   </select>
                 </div>
                 
-                <!-- زر البحث -->
                 <button class="w-full bg-blue-600 hover:bg-blue-700 text-white py-4 rounded-lg transition-colors duration-200 font-semibold flex items-center justify-center">
                   <Icon name="material-symbols:search" class="w-5 h-5 ml-2" />
                   ابحث عن عامل صيانة
@@ -378,17 +366,12 @@ const isMenuOpen = ref(false)
         </div>
       </div>
 
-    <!-- قسم العروض -->
     <GuestPromoSection />
     
-    <!-- المحتوى الرئيسي -->
     <section class="container mx-auto px-4 py-8">
-      <!-- تنقل الفئات مع تبديل العملة -->
       <div class="mb-8">
-        <!-- أيقونات الفئات -->
         <div class="flex items-center justify-between mb-6 w-full">
           <div class="flex items-center gap-3 relative overflow-hidden w-full">
-            <!-- زر السابق -->
             <button 
               class="p-2 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors flex-shrink-0 z-10"
               @click="previousCategories"
@@ -396,7 +379,6 @@ const isMenuOpen = ref(false)
               <Icon name="material-symbols:chevron-right" class="w-6 h-6 text-gray-600" />
             </button>
             
-            <!-- حاوية أزرار الفئات -->
             <div class="relative overflow-hidden" style="width: 720px;">
               <div 
                 ref="categoryCarouselRef"
@@ -429,7 +411,6 @@ const isMenuOpen = ref(false)
               </div>
             </div>
             
-            <!-- زر التالي مع السهم -->
             <button 
               @click="advanceCategories"
               class="p-2 rounded-full bg-blue-600 hover:bg-blue-700 transition-colors flex-shrink-0 z-10"
@@ -439,7 +420,6 @@ const isMenuOpen = ref(false)
           </div>
         </div>
         
-        <!-- الفئات الفرعية -->
         <div class="flex gap-3 overflow-x-auto scrollbar-hide">
           <button 
             v-for="subCategory in currentSubcategories" 
@@ -457,7 +437,6 @@ const isMenuOpen = ref(false)
         </div>
       </div>
       
-      <!-- عرض العمال -->
       <div class="relative">
         <div ref="carouselRef" class="flex gap-4 overflow-x-auto scrollbar-hide scroll-smooth mb-6"
           style="scroll-snap-type: x mandatory;">
@@ -470,9 +449,7 @@ const isMenuOpen = ref(false)
           </div>
         </div>
         
-        <!-- شريط التقدم والتنقل -->
         <div class="flex items-center justify-between">
-          <!-- شريط التقدم -->
           <div class="flex-1 ml-4">
             <div class="w-full bg-gray-200 rounded-full h-2">
               <div class="bg-blue-600 h-2 rounded-full transition-all duration-300"
@@ -480,7 +457,6 @@ const isMenuOpen = ref(false)
             </div>
           </div>
           
-          <!-- أزرار التنقل -->
           <div class="flex items-center gap-2">
             <button :class="[
               'p-2 rounded-full transition-colors',
@@ -512,16 +488,12 @@ const isMenuOpen = ref(false)
 </template>
 
 <style scoped>
-/* إخفاء شريط التمرير لكروم وسفاري وأوبرا */
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
 }
 
-/* إخفاء شريط التمرير لإنترنت إكسبلورر وإيدج وفايرفوكس */
 .scrollbar-hide {
   -ms-overflow-style: none;
-  /* إنترنت إكسبلورر وإيدج */
   scrollbar-width: none;
-  /* فايرفوكس */
 }
 </style>

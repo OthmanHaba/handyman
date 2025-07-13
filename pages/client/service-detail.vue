@@ -574,6 +574,9 @@ onMounted(() => {
 })
 
 const checkAuth = () => {
+  if(! import.meta.client) {
+    return
+  }
   try {
     const loggedIn = localStorage.getItem('isLoggedIn')
     const userData = localStorage.getItem('user')
@@ -699,6 +702,9 @@ const proceedToCheckout = () => {
 }
 
 const confirmBooking = async () => {
+  if(! import.meta.client) {
+    return
+  }
   isProcessingBooking.value = true
   
   try {
@@ -975,7 +981,7 @@ const formatTime = (time: string) => {
     </div>
 
     <!-- Booking Modal -->
-    <div v-if="isBookingModalOpen" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div v-if="isBookingModalOpen" class="fixed inset-0 bg-gray-300/20 bg-opacity-50 flex items-center justify-center z-50 p-4">
       <div class="bg-white rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
         <div class="p-6 border-b border-gray-200">
           <div class="flex items-center justify-between">
@@ -1141,7 +1147,7 @@ const formatTime = (time: string) => {
     </div>
 
     <!-- Checkout Modal -->
-    <div v-if="isCheckoutModalOpen" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div v-if="isCheckoutModalOpen" class="fixed inset-0 bg-gray-300/20 bg-opacity-50 flex items-center justify-center z-50 p-4">
       <div class="bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
         <div class="p-6 border-b border-gray-200">
           <div class="flex items-center justify-between">
