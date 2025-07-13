@@ -1,4 +1,5 @@
 <script>
+
 useHead({
   htmlAttrs: {
     lang: 'ar',
@@ -6,10 +7,13 @@ useHead({
   }
 })
 </script>
+
 <template>
   <div>
-    <NuxtRouteAnnouncer />
-    <!-- <NuxtWelcome /> -->
-     <NuxtPage />
+    <ClientOnly>
+      <NuxtRouteAnnouncer />
+      <!-- <NuxtWelcome /> -->
+      <NuxtPage />
+    </ClientOnly>
   </div>
 </template>

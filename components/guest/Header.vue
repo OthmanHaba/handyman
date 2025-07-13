@@ -183,6 +183,9 @@ const handleFacebookLogin = () => {
 
 // روابط التنقل الديناميكية بناءً على نوع المستخدم
 const navigationLinks = computed(() => {
+  if(! import.meta.client) {
+    return []
+  }
   const userType = localStorage.getItem('userType')
 
   if (userType === 'provider') {

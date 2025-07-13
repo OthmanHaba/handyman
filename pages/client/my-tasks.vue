@@ -162,6 +162,9 @@ onMounted(() => {
 // Authentication check
 const checkAuth = () => {
   try {
+    if(! import.meta.client) {
+      return
+    }
     const loggedIn = localStorage.getItem('isLoggedIn')
     const userData = localStorage.getItem('user')
     
