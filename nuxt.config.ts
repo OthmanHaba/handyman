@@ -36,6 +36,7 @@ export default defineNuxtConfig({
     fontsDir: './fonts',
     families: {
       'Cairo': true,
+      'Noto+Sans+Arabic': true,
     }
   }
 })

@@ -57,6 +57,9 @@ const validatePassword = () => {
 }
 
 const handleLogin = async () => {
+  if(! import.meta.client) {
+    return
+  }
   const isEmailValid = validateEmail()
   const isPasswordValid = validatePassword()
   

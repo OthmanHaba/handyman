@@ -17,3 +17,10 @@ useHead({
     </ClientOnly>
   </div>
 </template>
+
+<style>
+
+body {
+  font-family: 'Cairo', sans-serif;
+}
+</style>

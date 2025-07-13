@@ -24,6 +24,9 @@ const user = ref<{
 
 // Check authentication status
 onMounted(() => {
+  if(! import.meta.client) {
+    return
+  }
   const loggedIn = localStorage.getItem('isLoggedIn')
   const userData = localStorage.getItem('user')
   
@@ -109,6 +112,9 @@ const saveProfile = async () => {
   isSaving.value = true
   
   try {
+    if(! import.meta.client) {
+      return
+    }
     // Simulate API call
     await new Promise(resolve => setTimeout(resolve, 1000))
     
@@ -215,6 +221,9 @@ const getStatusBadge = (status: string) => {
 
 // Handle logout
 const handleLogout = () => {
+  if(! import.meta.client) {
+    return
+  }
   localStorage.removeItem('isLoggedIn')
   localStorage.removeItem('user')
   navigateTo('/')
