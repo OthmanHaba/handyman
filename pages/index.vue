@@ -222,20 +222,163 @@ onMounted(() => {
     carouselRef.value.addEventListener('scroll', updateScrollProgress)
   }
 })
+const searchLocation = ref('')
+const startDate = ref('')
+const searchCategory = ref('')
 
 onUnmounted(() => {
   if (carouselRef.value) {
     carouselRef.value.removeEventListener('scroll', updateScrollProgress)
   }
 })
+const isMenuOpen = ref(false)
 </script>
 
 <template>
   <div class="min-h-screen bg-gray-50">
     <!-- Header -->
     <GuestHeader />
-    
-    <!-- Promotional Section -->
+    <div class="py-4 sm:py-6 lg:py-8 border-t border-gray-100">
+        <div class="max-w-4xl mx-auto px-4">
+          <!-- Main Search Bar -->
+          <div class="bg-white rounded-full shadow-lg border border-gray-200 hover:shadow-xl transition-shadow duration-300">
+            <!-- Desktop Layout -->
+            <div class="hidden lg:flex">
+              <!-- Your Location -->
+              <div class="flex-1 px-6 py-3 border-r border-gray-200">
+                <div class="cursor-pointer">
+                  <div class="text-xs font-semibold text-gray-900 mb-1">Your location</div>
+                  <input 
+                    v-model="searchLocation"
+                    type="text" 
+                    placeholder="Enter your address"
+                    class="w-full text-sm text-gray-600 placeholder-gray-400 bg-transparent border-none outline-none focus:text-gray-900"
+                  >
+                </div>
+              </div>
+              
+              <!-- Date Requested -->
+              <div class="flex-1 px-6 py-3 border-r border-gray-200">
+                <div class="cursor-pointer">
+                  <div class="text-xs font-semibold text-gray-900 mb-1">Date requested</div>
+                  <input 
+                    v-model="startDate"
+                    type="date" 
+                    placeholder="Select date"
+                    class="w-full text-sm text-gray-600 placeholder-gray-400 bg-transparent border-none outline-none focus:text-gray-900"
+                  >
+                </div>
+              </div>
+              
+              <!-- Category -->
+              <div class="flex-1 px-6 py-3">
+                <div class="cursor-pointer">
+                  <div class="text-xs font-semibold text-gray-900 mb-1">Category</div>
+                  <select 
+                    v-model="searchCategory"
+                    class="w-full text-sm text-gray-600 bg-transparent border-none outline-none focus:text-gray-900 appearance-none cursor-pointer"
+                  >
+                    <option value="" class="text-gray-400">Select service</option>
+                    <option value="plumbing">Plumbing</option>
+                    <option value="electrical">Electrical</option>
+                    <option value="carpentry">Carpentry</option>
+                    <option value="painting">Painting</option>
+                    <option value="cleaning">Cleaning</option>
+                    <option value="gardening">Gardening</option>
+                    <option value="moving">Moving</option>
+                    <option value="repair">General Repair</option>
+                  </select>
+                </div>
+              </div>
+              
+              <!-- Search Button -->
+              <div class="flex items-center justify-center pr-2 ">
+                <button class="bg-blue-600 hover:bg-blue-700 text-white p-4 rounded-full transition-colors duration-200 shadow-md hover:shadow-lg">
+                  <Icon name="material-symbols:search"/>
+                </button>
+              </div>
+            </div>
+
+            <!-- Mobile/Tablet Layout -->
+            <div class="lg:hidden">
+              <!-- Collapsed Search Bar -->
+              <div class="flex items-center justify-between p-4" @click="isMenuOpen = !isMenuOpen">
+                <div class="flex-1">
+                  <div class="text-sm font-semibold text-gray-900">Need help with something?</div>
+                  <div class="text-xs text-gray-500 mt-1">
+                    <span v-if="searchLocation">{{ searchLocation }}</span>
+                    <span v-else>Any location</span>
+                    <span class="mx-1">•</span>
+                    <span v-if="startDate">
+                      {{ new Date(startDate).toLocaleDateString() }}
+                    </span>
+                    <span v-else>Any date</span>
+                    <span class="mx-1">•</span>
+                    <span v-if="searchCategory">{{ searchCategory }}</span>
+                    <span v-else>Any service</span>
+                  </div>
+                </div>
+                <div class="ml-4">
+                  <div class="bg-gray-600 text-white p-3  rounded-full">
+                    <Icon name="material-symbols:search" class="w-5 h-5" />
+                  </div>
+                </div>
+              </div>
+
+              <!-- Expanded Mobile Search -->
+              <div v-if="isMenuOpen" class="border-t border-gray-200 p-4 space-y-4">
+                <!-- Your Location -->
+                <div>
+                  <label class="block text-sm font-semibold text-gray-900 mb-2">Your location</label>
+                  <input 
+                    v-model="searchLocation"
+                    type="text" 
+                    placeholder="Enter your address"
+                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none"
+                  >
+                </div>
+                
+                <!-- Date Requested -->
+                <div>
+                  <label class="block text-sm font-semibold text-gray-900 mb-2">Date requested</label>
+                  <input 
+                    v-model="startDate"
+                    type="date" 
+                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none"
+                  >
+                </div>
+                
+                <!-- Category -->
+                <div>
+                  <label class="block text-sm font-semibold text-gray-900 mb-2">Category</label>
+                  <select 
+                    v-model="searchCategory"
+                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-600 outline-none appearance-none cursor-pointer"
+                  >
+                    <option value="">Select service</option>
+                    <option value="plumbing">Plumbing</option>
+                    <option value="electrical">Electrical</option>
+                    <option value="carpentry">Carpentry</option>
+                    <option value="painting">Painting</option>
+                    <option value="cleaning">Cleaning</option>
+                    <option value="gardening">Gardening</option>
+                    <option value="moving">Moving</option>
+                    <option value="repair">General Repair</option>
+                  </select>
+                </div>
+                
+                <!-- Search Button -->
+                <button class="w-full bg-blue-600 hover:bg-blue-700 text-white py-4 rounded-lg transition-colors duration-200 font-semibold flex items-center justify-center">
+                  <Icon name="material-symbols:search" class="w-5 h-5 mr-2" />
+                  Find Handyman
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    <!-- Promo Section -->
     <GuestPromoSection />
     
     <!-- Main Content -->
@@ -243,12 +386,12 @@ onUnmounted(() => {
       <!-- Category Navigation with Currency Toggle -->
       <div class="mb-8">
         <!-- Category Icons -->
-        <div class="flex items-center justify-between mb-6">
-          <div class="flex items-center gap-3 relative overflow-hidden">
+        <div class="flex items-center justify-between mb-6 w-full">
+          <div class="flex items-center gap-3 relative overflow-hidden w-full">
             <!-- Previous button -->
             <button 
-              @click="previousCategories"
               class="p-2 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors flex-shrink-0 z-10"
+              @click="previousCategories"
             >
               <Icon name="material-symbols:chevron-left" class="w-6 h-6 text-gray-600" />
             </button>
@@ -294,27 +437,6 @@ onUnmounted(() => {
               <Icon name="material-symbols:chevron-right" class="w-6 h-6 text-white" />
             </button>
           </div>
-          
-          <div class="flex items-center gap-3">
-            <!-- List View Toggle -->
-            <button class="p-3 border border-gray-200 rounded-lg hover:bg-gray-50">
-              <Icon name="material-symbols:view-list" class="w-5 h-5 text-gray-600" />
-            </button>
-            
-            <!-- Currency Toggle -->
-            <div class="hidden lg:flex items-center ml-4">
-              <span class="mr-3 text-sm text-gray-700">Display sarwisi currency</span>
-              <button @click="displayLocalCurrency = !displayLocalCurrency" :class="[
-                'relative inline-flex h-6 w-11 items-center rounded-full transition-colors',
-                displayLocalCurrency ? 'bg-blue-600' : 'bg-gray-300'
-              ]">
-                <span :class="[
-                  'inline-block h-4 w-4 transform rounded-full bg-white transition-transform',
-                  displayLocalCurrency ? 'translate-x-6' : 'translate-x-1'
-                ]" />
-              </button>
-            </div>
-          </div>
         </div>
         
         <!-- Sub Categories -->
@@ -340,9 +462,11 @@ onUnmounted(() => {
         <div ref="carouselRef" class="flex gap-4 overflow-x-auto scrollbar-hide scroll-smooth mb-6"
           style="scroll-snap-type: x mandatory;">
           <div v-for="handyman in handymen" :key="handyman.id" class="flex-none w-[250px] scroll-snap-start">
-            <GuestHandymanCard :name="handyman.name" :country="handyman.country" :hourly-rate="handyman.hourlyRate"
-              :rating="handyman.rating" :image="handyman.image" :tags="handyman.tags"
-              :currency="displayLocalCurrency ? '€' : '$'" />
+            <NuxtLink :to="`/client/service-detail?id=${handyman.id}&provider=${handyman.id}`">
+              <GuestHandymanCard :name="handyman.name" :country="handyman.country" :hourly-rate="handyman.hourlyRate"
+                :rating="handyman.rating" :image="handyman.image" :tags="handyman.tags"
+                :currency="displayLocalCurrency ? '€' : '$'" />
+            </NuxtLink>
           </div>
         </div>
         

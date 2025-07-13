@@ -9,6 +9,14 @@ export default defineNuxtConfig({
     '@nuxt/icon',
     '@nuxt/image',
     '@nuxt/ui',
-    '@nuxtjs/tailwindcss'
-  ]
+    '@nuxtjs/tailwindcss',
+    '@nuxtjs/i18n'
+  ],
+  i18n: {
+    locales: [
+      { code: 'en', language: 'en-US' },
+      { code: 'ar', language: 'ar-SA' }
+    ],
+    defaultLocale: 'en',
+  }
 })
