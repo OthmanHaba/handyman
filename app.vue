@@ -3,13 +3,12 @@
 useHead({
   htmlAttrs: {
     lang: 'ar',
-    dir: 'rtl'
   }
 })
 </script>
 
 <template>
-  <div>
+  <div dir="rtl">
     <ClientOnly>
       <NuxtRouteAnnouncer />
       <!-- <NuxtWelcome /> -->
