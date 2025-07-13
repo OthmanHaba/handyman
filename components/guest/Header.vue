@@ -32,6 +32,9 @@ onMounted(() => {
 
 // التحقق مما إذا كان المستخدم مصادقًا
 const checkAuthStatus = () => {
+  if(! import.meta.client) {
+    return
+  }
   const loggedIn = localStorage.getItem('isLoggedIn')
   const userType = localStorage.getItem('userType')
   const userData = localStorage.getItem('user')
@@ -252,7 +255,7 @@ const userInitials = computed(() => {
           <div class="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center mr-2">
             <Icon name="material-symbols:handyman" class="w-5 h-5 text-white" />
           </div>
-          <h1 class="text-xl font-medium text-gray-900">هاندي آي تي</h1>
+          <h1 class="text-xl font-medium text-gray-900">handly</h1>
         </div>
 
         <!-- التنقل في سطح المكتب -->

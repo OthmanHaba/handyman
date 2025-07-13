@@ -390,14 +390,14 @@ const handleLogout = () => {
             <NuxtLink to="/provider/dashboard" class="text-gray-600 hover:text-gray-900">
               <Icon name="material-symbols:arrow-back" class="w-6 h-6" />
             </NuxtLink>
-            <h1 class="text-2xl font-bold text-gray-900">My Services</h1>
+            <h1 class="text-2xl font-bold text-gray-900">خدماتي</h1>
           </div>
           <button
             @click="handleLogout"
             class="flex items-center px-4 py-2 text-sm text-gray-700 hover:text-red-600 transition-colors"
           >
             <Icon name="material-symbols:logout" class="w-4 h-4 mr-2" />
-            Logout
+            تسجيل الخروج
           </button>
         </div>
       </div>
@@ -416,7 +416,7 @@ const handleLogout = () => {
                 : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
             ]"
           >
-            My Services ({{ myServices.length }})
+            خدماتي ({{ myServices.length }})
           </button>
           <button
             @click="activeTab = 'history'"
@@ -427,7 +427,7 @@ const handleLogout = () => {
                 : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
             ]"
           >
-            Work History ({{ workHistory.length }})
+            سجل العمل ({{ workHistory.length }})
           </button>
         </div>
       </div>
@@ -437,15 +437,15 @@ const handleLogout = () => {
         <!-- Add Service Button -->
         <div class="flex justify-between items-center mb-6">
           <div>
-            <h2 class="text-xl font-semibold text-gray-900">Your Services</h2>
-            <p class="text-gray-600 text-sm">Manage your service offerings and pricing</p>
+            <h2 class="text-xl font-semibold text-gray-900">خدماتك</h2>
+            <p class="text-gray-600 text-sm">إدارة عروض الخدمات والأسعار الخاصة بك</p>
           </div>
           <button
             @click="startAddingService"
             class="flex items-center px-4 py-2 bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition-colors"
           >
             <Icon name="material-symbols:add" class="w-5 h-5 mr-2" />
-            Add New Service
+            إضافة خدمة جديدة
           </button>
         </div>
 
@@ -453,7 +453,7 @@ const handleLogout = () => {
         <div v-if="isAddingService || isEditingService" class="bg-white rounded-2xl shadow-sm p-6 mb-6">
           <div class="flex items-center justify-between mb-6">
             <h3 class="text-lg font-semibold text-gray-900">
-              {{ isEditingService ? 'Edit Service' : 'Add New Service' }}
+              {{ isEditingService ? 'تعديل الخدمة' : 'إضافة خدمة جديدة' }}
             </h3>
             <button @click="cancelForm" class="text-gray-400 hover:text-gray-600">
               <Icon name="material-symbols:close" class="w-6 h-6" />
@@ -464,25 +464,25 @@ const handleLogout = () => {
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
               <!-- Title -->
               <div>
-                <label class="block text-sm font-semibold text-gray-900 mb-2">Service Title</label>
+                <label class="block text-sm font-semibold text-gray-900 mb-2">عنوان الخدمة</label>
                 <input
                   v-model="serviceForm.title"
                   type="text"
                   class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-colors"
-                  placeholder="e.g., Kitchen Faucet Repair"
+                  placeholder="مثال: إصلاح صنبور المطبخ"
                   required
                 >
               </div>
 
               <!-- Category -->
               <div>
-                <label class="block text-sm font-semibold text-gray-900 mb-2">Category</label>
+                <label class="block text-sm font-semibold text-gray-900 mb-2">الفئة</label>
                 <select
                   v-model="serviceForm.category"
                   class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-colors"
                   required
                 >
-                  <option value="">Select a category</option>
+                  <option value="">اختر فئة</option>
                   <option v-for="category in categories" :key="category" :value="category">
                     {{ category }}
                   </option>
@@ -492,12 +492,12 @@ const handleLogout = () => {
 
             <!-- Description -->
             <div>
-              <label class="block text-sm font-semibold text-gray-900 mb-2">Description</label>
+              <label class="block text-sm font-semibold text-gray-900 mb-2">الوصف</label>
               <textarea
                 v-model="serviceForm.description"
                 rows="4"
                 class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-colors resize-none"
-                placeholder="Describe your service in detail..."
+                placeholder="وصف الخدمة بالتفصيل..."
                 required
               ></textarea>
             </div>
@@ -636,7 +636,7 @@ const handleLogout = () => {
 
         <!-- Active Services -->
         <div v-if="activeServices.length > 0" class="mb-8">
-          <h3 class="text-lg font-semibold text-gray-900 mb-4">Active Services ({{ activeServices.length }})</h3>
+          <h3 class="text-lg font-semibold text-gray-900 mb-4">الخدمات النشطة ({{ activeServices.length }})</h3>
           <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <div
               v-for="service in activeServices"
@@ -654,24 +654,24 @@ const handleLogout = () => {
                 <div class="flex items-start justify-between mb-2">
                   <h4 class="font-semibold text-gray-900">{{ service.title }}</h4>
                   <span class="px-2 py-1 text-xs font-medium bg-green-100 text-green-800 rounded-full">
-                    Active
+                    نشط
                   </span>
                 </div>
                 <p class="text-sm text-gray-600 mb-3">{{ service.description }}</p>
                 
                 <div class="space-y-2 mb-4">
                   <div class="flex items-center justify-between text-sm">
-                    <span class="text-gray-500">Price:</span>
+                    <span class="text-gray-500">السعر:</span>
                     <span class="font-medium text-gray-900">
                       ${{ service.basePrice }}{{ service.priceType === 'hourly' ? '/hour' : '' }}
                     </span>
                   </div>
                   <div class="flex items-center justify-between text-sm">
-                    <span class="text-gray-500">Jobs:</span>
+                    <span class="text-gray-500">المهام:</span>
                     <span class="font-medium text-gray-900">{{ service.completedJobs }}</span>
                   </div>
                   <div class="flex items-center justify-between text-sm">
-                    <span class="text-gray-500">Rating:</span>
+                    <span class="text-gray-500">التقييم:</span>
                     <div class="flex items-center">
                       <Icon name="material-symbols:star" class="w-4 h-4 text-yellow-400 fill-current" />
                       <span class="font-medium text-gray-900 ml-1">{{ service.rating }}</span>
@@ -695,21 +695,21 @@ const handleLogout = () => {
                     class="flex items-center px-3 py-2 text-sm text-blue-600 hover:text-blue-700 transition-colors"
                   >
                     <Icon name="material-symbols:edit" class="w-4 h-4 mr-1" />
-                    Edit
+                    تعديل الخدمة
                   </button>
                   <button
                     @click="toggleServiceStatus(service.id)"
                     class="flex items-center px-3 py-2 text-sm text-yellow-600 hover:text-yellow-700 transition-colors"
                   >
                     <Icon name="material-symbols:pause" class="w-4 h-4 mr-1" />
-                    Pause
+                    ايقاف الخدمة
                   </button>
                   <button
                     @click="deleteService(service.id)"
                     class="flex items-center px-3 py-2 text-sm text-red-600 hover:text-red-700 transition-colors"
                   >
                     <Icon name="material-symbols:delete" class="w-4 h-4 mr-1" />
-                    Delete
+                    حذف الخدمة
                   </button>
                 </div>
               </div>
@@ -719,7 +719,7 @@ const handleLogout = () => {
 
         <!-- Inactive Services -->
         <div v-if="inactiveServices.length > 0">
-          <h3 class="text-lg font-semibold text-gray-900 mb-4">Inactive Services ({{ inactiveServices.length }})</h3>
+          <h3 class="text-lg font-semibold text-gray-900 mb-4">الخدمات المعطلة ({{ inactiveServices.length }})</h3>
           <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <div
               v-for="service in inactiveServices"
@@ -737,7 +737,7 @@ const handleLogout = () => {
                 <div class="flex items-start justify-between mb-2">
                   <h4 class="font-semibold text-gray-900">{{ service.title }}</h4>
                   <span class="px-2 py-1 text-xs font-medium bg-gray-100 text-gray-800 rounded-full">
-                    Inactive
+                    معطل
                   </span>
                 </div>
                 <p class="text-sm text-gray-600 mb-3">{{ service.description }}</p>
@@ -748,21 +748,21 @@ const handleLogout = () => {
                     class="flex items-center px-3 py-2 text-sm text-green-600 hover:text-green-700 transition-colors"
                   >
                     <Icon name="material-symbols:play-arrow" class="w-4 h-4 mr-1" />
-                    Activate
+                    تنشيط الخدمة
                   </button>
                   <button
                     @click="startEditingService(service)"
                     class="flex items-center px-3 py-2 text-sm text-blue-600 hover:text-blue-700 transition-colors"
                   >
                     <Icon name="material-symbols:edit" class="w-4 h-4 mr-1" />
-                    Edit
+                    تعديل الخدمة
                   </button>
                   <button
                     @click="deleteService(service.id)"
                     class="flex items-center px-3 py-2 text-sm text-red-600 hover:text-red-700 transition-colors"
                   >
                     <Icon name="material-symbols:delete" class="w-4 h-4 mr-1" />
-                    Delete
+                    حذف الخدمة
                   </button>
                 </div>
               </div>
@@ -775,8 +775,8 @@ const handleLogout = () => {
       <div v-if="activeTab === 'history'">
         <div class="bg-white rounded-2xl shadow-sm">
           <div class="p-6 border-b">
-            <h2 class="text-xl font-semibold text-gray-900">Work History</h2>
-            <p class="text-gray-600 text-sm mt-1">Your completed and ongoing projects</p>
+            <h2 class="text-xl font-semibold text-gray-900">سجل العمل</h2>
+            <p class="text-gray-600 text-sm mt-1">المشاريع المنجزة والمستمرة</p>
           </div>
           
           <div class="p-6">

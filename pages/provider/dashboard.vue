@@ -216,9 +216,9 @@ const handleLogout = () => {
               <h1 class="text-xl font-medium text-gray-900">HandyIT</h1>
             </div>
             <div class="hidden md:flex items-center space-x-6">
-              <NuxtLink to="/provider/dashboard" class="text-blue-600 font-medium">Dashboard</NuxtLink>
-              <NuxtLink to="/provider/my-services" class="text-gray-700 hover:text-gray-900">My Services</NuxtLink>
-              <NuxtLink to="/provider/profile" class="text-gray-700 hover:text-gray-900">Profile</NuxtLink>
+              <NuxtLink to="/provider/dashboard" class="text-blue-600 font-medium">لوحة التحكم</NuxtLink>
+              <NuxtLink to="/provider/my-services" class="text-gray-700 hover:text-gray-900">خدماتي</NuxtLink>
+              <NuxtLink to="/provider/profile" class="text-gray-700 hover:text-gray-900">الملف الشخصي</NuxtLink>
             </div>
           </div>
           
@@ -251,7 +251,7 @@ const handleLogout = () => {
               class="flex items-center px-3 py-2 text-sm text-gray-700 hover:text-red-600 transition-colors"
             >
               <Icon name="material-symbols:logout" class="w-4 h-4 mr-1" />
-              Logout
+              تسجيل الخروج
             </button>
           </div>
         </div>
@@ -261,8 +261,8 @@ const handleLogout = () => {
     <div class="container mx-auto px-4 py-8">
       <!-- Welcome Section -->
       <div class="mb-8">
-        <h1 class="text-3xl font-bold text-gray-900 mb-2">Welcome back, {{ user?.name }}!</h1>
-        <p class="text-gray-600">Here's what's happening with your service requests today.</p>
+        <h1 class="text-3xl font-bold text-gray-900 mb-2">مرحبا بك, {{ user?.name }}!</h1>
+        <p class="text-gray-600">هذا ما يحدث مع طلبات خدماتك اليوم.</p>
       </div>
 
       <!-- Stats Cards -->
@@ -273,7 +273,7 @@ const handleLogout = () => {
               <Icon name="material-symbols:pending-actions" class="w-6 h-6 text-blue-600" />
             </div>
             <div class="ml-4">
-              <p class="text-sm text-gray-600">Active Requests</p>
+              <p class="text-sm text-gray-600">طلبات نشطة</p>
               <p class="text-2xl font-bold text-gray-900">{{ stats.activeRequests }}</p>
             </div>
           </div>
@@ -285,7 +285,7 @@ const handleLogout = () => {
               <Icon name="material-symbols:task-alt" class="w-6 h-6 text-green-600" />
             </div>
             <div class="ml-4">
-              <p class="text-sm text-gray-600">Completed</p>
+              <p class="text-sm text-gray-600">منجزة</p>
               <p class="text-2xl font-bold text-gray-900">{{ stats.completedThisMonth }}</p>
             </div>
           </div>
@@ -297,7 +297,7 @@ const handleLogout = () => {
               <Icon name="material-symbols:payments" class="w-6 h-6 text-yellow-600" />
             </div>
             <div class="ml-4">
-              <p class="text-sm text-gray-600">Earnings</p>
+              <p class="text-sm text-gray-600">الأرباح</p>
               <p class="text-2xl font-bold text-gray-900">${{ stats.totalEarnings }}</p>
             </div>
           </div>
@@ -309,7 +309,7 @@ const handleLogout = () => {
               <Icon name="material-symbols:star" class="w-6 h-6 text-purple-600" />
             </div>
             <div class="ml-4">
-              <p class="text-sm text-gray-600">Rating</p>
+              <p class="text-sm text-gray-600">التقييم</p>
               <p class="text-2xl font-bold text-gray-900">{{ stats.avgRating }}</p>
             </div>
           </div>
@@ -321,7 +321,7 @@ const handleLogout = () => {
               <Icon name="material-symbols:schedule" class="w-6 h-6 text-orange-600" />
             </div>
             <div class="ml-4">
-              <p class="text-sm text-gray-600">Response Time</p>
+              <p class="text-sm text-gray-600">وقت الاستجابة</p>
               <p class="text-2xl font-bold text-gray-900">{{ stats.responseTime }}</p>
             </div>
           </div>
@@ -333,8 +333,8 @@ const handleLogout = () => {
         <div class="lg:col-span-2">
           <div class="bg-white rounded-2xl shadow-sm">
             <div class="p-6 border-b">
-              <h2 class="text-xl font-semibold text-gray-900">Active Service Requests</h2>
-              <p class="text-gray-600 text-sm mt-1">New requests matching your skills</p>
+              <h2 class="text-xl font-semibold text-gray-900">طلبات الخدمة النشطة</h2>
+              <p class="text-gray-600 text-sm mt-1">طلبات جديدة مطابقة لمهاراتك</p>
             </div>
             
             <div class="p-6">
@@ -389,29 +389,29 @@ const handleLogout = () => {
                       class="flex items-center px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors text-sm"
                     >
                       <Icon name="material-symbols:check" class="w-4 h-4 mr-1" />
-                      Accept
+                      قبول
                     </button>
                     <button
                       @click="declineRequest(request.id)"
                       class="flex items-center px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors text-sm"
                     >
                       <Icon name="material-symbols:close" class="w-4 h-4 mr-1" />
-                      Decline
+                      رفض
                     </button>
                     <button class="flex items-center px-4 py-2 text-blue-600 hover:text-blue-700 transition-colors text-sm">
                       <Icon name="material-symbols:info" class="w-4 h-4 mr-1" />
-                      View Details
+                      عرض التفاصيل
                     </button>
                   </div>
                   
                   <div v-else-if="request.status === 'accepted'" class="flex space-x-3">
                     <button class="flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm">
                       <Icon name="material-symbols:message" class="w-4 h-4 mr-1" />
-                      Contact Client
+                      تواصل مع العميل
                     </button>
                     <button class="flex items-center px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors text-sm">
                       <Icon name="material-symbols:schedule" class="w-4 h-4 mr-1" />
-                      Schedule
+                      الجدول
                     </button>
                   </div>
                 </div>
@@ -425,7 +425,7 @@ const handleLogout = () => {
           <!-- Recent Activity -->
           <div class="bg-white rounded-2xl shadow-sm">
             <div class="p-6 border-b">
-              <h3 class="text-lg font-semibold text-gray-900">Recent Activity</h3>
+                <h3 class="text-lg font-semibold text-gray-900">النشاط المؤخر</h3>
             </div>
             <div class="p-6">
               <div class="space-y-4">
@@ -457,7 +457,7 @@ const handleLogout = () => {
           <!-- Quick Actions -->
           <div class="bg-white rounded-2xl shadow-sm">
             <div class="p-6 border-b">
-              <h3 class="text-lg font-semibold text-gray-900">Quick Actions</h3>
+              <h3 class="text-lg font-semibold text-gray-900">الإجراءات السريعة</h3>
             </div>
             <div class="p-6 space-y-3">
               <NuxtLink 
@@ -465,7 +465,7 @@ const handleLogout = () => {
                 class="flex items-center w-full p-3 text-left bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors"
               >
                 <Icon name="material-symbols:add-circle" class="w-5 h-5 text-blue-600 mr-3" />
-                <span class="text-sm font-medium text-gray-900">Add New Service</span>
+                <span class="text-sm font-medium text-gray-900">إضافة خدمة جديدة</span>
               </NuxtLink>
               
               <NuxtLink 
@@ -473,17 +473,17 @@ const handleLogout = () => {
                 class="flex items-center w-full p-3 text-left bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors"
               >
                 <Icon name="material-symbols:edit" class="w-5 h-5 text-blue-600 mr-3" />
-                <span class="text-sm font-medium text-gray-900">Update Profile</span>
+                <span class="text-sm font-medium text-gray-900">تحديث الملف الشخصي</span>
               </NuxtLink>
               
               <button class="flex items-center w-full p-3 text-left bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors">
                 <Icon name="material-symbols:schedule" class="w-5 h-5 text-blue-600 mr-3" />
-                <span class="text-sm font-medium text-gray-900">Manage Schedule</span>
+                <span class="text-sm font-medium text-gray-900">إدارة الجدول</span>
               </button>
               
               <button class="flex items-center w-full p-3 text-left bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors">
                 <Icon name="material-symbols:analytics" class="w-5 h-5 text-blue-600 mr-3" />
-                <span class="text-sm font-medium text-gray-900">View Analytics</span>
+                <span class="text-sm font-medium text-gray-900">عرض التحليلات</span>
               </button>
             </div>
           </div>
